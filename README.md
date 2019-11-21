@@ -10,3 +10,4 @@ Second, to study Programming language 1. Java 2. C/C++ 3. Python
 Third, to study the server(Linux)
 
 additionaly, 
+check
