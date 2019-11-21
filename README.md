@@ -1,13 +1,47 @@
-Goto My first Project 
-[Link]https://hyun0jam.github.io/petorial_v2
-- this project can be uploading pets pictures and sharing information about pets
-- this project is planned by me for uploading pets life
+## 점심 식사 List
 
-=====
-I want to be a good programmer and to achieve it
-First, I'll study English.
-Second, to study Programming language 1. Java 2. C/C++ 3. Python
-Third, to study the server(Linux)
+### 한식
 
-additionaly, 
-check
+``` tex
+1. 문어집(뚝불,보쌈,고등어)
+2. 하루한상
+3. 양철집(갈비비빔밥,부대찌개)
+4. 순대국집(순대국,뼈해장국)
+5. 연타발(갈비탕)
+6. 셰프의 육개장
+7. 북창동순두부(들깨,돼지,김치...)
+8. 호남식당
+```
+
+##### 길 건너 편
+
+``` tex
+1. 칼국수(칼국수,만두국) 
+2. 자연석돌구이(오징어불고기) 
+3. 마포숯불갈비(쌈정식,돌솥비빔밥) 
+4. 다모아(분식) 
+5. 한옥집(김치찜,김치찌개)
+```
+
+### 일식
+
+```tex
+1. 가츠오우(로스,히레,치킨...)
+2. 룽청쪽 일식집(에비가츠동 맛있음,규동도 맛있다는 소문)
+3. 고래카레(카레,고기국수)
+```
+
+### 중식
+
+```tex
+1. 룽청(짜장,짬뽕,탕수육/짬짜없음)
+2. 루위(차돌짬뽕 맛있음/짬짜없음)
+```
+
+### 양식
+
+```tex
+1. 뽕글탱글(토마토짬뽕,크림짬뽕,불크림짬뽕)
+2. 토마토피자(1인피자,치즈오븐스파게티)
+```
+
