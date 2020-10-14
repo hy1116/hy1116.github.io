@@ -5,17 +5,17 @@ markdown: kramdown
 
 # MyData
 owner:
-  name:           SungHoon Moon
+  name:           Hyun-Young Choi
   avatar:         photo.jpg
-  bio:            "Ph.D. in Computer Science"
-  email:          moon9342@gmail.com
+  bio:            
+  email:          daiunii@naver.com
   # Social networking links used in footer. Update and remove as you like.
   twitter:
   facebook:
   github:
   stackexchange:
   linkedin:
-  instagram:
+  instagram: https://www.instagram.com/hyunyoungss
   flickr:
   tumblr:
   # google plus id, include the '+', eg +mmistakes
@@ -34,7 +34,7 @@ paginate: 20
 language: 'en-uk'
 # 언어 설정
 
-url: https://moon9342.github.io
+url: https://hyun0jam.github.io
 # Google Search Console에서 사용하는 sitemap.xml 생성시
 # 이 url key값이 존재하지 않으면 sitemap.xml이
 # 정상적으로 생성되지 않는다.
@@ -45,10 +45,10 @@ url: https://moon9342.github.io
 baseurl: /
 
 # Website info
-title: IT Technical Training
+title: Bogas's Blog
 # 자신의 blog title.
 
-description: IT기반기술교육 블로그
+description: 보거스의 개발일기
 # blog home에 표시될 blog에 대한 전반적인 설명.
 
 cover: assets/built/images/blog-cover1.png
@@ -110,7 +110,7 @@ feed:
 safe: False
 lsi: False
 
-username: moon9342
+username: Hyun0Jam
 repo: GitHubPageMaker
 # username : travis-ci와 연동하는 github의 username
 # repo: travis-ci와 연동하는 github의 repository이름
