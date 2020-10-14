@@ -1,6 +1,9 @@
 # Jekyll configuration
 
-# 01. 기본구성
+# theme
+theme                  : "minimal-mistakes-jekyll"
+
+# 기본구성
 title                    : "Bogus' Development Diary"
 name                     : "Bogus"
 description              : "보거스의 개발일기"
