@@ -74,8 +74,10 @@ comments:
 og_image                 : "/assets/images/bio-photo-keyboard.jpg"
 
 # Google Analytics
-analytics:
-  provider               : false # 구글 어날리틱스 등록 false (default), "google", "google-universal", "custom"
-  google:
-    tracking_id          : UA-166235255-1
-    anonymize_ip         : # true, false (default)
+google_analytics: UA-166235255-1
+
+#analytics:
+#  provider               : false # 구글 어날리틱스 등록 false (default), "google", "google-universal", "custom"
+#  google:
+#    tracking_id          : 
+#    anonymize_ip         : # true, false (default)
