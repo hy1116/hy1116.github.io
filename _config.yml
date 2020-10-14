@@ -1,4 +1,71 @@
 # Jekyll configuration
+
+# 01. 기본구성
+title                    : "Bogus' Development Diary"
+name                     : "Bogus"
+description              : "보거스의 개발일기"
+url                      : "https://hyun0jam.github.io"
+baseurl                  : # 서브 경로가 있는 경우 기재
+
+# teaser와 logo파일
+teaser                   : "/assets/images/bio-photo-keyboard.jpg"
+logo                     : # 최상단 메뉴 바에 사이트 로고 넣기
+
+# 댓글기능
+comments:
+  provider               : # 블로그 댓글 기능 false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
+  disqus:
+    shortname            : # 블로그 댓글 기능 https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+  discourse:
+    server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
+  facebook:
+    # https://developers.facebook.com/docs/plugins/comments
+    appid                :
+    num_posts            : # 5 (default)
+    colorscheme          : # "light" (default), "dark"
+  utterances:
+    theme                : # "github-light" (default), "github-dark"
+    issue_term           : # "pathname" (default)
+
+# 오픈그래프 이미지 등록
+og_image                 : "/assets/images/bio-photo-keyboard.jpg"
+
+# Google Analytics
+analytics:
+  provider               : false # 구글 어날리틱스 등록 false (default), "google", "google-universal", "custom"
+  google:
+    tracking_id          :
+    anonymize_ip         : # true, false (default)
+
+# Site Author
+author:
+  name             : "보거스의 개발일기"
+  avatar           : "/assets/images/bio-photo-keyboard.jpg"
+  bio              : ""
+  location         : "South Korea"
+  email            :
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: mailto:daiunii@naver.com
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://hyun0Jam.com"
+
+# Site Footer
+footer:
+  links:
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/hyun0Jam"
+
+# Outputting
+permalink: /:categories/:title/
+paginate: 5 # 첫 페이지에보여줄 최근 게시물 수를 지정
+paginate_path: /page:num/
+timezone: Asia/Seoul # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
+#########################################################################################
 markdown: kramdown
 # kramdown : markdown의 개조판.
 # markdown에서 불편한 사항을 개선한 형태.
@@ -90,7 +157,7 @@ disqus_shortname: xxxxxxxx
 
 
 # Google Analytics
-google_analytics: UA-xxxxxxxx-x # replace with your GA tracking identifier
+# google_analytics: UA-xxxxxxxx-x # replace with your GA tracking identifier
 # Google Analytics을 사용할 경우 GA tracking identifier를 입력
 
 # Permalinks
@@ -133,21 +200,3 @@ destination: ./output/
 # 없는것들을 명시한다. (node_modules와 필요없는 것들은 제외)
 exclude:
   - README.md
-  - Rakefile
-  - Gemfile
-  - Gemfile.lock
-  - changelog.md
-  - "*.Rmd"
-  - vendor
-  - .travis.yml
-  - node_modules
-  - assets/css
-  - assets/images
-  - _posts/angular
-  - _posts/et-cetera
-  - _posts/python
-  - _posts/typescript
-#  - _posts/jekyll
-  - _posts/iot
-  - _posts/r
-  - _posts/economy
