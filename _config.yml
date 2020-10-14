@@ -21,7 +21,7 @@
 title: Bogus's Development Diary
 email: daiunii@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  "보거스의 노 개발일기"
+  "보거스의 노력이 가상한 개발일기"
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: "https://hyun0jam.gihub.io/" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 
