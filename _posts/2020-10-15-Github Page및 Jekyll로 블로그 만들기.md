@@ -166,13 +166,15 @@ comments:
 
 #### 02.5 Search
 
-- 검색기능 추가 예정
+- 추가예정
 
 ----
 
 ###### references
 
-- 댓글,통계기능 추가 : https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/
-- theme적용 및 포스팅 : https://imreplay.com/blogging/minimal-mistakes-%ED%85%8C%EB%A7%88%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-githubio-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0/
-- 최근 수정일 : https://dev-yakuza.github.io/ko/jekyll/jekyll-last-modified-at/
-  - bundle : https://github.com/gjtorikian/jekyll-last-modified-at
+- 댓글,통계기능 추가 [https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/](https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/)
+- theme적용 및 포스팅 : [https://imreplay.com](https://imreplay.com/blogging/minimal-mistakes-%ED%85%8C%EB%A7%88%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-githubio-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0/)
+- 최근 수정일 : [https://dev-yakuza.github.io/ko/jekyll/jekyll-last-modified-at/](https://dev-yakuza.github.io/ko/jekyll/jekyll-last-modified-at/)
+  - bundle : [https://github.com/gjtorikian/jekyll-last-modified-at](https://github.com/gjtorikian/jekyll-last-modified-at)
+- 검색기능추가 : [https://moon9342.github.io/jekyll-search](https://moon9342.github.io/jekyll-search)
+  - [https://blog.hax0r.info/2018-02-18/using-search-from-jekyll/](https://blog.hax0r.info/2018-02-18/using-search-from-jekyll/)
