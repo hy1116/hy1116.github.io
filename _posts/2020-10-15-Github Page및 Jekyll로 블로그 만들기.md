@@ -130,7 +130,7 @@ comments:
   {% endif %}           
   ```
 
-![image-20201015170206952](C:\Users\userhy\AppData\Roaming\Typora\typora-user-images\image-20201015170206952.png)
+![image-20201015170206952](\assets\images\posts\image-20201015170206952.png)
 
 
 
@@ -147,7 +147,7 @@ comments:
       anonymize_ip         : false # true, false (default)
   ```
 
-![image-20201015170009781](C:\Users\userhy\AppData\Roaming\Typora\typora-user-images\image-20201015170009781.png)
+![image-20201015170009781](\assets\images\posts\image-20201015170009781.png)
 
 
 

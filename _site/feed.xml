@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-15T17:28:16+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">SecondTest</title><link href="http://localhost:4000/SecondTest/" rel="alternate" type="text/html" title="SecondTest" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-15T17:06:00+09:00</updated><id>http://localhost:4000/SecondTest</id><content type="html" xml:base="http://localhost:4000/SecondTest/">&lt;p&gt;First Posting test&lt;/p&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="Blog" /><summary type="html">First Posting test</summary></entry><entry><title type="html">Github Page및 JeKyll로 블로그 만들기</title><link href="http://localhost:4000/Github-Page%EB%B0%8F-Jekyll%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" rel="alternate" type="text/html" title="Github Page및 JeKyll로 블로그 만들기" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-16T01:46:00+09:00</updated><id>http://localhost:4000/Github%20Page%EB%B0%8F%20Jekyll%EB%A1%9C%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EB%A7%8C%EB%93%A4%EA%B8%B0</id><content type="html" xml:base="http://localhost:4000/Github-Page%EB%B0%8F-Jekyll%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">&lt;h1 id=&quot;making-github-page-history&quot;&gt;Making Github Page History&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-15T17:30:15+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">SecondTest</title><link href="http://localhost:4000/SecondTest/" rel="alternate" type="text/html" title="SecondTest" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-15T17:06:00+09:00</updated><id>http://localhost:4000/SecondTest</id><content type="html" xml:base="http://localhost:4000/SecondTest/">&lt;p&gt;First Posting test&lt;/p&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="Blog" /><summary type="html">First Posting test</summary></entry><entry><title type="html">Github Page및 JeKyll로 블로그 만들기</title><link href="http://localhost:4000/Github-Page%EB%B0%8F-Jekyll%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" rel="alternate" type="text/html" title="Github Page및 JeKyll로 블로그 만들기" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-16T01:46:00+09:00</updated><id>http://localhost:4000/Github%20Page%EB%B0%8F%20Jekyll%EB%A1%9C%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EB%A7%8C%EB%93%A4%EA%B8%B0</id><content type="html" xml:base="http://localhost:4000/Github-Page%EB%B0%8F-Jekyll%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">&lt;h1 id=&quot;making-github-page-history&quot;&gt;Making Github Page History&lt;/h1&gt;
 
 &lt;h2 id=&quot;20201014&quot;&gt;@20201014~&lt;/h2&gt;
 
@@ -134,7 +134,7 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;C:\Users\userhy\AppData\Roaming\Typora\typora-user-images\image-20201015170206952.png&quot; alt=&quot;image-20201015170206952&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;\assets\images\posts\image-20201015170206952.png&quot; alt=&quot;image-20201015170206952&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;023-analytics&quot;&gt;02.3 Analytics&lt;/h4&gt;
 
@@ -152,7 +152,7 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;C:\Users\userhy\AppData\Roaming\Typora\typora-user-images\image-20201015170009781.png&quot; alt=&quot;image-20201015170009781&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;\assets\images\posts\image-20201015170009781.png&quot; alt=&quot;image-20201015170009781&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;024-font&quot;&gt;02.4 Font&lt;/h4&gt;
 
