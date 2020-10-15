@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-15T16:55:52+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">SecondTest</title><link href="http://localhost:4000/SecondTest/" rel="alternate" type="text/html" title="SecondTest" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-15T17:06:00+09:00</updated><id>http://localhost:4000/SecondTest</id><content type="html" xml:base="http://localhost:4000/SecondTest/">&lt;p&gt;First Posting test&lt;/p&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="Blog" /><summary type="html">First Posting test</summary></entry><entry><title type="html">Github Page와 JeKyll로 블로그 만들기</title><link href="http://localhost:4000/Github-Page%EC%99%80-Jekyll%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" rel="alternate" type="text/html" title="Github Page와 JeKyll로 블로그 만들기" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-16T01:46:00+09:00</updated><id>http://localhost:4000/Github%20Page%EC%99%80%20Jekyll%EB%A1%9C%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EB%A7%8C%EB%93%A4%EA%B8%B0</id><content type="html" xml:base="http://localhost:4000/Github-Page%EC%99%80-Jekyll%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">&lt;h1 id=&quot;making-github-page-history&quot;&gt;Making Github Page History&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-15T17:27:10+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">SecondTest</title><link href="http://localhost:4000/SecondTest/" rel="alternate" type="text/html" title="SecondTest" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-15T17:06:00+09:00</updated><id>http://localhost:4000/SecondTest</id><content type="html" xml:base="http://localhost:4000/SecondTest/">&lt;p&gt;First Posting test&lt;/p&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="Blog" /><summary type="html">First Posting test</summary></entry><entry><title type="html">Github Page및 JeKyll로 블로그 만들기</title><link href="http://localhost:4000/Github-Page%EB%B0%8F-Jekyll%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" rel="alternate" type="text/html" title="Github Page및 JeKyll로 블로그 만들기" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-16T01:46:00+09:00</updated><id>http://localhost:4000/Github%20Page%EB%B0%8F%20Jekyll%EB%A1%9C%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EB%A7%8C%EB%93%A4%EA%B8%B0</id><content type="html" xml:base="http://localhost:4000/Github-Page%EB%B0%8F-Jekyll%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">&lt;h1 id=&quot;making-github-page-history&quot;&gt;Making Github Page History&lt;/h1&gt;
 
 &lt;h2 id=&quot;20201014&quot;&gt;@20201014~&lt;/h2&gt;
 
@@ -30,7 +30,9 @@ jekyll serve &lt;span class=&quot;c&quot;&gt;# server start command&lt;/span&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;02-posting&quot;&gt;02. Posting&lt;/h3&gt;
+&lt;h3 id=&quot;02-posting--update-setting&quot;&gt;02. Posting &amp;amp; update setting&lt;/h3&gt;
+
+&lt;h4 id=&quot;021-posting&quot;&gt;02.1 Posting&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -75,35 +77,39 @@ jekyll serve &lt;span class=&quot;c&quot;&gt;# server start command&lt;/span&gt;
     ### Scope별로 default값 추가가능
     ```
 
-- `disqus`를 이용하여 댓글기능 추가하기
 
-  ```yaml
-  # _config.yml에 추가 (사용하는 테마별로 comment기능을 지원하지 않을 수 있음)
-  # 댓글기능
-  comments:
-    provider               : &quot;disqus&quot; # false (default), &quot;disqus&quot;, &quot;discourse&quot;, &quot;facebook&quot;, &quot;staticman&quot;, &quot;staticman_v2&quot;, &quot;utterances&quot;, &quot;custom&quot;
-    disqus:
-      shortname            : &quot;boguss-diary&quot; # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
-    discourse:
-      server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
-    facebook:
-      # https://developers.facebook.com/docs/plugins/comments
-      appid                :
-      num_posts            : # 5 (default)
-      colorscheme          : # &quot;light&quot; (default), &quot;dark&quot;
-    utterances:
-      theme                : # &quot;github-light&quot; (default), &quot;github-dark&quot;
-      issue_term           : # &quot;pathname&quot; (default)
-    staticman:
-      branch               : # &quot;master&quot;
-      endpoint             : # &quot;https://{your Staticman v3 API}/v3/entry/github/&quot;
+
+#### 02.2 Comment
+
+`disqus`를 이용하여 댓글기능 추가하기
+
+```yaml
+# _config.yml에 추가 (사용하는 테마별로 comment기능을 지원하지 않을 수 있음)
+# 댓글기능
+comments:
+  provider               : &quot;disqus&quot; # false (default), &quot;disqus&quot;, &quot;discourse&quot;, &quot;facebook&quot;, &quot;staticman&quot;, &quot;staticman_v2&quot;, &quot;utterances&quot;, &quot;custom&quot;
+  disqus:
+    shortname            : &quot;boguss-diary&quot; # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+  discourse:
+    server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
+  facebook:
+    # https://developers.facebook.com/docs/plugins/comments
+    appid                :
+    num_posts            : # 5 (default)
+    colorscheme          : # &quot;light&quot; (default), &quot;dark&quot;
+  utterances:
+    theme                : # &quot;github-light&quot; (default), &quot;github-dark&quot;
+    issue_term           : # &quot;pathname&quot; (default)
+  staticman:
+    branch               : # &quot;master&quot;
+    endpoint             : # &quot;https://{your Staticman v3 API}/v3/entry/github/&quot;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
     &lt;p&gt;disqus - Universal Embed Code 추가하기&lt;/p&gt;
 
-    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;disqus_thread&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;script&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;cm&quot;&gt;/**
@@ -123,11 +129,18 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
 &lt;span class=&quot;p&quot;&gt;})();&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;noscript&amp;gt;&lt;/span&gt;Please enable JavaScript to view the &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://disqus.com/?ref_noscript&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;comments powered by Disqus.&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&amp;lt;/noscript&amp;gt;&lt;/span&gt;
-               
+             
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;C:\Users\userhy\AppData\Roaming\Typora\typora-user-images\image-20201015170206952.png&quot; alt=&quot;image-20201015170206952&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;023-analytics&quot;&gt;02.3 Analytics&lt;/h4&gt;
+
+&lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;Google Analatics ( minimal-mistakes 사용 )&lt;/p&gt;
+    &lt;p&gt;Google Analytics ( minimal-mistakes 사용 )&lt;/p&gt;
 
     &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Analytics&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;analytics&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
@@ -136,6 +149,24 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
     &lt;span class=&quot;na&quot;&gt;tracking_id          &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;tracking&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;id&quot;&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;anonymize_ip         &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# true, false (default)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;C:\Users\userhy\AppData\Roaming\Typora\typora-user-images\image-20201015170009781.png&quot; alt=&quot;image-20201015170009781&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;024-font&quot;&gt;02.4 Font&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;웹폰트 설정&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://fonts.googleapis.com/earlyaccess/nanumgothic.css&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 나눔고딕 --&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_layout/default.html&lt;/code&gt;에 해당 폰트링크 추가&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assets/css/screen.css&lt;/code&gt; 파일의  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.post-full-content&lt;/code&gt; 부분을 원하는대로 수정 (‘나눔고딕’은 한글에 적용됨).&lt;/li&gt;
+    &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
