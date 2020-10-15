@@ -41,7 +41,7 @@ comment : true
 
 - 'YYYY-MM-DD-[title].md'형식으로 파일추가
 
-  ```markdown
+  ```
   #example
   
   ---
