@@ -42,7 +42,6 @@ comment : true
 - 'YYYY-MM-DD-[title].md'형식으로 파일추가
 
   ```
-  #example
   
   ---
   layout : post
@@ -53,7 +52,8 @@ comment : true
   comment : true
   ---
   
-  markdown형식의 내용
+  content
+
   ```
 
   - 포스팅 default값 설정
