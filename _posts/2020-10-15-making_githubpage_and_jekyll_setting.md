@@ -8,11 +8,11 @@ comment : true
 
 ### 01. make git project
 
- **github page**는 비용이 들지 않고 간단하게 **웹 호스팅**을 할 수 있도록 해주는 github의 기능중 하나이다.
+ **[GitHub Pages](https://pages.github.com/)**는 비용이 들지 않고 간단하게 **웹 호스팅**을 할 수 있도록 해주는 github의 기능중 하나이다.
 
 하지만, **정적**인 웹이므로 구현 가능한 기능이 한정적이다. DB를 사용하지 않기 때문에 게시판, 댓글, 통계 등의 기능을 추가 할 수 없으나 이러한 기능을 사용 할 수 있도록 하는것이 **Jekyll**과 플러그인들을 통해 해당 기능들을 사용 할 수 있도록 만든다.
 
-**Jekyll**은 ruby 기반으로 만들어진 **설치형블로그**이다. 마크다운언어(.md)를 html로 변환하여 정적 사이트를 만들어준다.
+**[Jekyll](https://jekyllrb.com/)**은 ruby 기반으로 만들어진 **설치형블로그**이다. 마크다운언어(.md)를 html로 변환하여 정적 사이트를 만들어준다.
 
 기존에 미리 셋팅을 해두었기에 기억나는 내용을 간략히 정리해 봄.
 
@@ -34,7 +34,7 @@ comment : true
   # http://localhist:40000
   ```
 
-- theme : `minimal-mistakes` - [Jekyll theme site](http://jekyllthemes.org/)
+- theme : **[Minimal Mistake](https://mmistakes.github.io/minimal-mistakes/)** - [Jekyll theme site](http://jekyllthemes.org/)
 
 - git 연동 및 수정 : `vsCode`&`Typora`사용 ( *git bash사용하기 귀찮아서.. 좋은 툴 있다면 알려주세요!!* ) 
 
@@ -44,7 +44,8 @@ comment : true
 
 ###### references
 
-- theme적용 및 포스팅 : [https://imreplay.com/blogging/](https://imreplay.com/blogging/minimal-mistakes-%ED%85%8C%EB%A7%88%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-githubio-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0/)
-
-
+- [Jekyll](https://jekyllrb.com/)
+- [GitHub Pages](https://pages.github.com/)
+- [Minimal Mistake](https://mmistakes.github.io/minimal-mistakes/)
+- [Jekyll theme site](http://jekyllthemes.org/)
 

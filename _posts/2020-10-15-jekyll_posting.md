@@ -56,6 +56,7 @@ comment : true
 
 ###### references
 
-- 댓글,통계기능 추가 : [https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/](https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/)
-- theme적용 및 포스팅 : [https://imreplay.com/blogging/](https://imreplay.com/blogging/minimal-mistakes-%ED%85%8C%EB%A7%88%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-githubio-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0/)
+- GitHub Pages 블로그에 댓글, 통계 분석 기능 추가하기 : [https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/](https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/)
+
+- minimal-mistakes-테마를-이용해-githubio-블로그-구축하기 : [imreplay.com](https://imreplay.com/blogging/minimal-mistakes-%ED%85%8C%EB%A7%88%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-githubio-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0/)
 

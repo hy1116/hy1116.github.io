@@ -34,19 +34,10 @@ html {
 }
 
 /* font color  */
-p{
-  color: #666;
-}
-strong{
-  /**/
-}
-h3{
-  color: darksalmon;
-}
-hr{
-  border-color: #c4c4c4;
-}
-p>code{
-  color: brown;
-  background: #f0f0f0;
-}
+p{color: #666;}
+p>code{color: brown; background: #f0f0f0;}
+strong{/**/}
+h3{color: darksalmon;}
+h2>a{font-size: 1.1em;}
+hr{border-color: #c4c4c4;}
+

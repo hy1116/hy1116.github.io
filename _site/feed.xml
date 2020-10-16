@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-16T13:59:49+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(4) - setting update</title><link href="http://localhost:4000/githubpage%20and%20jekyll/setting-update/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(4) - setting update" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T22:59:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/setting%20update</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/setting-update/">&lt;h3 id=&quot;04-update-settings&quot;&gt;04. Update settings&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-16T14:12:53+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(4) - setting update</title><link href="http://localhost:4000/githubpage%20and%20jekyll/setting-update/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(4) - setting update" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T22:59:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/setting%20update</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/setting-update/">&lt;h3 id=&quot;04-update-settings&quot;&gt;04. Update settings&lt;/h3&gt;
 
 &lt;h4 id=&quot;041-font&quot;&gt;04.1 Font&lt;/h4&gt;
 
@@ -145,7 +145,16 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/image-20201015170009781.png&quot; class=&quot;image-shadow-card&quot; alt=&quot;image-20201015170009781&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="Github Page" /><category term="Jekyll" /><summary type="html">03. Add Service</summary></entry><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(2) - Posting</title><link href="http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(2) - Posting" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-16T01:46:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting/">&lt;h3 id=&quot;02-posting&quot;&gt;02. Posting&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/image-20201015170009781.png&quot; class=&quot;image-shadow-card&quot; alt=&quot;image-20201015170009781&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h6 id=&quot;references&quot;&gt;references&lt;/h6&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://disqus.com/&quot;&gt;Disqus&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://analytics.google.com/&quot;&gt;Google Analytics&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="Github Page" /><category term="Jekyll" /><summary type="html">03. Add Service</summary></entry><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(2) - Posting</title><link href="http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(2) - Posting" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-16T01:46:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting/">&lt;h3 id=&quot;02-posting&quot;&gt;02. Posting&lt;/h3&gt;
 
 &lt;h4 id=&quot;021-posting&quot;&gt;02.1 Posting&lt;/h4&gt;
 
@@ -198,15 +207,19 @@ comment : true
 &lt;h6 id=&quot;references&quot;&gt;references&lt;/h6&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;댓글,통계기능 추가 : &lt;a href=&quot;https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/&quot;&gt;https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;theme적용 및 포스팅 : &lt;a href=&quot;https://imreplay.com/blogging/minimal-mistakes-%ED%85%8C%EB%A7%88%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-githubio-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0/&quot;&gt;https://imreplay.com/blogging/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;GitHub Pages 블로그에 댓글, 통계 분석 기능 추가하기 : &lt;a href=&quot;https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/&quot;&gt;https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;minimal-mistakes-테마를-이용해-githubio-블로그-구축하기 : &lt;a href=&quot;https://imreplay.com/blogging/minimal-mistakes-%ED%85%8C%EB%A7%88%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-githubio-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0/&quot;&gt;imreplay.com&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="Github Page" /><category term="Jekyll" /><summary type="html">02. Posting</summary></entry><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(1) - make gitproject and jekyll setting</title><link href="http://localhost:4000/githubpage%20and%20jekyll/making_githubpage_and_jekyll_setting/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(1) - make gitproject and jekyll setting" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-15T19:21:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/making_githubpage_and_jekyll_setting</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/making_githubpage_and_jekyll_setting/">&lt;h3 id=&quot;01-make-git-project&quot;&gt;01. make git project&lt;/h3&gt;
 
-&lt;p&gt;&lt;strong&gt;github page&lt;/strong&gt;는 비용이 들지 않고 간단하게 &lt;strong&gt;웹 호스팅&lt;/strong&gt;을 할 수 있도록 해주는 github의 기능중 하나이다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;&lt;/strong&gt;는 비용이 들지 않고 간단하게 &lt;strong&gt;웹 호스팅&lt;/strong&gt;을 할 수 있도록 해주는 github의 기능중 하나이다.&lt;/p&gt;
 
 &lt;p&gt;하지만, &lt;strong&gt;정적&lt;/strong&gt;인 웹이므로 구현 가능한 기능이 한정적이다. DB를 사용하지 않기 때문에 게시판, 댓글, 통계 등의 기능을 추가 할 수 없으나 이러한 기능을 사용 할 수 있도록 하는것이 &lt;strong&gt;Jekyll&lt;/strong&gt;과 플러그인들을 통해 해당 기능들을 사용 할 수 있도록 만든다.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Jekyll&lt;/strong&gt;은 ruby 기반으로 만들어진 &lt;strong&gt;설치형블로그&lt;/strong&gt;이다. 마크다운언어(.md)를 html로 변환하여 정적 사이트를 만들어준다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt;&lt;/strong&gt;은 ruby 기반으로 만들어진 &lt;strong&gt;설치형블로그&lt;/strong&gt;이다. 마크다운언어(.md)를 html로 변환하여 정적 사이트를 만들어준다.&lt;/p&gt;
 
 &lt;p&gt;기존에 미리 셋팅을 해두었기에 기억나는 내용을 간략히 정리해 봄.&lt;/p&gt;
 
@@ -233,7 +246,7 @@ jekyll serve &lt;span class=&quot;c&quot;&gt;# server start command&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;theme : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimal-mistakes&lt;/code&gt; - &lt;a href=&quot;http://jekyllthemes.org/&quot;&gt;Jekyll theme site&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;theme : &lt;strong&gt;&lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/&quot;&gt;Minimal Mistake&lt;/a&gt;&lt;/strong&gt; - &lt;a href=&quot;http://jekyllthemes.org/&quot;&gt;Jekyll theme site&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;git 연동 및 수정 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vsCode&lt;/code&gt;&amp;amp;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Typora&lt;/code&gt;사용 ( &lt;em&gt;git bash사용하기 귀찮아서.. 좋은 툴 있다면 알려주세요!!&lt;/em&gt; )&lt;/p&gt;
@@ -245,5 +258,8 @@ jekyll serve &lt;span class=&quot;c&quot;&gt;# server start command&lt;/span&gt;
 &lt;h6 id=&quot;references&quot;&gt;references&lt;/h6&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;theme적용 및 포스팅 : &lt;a href=&quot;https://imreplay.com/blogging/minimal-mistakes-%ED%85%8C%EB%A7%88%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-githubio-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0/&quot;&gt;https://imreplay.com/blogging/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://pages.github.com/&quot;&gt;GitHub Pages&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/&quot;&gt;Minimal Mistake&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://jekyllthemes.org/&quot;&gt;Jekyll theme site&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="Github Page" /><category term="Jekyll" /><summary type="html">01. make git project</summary></entry></feed>
