@@ -1,8 +1,7 @@
 ---
 layout : posts
 title : "[JeKyll기반의 블로그(Github Page) 만들기(2)"
-tags : 
-  - github
+tags : [ Github Page ,Jekyll ]
 last_modified_at: 2020-10-16T11:29:00
 comment : true
 
