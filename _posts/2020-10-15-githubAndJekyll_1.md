@@ -8,10 +8,6 @@ comment : true
 
 ---
 
-## Making Github Page & Jekyll History
-
-@20201015
-
 ### 01. make git project
 
  **github page**는 비용이 들지 않고 간단하게 **웹 호스팅**을 할 수 있도록 해주는 github의 기능중 하나이다.
