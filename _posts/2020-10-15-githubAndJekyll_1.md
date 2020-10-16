@@ -6,10 +6,6 @@ comment : true
 
 ---
 
-*블로그 만들며 이해한 내용 필기. 틀린 부분은 많은 지적 부탁드립니다.*
-
-----
-
 ## Making Github Page & Jekyll History
 
 @20201015
