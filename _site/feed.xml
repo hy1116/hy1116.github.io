@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-16T16:29:55+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(4) - setting update</title><link href="http://localhost:4000/githubpage%20and%20jekyll/setting-update/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(4) - setting update" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T22:59:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/setting%20update</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/setting-update/">&lt;h3 id=&quot;04-update-settings&quot;&gt;04. Update settings&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-16T16:35:22+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(4) - setting update</title><link href="http://localhost:4000/githubpage%20and%20jekyll/setting-update/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(4) - setting update" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T22:59:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/setting%20update</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/setting-update/">&lt;h3 id=&quot;04-update-settings&quot;&gt;04. Update settings&lt;/h3&gt;
 
 &lt;h4 id=&quot;041-font&quot;&gt;04.1 Font&lt;/h4&gt;
 
@@ -72,10 +72,10 @@
 
     &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;p&gt;&lt;img src=&quot;\assets\images\posts\image-20201016162539687.png&quot; alt=&quot;image-20201016162539687&quot; class=&quot;image-shadow-card&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;\assets\images\posts\image-20201016162539687.png&quot; alt=&quot;image-20201016162539687&quot; class=&quot;image-shadow-card&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -102,7 +102,7 @@
 &lt;span class=&quot;na&quot;&gt;comments&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;na&quot;&gt;provider               &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;disqus&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# false (default), &quot;disqus&quot;, &quot;discourse&quot;, &quot;facebook&quot;, &quot;staticman&quot;, &quot;staticman_v2&quot;, &quot;utterances&quot;, &quot;custom&quot;&lt;/span&gt;
   &lt;span class=&quot;na&quot;&gt;disqus&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;shortname            &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;[username]&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;shortname            &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;[shortname]&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-&lt;/span&gt;
   &lt;span class=&quot;na&quot;&gt;discourse&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;server               &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org&lt;/span&gt;
   &lt;span class=&quot;na&quot;&gt;facebook&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
