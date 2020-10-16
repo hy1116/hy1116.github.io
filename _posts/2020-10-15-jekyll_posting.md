@@ -1,7 +1,7 @@
 ---
-title : "JeKyll기반의 블로그(Github Page) 만들기 - Posting"
+title : "JeKyll기반의 블로그(Github Page) 만들기(2) - Posting"
 tags : [ Github Page ,Jekyll ]
-category : "/GithubPage and Jekyll/"
+category : "GithubPage and Jekyll"
 last_modified_at: 2020-10-15T16:46:00
 comment : true
 ---

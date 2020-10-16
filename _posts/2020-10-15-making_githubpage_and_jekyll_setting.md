@@ -1,14 +1,10 @@
 ---
-title : "JeKyll기반의 블로그(Github Page) 만들기 - make gitproject and jekyll setting"
+title : "JeKyll기반의 블로그(Github Page) 만들기(1) - make gitproject and jekyll setting"
 tags : [ Github Page ,Jekyll ]
-category : "/GithubPage and Jekyll/"
-last_modified_at: 2020-10-15T16:46:00
+category : "GithubPage and Jekyll"
+last_modified_at: 2020-10-15T10:21:00
 comment : true
 ---
-
-## Making Github Page & Jekyll History
-
-@20201015
 
 ### 01. make git project
 
@@ -43,15 +39,6 @@ comment : true
 - git 연동 및 수정 : `vsCode`&`Typora`사용 ( *git bash사용하기 귀찮아서.. 좋은 툴 있다면 알려주세요!!* ) 
 
 
-
-
----
-
- **마치며,** 생각 했던 것과는 달리 한 줄 정도의 수정으로 여러 서비스를 연동 할 수 있어 전혀 어려움울 것이 없었다. 귀찮을 것이라 생각한 것이 민망할정도..
-
-아직은 부족한 기능이 많지만 앞으로 하나씩 붙여가며 정리 해두고 싶은 내용을 포스팅 해보려 한다.
-
-본인만의 블로그를 만들어 보고싶은 사람은 한 번쯤 만들어 놓고 여러 기능들을 붙여가며 발전시켜나가는 재미가 있을듯하다. - 2020/10/15
 
 ----
 

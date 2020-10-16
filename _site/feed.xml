@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-16T13:48:04+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기 - setting update</title><link href="http://localhost:4000/githubpage%20and%20jekyll/setting-update/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기 - setting update" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T01:46:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/setting%20update</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/setting-update/">&lt;h3 id=&quot;04-update-settings&quot;&gt;04. Update settings&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-16T13:59:49+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(4) - setting update</title><link href="http://localhost:4000/githubpage%20and%20jekyll/setting-update/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(4) - setting update" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T22:59:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/setting%20update</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/setting-update/">&lt;h3 id=&quot;04-update-settings&quot;&gt;04. Update settings&lt;/h3&gt;
 
 &lt;h4 id=&quot;041-font&quot;&gt;04.1 Font&lt;/h4&gt;
 
@@ -20,7 +20,7 @@
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/posts/image-20201016112619389.png&quot; class=&quot;image-shadow-card&quot; alt=&quot;image-20201015170009781&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;위와같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;navigation&lt;/code&gt;에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tags&lt;/code&gt;를 추가 하고자 한다면, 이미 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimal-mistakes&lt;/code&gt;테마에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;navigation&lt;/code&gt;틀이 만들어져있으므로 원하는대로 변경해주기만 하면 된다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data&lt;/code&gt;&amp;gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;navigation.yml&lt;/code&gt;파일을 확인해보면 바로 알 수 있다. 주석을 해제 하고 포스팅 파일 yaml에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tags : [git,jekyll]&lt;/code&gt;와 같은 형식으로 작성해주면 자동으로 태깅된다.&lt;/p&gt;
+&lt;p&gt;위와같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;navigation&lt;/code&gt;에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tags&lt;/code&gt;를 추가 하고자 한다면, 이미 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimal-mistakes&lt;/code&gt;테마에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;navigation&lt;/code&gt;틀이 만들어져있으므로 원하는대로 변경해주기만 하면 된다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data&lt;/code&gt;&amp;gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;navigation.yml&lt;/code&gt;파일을 확인해보면 바로 알 수 있다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/category/&lt;/code&gt; ,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/tags/&lt;/code&gt;폴더를 생성해주면 완료된다.&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -41,15 +41,22 @@
   &lt;span class=&quot;c1&quot;&gt;# - title: &quot;Sitemap&quot;&lt;/span&gt;
   &lt;span class=&quot;c1&quot;&gt;#   url: /sitemap/&lt;/span&gt;
   &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Categories&quot;&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/categories/&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/categories/&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# 없을경우 폴더생성&lt;/span&gt;
   &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Tags&quot;&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/tags/&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/tags/&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 없을경우 폴더생성&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;카테고리 목록추가&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/category/&lt;/code&gt;폴더에 원하는 카테고리폴더를 만들어주고 포스트 상단 yaml에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category:&quot;카테고리명&quot;&lt;/code&gt;을 추가해주면 해당 카테고리에 삽입 된다.&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="/GithubPage and Jekyll/" /><category term="Github Page" /><category term="Jekyll" /><summary type="html">04. Update settings</summary></entry><entry><title type="html">[JeKyll기반의 블로그(Github Page) 만들기 - add service</title><link href="http://localhost:4000/add_service/" rel="alternate" type="text/html" title="[JeKyll기반의 블로그(Github Page) 만들기 - add service" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T20:29:00+09:00</updated><id>http://localhost:4000/add_service</id><content type="html" xml:base="http://localhost:4000/add_service/">&lt;h3 id=&quot;03-add-service&quot;&gt;03. Add Service&lt;/h3&gt;
+  &lt;li&gt;
+    &lt;p&gt;태깅하기&lt;/p&gt;
+
+    &lt;p&gt;포스팅 파일 yaml에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tags : [git,jekyll]&lt;/code&gt;와 같은 형식으로 작성해주면 자동으로 태깅된다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="Github Page" /><category term="Jekyll" /><summary type="html">04. Update settings</summary></entry><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(3) - add service</title><link href="http://localhost:4000/githubpage%20and%20jekyll/add_service/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(3) - add service" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T20:29:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/add_service</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/add_service/">&lt;h3 id=&quot;03-add-service&quot;&gt;03. Add Service&lt;/h3&gt;
 
 &lt;h4 id=&quot;031-comment&quot;&gt;03.1 Comment&lt;/h4&gt;
 
@@ -138,7 +145,7 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/image-20201015170009781.png&quot; class=&quot;image-shadow-card&quot; alt=&quot;image-20201015170009781&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="Github Page" /><category term="Jekyll" /><summary type="html">03. Add Service</summary></entry><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기 - Posting</title><link href="http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기 - Posting" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-16T01:46:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting/">&lt;h3 id=&quot;02-posting&quot;&gt;02. Posting&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/image-20201015170009781.png&quot; class=&quot;image-shadow-card&quot; alt=&quot;image-20201015170009781&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="Github Page" /><category term="Jekyll" /><summary type="html">03. Add Service</summary></entry><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(2) - Posting</title><link href="http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(2) - Posting" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-16T01:46:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting/">&lt;h3 id=&quot;02-posting&quot;&gt;02. Posting&lt;/h3&gt;
 
 &lt;h4 id=&quot;021-posting&quot;&gt;02.1 Posting&lt;/h4&gt;
 
@@ -193,11 +200,7 @@ comment : true
 &lt;ul&gt;
   &lt;li&gt;댓글,통계기능 추가 : &lt;a href=&quot;https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/&quot;&gt;https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;theme적용 및 포스팅 : &lt;a href=&quot;https://imreplay.com/blogging/minimal-mistakes-%ED%85%8C%EB%A7%88%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-githubio-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0/&quot;&gt;https://imreplay.com/blogging/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="/GithubPage and Jekyll/" /><category term="Github Page" /><category term="Jekyll" /><summary type="html">02. Posting</summary></entry><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기 - make gitproject and jekyll setting</title><link href="http://localhost:4000/githubpage%20and%20jekyll/making_githubpage_and_jekyll_setting/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기 - make gitproject and jekyll setting" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-16T01:46:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/making_githubpage_and_jekyll_setting</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/making_githubpage_and_jekyll_setting/">&lt;h2 id=&quot;making-github-page--jekyll-history&quot;&gt;Making Github Page &amp;amp; Jekyll History&lt;/h2&gt;
-
-&lt;p&gt;@20201015&lt;/p&gt;
-
-&lt;h3 id=&quot;01-make-git-project&quot;&gt;01. make git project&lt;/h3&gt;
+&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="Github Page" /><category term="Jekyll" /><summary type="html">02. Posting</summary></entry><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(1) - make gitproject and jekyll setting</title><link href="http://localhost:4000/githubpage%20and%20jekyll/making_githubpage_and_jekyll_setting/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(1) - make gitproject and jekyll setting" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-15T19:21:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/making_githubpage_and_jekyll_setting</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/making_githubpage_and_jekyll_setting/">&lt;h3 id=&quot;01-make-git-project&quot;&gt;01. make git project&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;github page&lt;/strong&gt;는 비용이 들지 않고 간단하게 &lt;strong&gt;웹 호스팅&lt;/strong&gt;을 할 수 있도록 해주는 github의 기능중 하나이다.&lt;/p&gt;
 
@@ -239,16 +242,8 @@ jekyll serve &lt;span class=&quot;c&quot;&gt;# server start command&lt;/span&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;strong&gt;마치며,&lt;/strong&gt; 생각 했던 것과는 달리 한 줄 정도의 수정으로 여러 서비스를 연동 할 수 있어 전혀 어려움울 것이 없었다. 귀찮을 것이라 생각한 것이 민망할정도..&lt;/p&gt;
-
-&lt;p&gt;아직은 부족한 기능이 많지만 앞으로 하나씩 붙여가며 정리 해두고 싶은 내용을 포스팅 해보려 한다.&lt;/p&gt;
-
-&lt;p&gt;본인만의 블로그를 만들어 보고싶은 사람은 한 번쯤 만들어 놓고 여러 기능들을 붙여가며 발전시켜나가는 재미가 있을듯하다. - 2020/10/15&lt;/p&gt;
-
-&lt;hr /&gt;
-
 &lt;h6 id=&quot;references&quot;&gt;references&lt;/h6&gt;
 
 &lt;ul&gt;
   &lt;li&gt;theme적용 및 포스팅 : &lt;a href=&quot;https://imreplay.com/blogging/minimal-mistakes-%ED%85%8C%EB%A7%88%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-githubio-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0/&quot;&gt;https://imreplay.com/blogging/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="/GithubPage and Jekyll/" /><category term="Github Page" /><category term="Jekyll" /><summary type="html">Making Github Page &amp;amp; Jekyll History</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="Github Page" /><category term="Jekyll" /><summary type="html">01. make git project</summary></entry></feed>
