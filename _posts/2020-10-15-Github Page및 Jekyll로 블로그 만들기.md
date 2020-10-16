@@ -1,5 +1,4 @@
 ---
-layout : posts
 title : "JeKyll기반의 블로그(Github Page) 만들기"
 tags : 
     - github
@@ -154,7 +153,7 @@ comments:
   {% endif %}           
   ```
 
-<img src="C:\Users\userhy\AppData\Roaming\Typora\typora-user-images\image-20201015170206952.png" alt="image-20201015170206952" style="zoom:80%;" />
+<img src="image-20201015170206952.png" alt="image-20201015170206952" style="zoom:80%;" />
 
  
 
@@ -179,7 +178,7 @@ comments:
       anonymize_ip         : false # true, false (default)
   ```
 
-<img src="C:\Users\userhy\AppData\Roaming\Typora\typora-user-images\image-20201015170009781.png" alt="image-20201015170009781" style="zoom:80%;" />
+<img src="image-20201015170009781.png" alt="image-20201015170009781" style="zoom:80%;" />
 
 
 
@@ -200,7 +199,7 @@ comments:
 
 #### 04.2 navigation 변경
 
-![image-20201016112619389](C:\Users\userhy\AppData\Roaming\Typora\typora-user-images\image-20201016112619389.png)
+![image-20201016112619389](image-20201016112619389.png)
 
 
 
