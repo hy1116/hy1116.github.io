@@ -96,7 +96,7 @@ comment : true
 
 ---
 
-###### references
+**references**
 
 - [Disqus](https://disqus.com/)
 - [Google Analytics](https://analytics.google.com/)

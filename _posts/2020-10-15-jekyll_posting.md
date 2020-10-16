@@ -68,7 +68,7 @@ comment : true
 
 ----
 
-###### references
+**references**
 
 - GitHub Pages 블로그에 댓글, 통계 분석 기능 추가하기 : [https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/](https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/)
 

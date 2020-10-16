@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-16T16:35:22+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(4) - setting update</title><link href="http://localhost:4000/githubpage%20and%20jekyll/setting-update/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(4) - setting update" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T22:59:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/setting%20update</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/setting-update/">&lt;h3 id=&quot;04-update-settings&quot;&gt;04. Update settings&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-16T17:21:06+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(4) - setting update</title><link href="http://localhost:4000/githubpage%20and%20jekyll/setting-update/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(4) - setting update" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T22:59:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/setting%20update</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/setting-update/">&lt;h3 id=&quot;04-update-settings&quot;&gt;04. Update settings&lt;/h3&gt;
 
 &lt;h4 id=&quot;041-font&quot;&gt;04.1 Font&lt;/h4&gt;
 
@@ -47,7 +47,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;카테고리 목록추가&lt;/p&gt;
+    &lt;p&gt;카테고리 목록 추가&lt;/p&gt;
 
     &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/category/&lt;/code&gt;폴더에 원하는 카테고리폴더를 만들어주고 포스트 상단 yaml에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category:&quot;카테고리명&quot;&lt;/code&gt;을 추가해주면 해당 카테고리에 삽입 된다.&lt;/p&gt;
   &lt;/li&gt;
@@ -58,7 +58,7 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;043--custom-sidebar&quot;&gt;04.3  custom sidebar&lt;/h4&gt;
+&lt;h4 id=&quot;043--sidebar-category-and-tag-list&quot;&gt;04.3  sidebar (category and tag List)&lt;/h4&gt;
 
 &lt;p&gt;​	내가 사용하는 테마 번들에는&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_includes&lt;/code&gt;폴더에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tag_list.html&lt;/code&gt;와&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category_list.html&lt;/code&gt;이 이미 존재하여 비교적 쉽게 편집하였다.&lt;/p&gt;
 
@@ -77,9 +77,41 @@
 
 &lt;p&gt;&lt;img src=&quot;\assets\images\posts\image-20201016162539687.png&quot; alt=&quot;image-20201016162539687&quot; class=&quot;image-shadow-card&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
 
+&lt;h4 id=&quot;043--sidebar-toc&quot;&gt;04.3  sidebar (toc)&lt;/h4&gt;
+
+&lt;p&gt;​	 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post&lt;/code&gt;의 sidebar에 toc 추가하기 tag, cate리스트 추가한것과 마찬가지로 기존 번들의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;toc&lt;/code&gt;로 작업하였다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimal-mistakes&lt;/code&gt;테마의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_layouts&lt;/code&gt;를 확인해보니 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;single.html&lt;/code&gt; ( = layout:single ) 에만 toc설정이 가능하도록 되어있다. 나의 posts의 default 는 레이아웃이 posts&amp;amp;archive로 설정되어있으므로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sidebar.html&lt;/code&gt;에 편집해 주었다. 간단하게 single레이아웃의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;...&lt;/code&gt;부분을 복사하여 sidebar의 맨 밑에 붙여주었다.&lt;/p&gt;
+
 &lt;hr /&gt;
 
-&lt;h6 id=&quot;references&quot;&gt;references&lt;/h6&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_include&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sidebar.html&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;```html&lt;/p&gt;
+
+    &lt;div class=&quot;sidebar sticky&quot;&gt;
+  &lt;nav class=&quot;toc&quot;&gt;
+    &lt;header&gt;&lt;h4 class=&quot;nav__title&quot;&gt;&lt;i class=&quot;fas fa-file-alt&quot;&gt;&lt;/i&gt; On this page&lt;/h4&gt;&lt;/header&gt;
+    &lt;ul class=&quot;toc__menu&quot;&gt;
+&lt;li&gt;&lt;a href=&quot;#&quot;&gt; On this page&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#031-comment&quot;&gt;03.1 Comment&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#032-analytics&quot;&gt;03.2 Analytics&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/nav&gt;&lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;lt;/ul&amp;gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;/nav&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&amp;lt;/div&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;```&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;references&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;사이드바 카테고리,태그 리스트 추가 : &lt;a href=&quot;https://jooz.dev/blog/jekyll-add-categories-tags/&quot;&gt;https://jooz.dev/&lt;/a&gt;&lt;/li&gt;
@@ -176,7 +208,7 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
 
 &lt;hr /&gt;
 
-&lt;h6 id=&quot;references&quot;&gt;references&lt;/h6&gt;
+&lt;p&gt;&lt;strong&gt;references&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://disqus.com/&quot;&gt;Disqus&lt;/a&gt;&lt;/li&gt;
@@ -185,7 +217,7 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
 
 &lt;hr /&gt;
 
-&lt;h6 id=&quot;references&quot;&gt;references&lt;/h6&gt;
+&lt;p&gt;&lt;strong&gt;references&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;/li&gt;
@@ -253,7 +285,7 @@ comment : true
 
 &lt;hr /&gt;
 
-&lt;h6 id=&quot;references&quot;&gt;references&lt;/h6&gt;
+&lt;p&gt;&lt;strong&gt;references&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -304,7 +336,7 @@ jekyll serve &lt;span class=&quot;c&quot;&gt;# server start command&lt;/span&gt;
 
 &lt;hr /&gt;
 
-&lt;h6 id=&quot;references&quot;&gt;references&lt;/h6&gt;
+&lt;p&gt;&lt;strong&gt;references&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt;&lt;/li&gt;

@@ -42,7 +42,7 @@ comment : true
 
 ----
 
-###### references
+**references**
 
 - [Jekyll](https://jekyllrb.com/)
 - [GitHub Pages](https://pages.github.com/)

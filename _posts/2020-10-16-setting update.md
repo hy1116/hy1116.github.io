@@ -8,6 +8,8 @@ comment : true
 
 ### 04. Update settings
 
+
+
 #### 04.1 Font
 
 - 웹폰트 설정
@@ -50,7 +52,7 @@ comment : true
       url: /tags/ # 없을경우 폴더생성
   ```
 
-- 카테고리 목록추가
+- 카테고리 목록 추가
 
   `/category/`폴더에 원하는 카테고리폴더를 만들어주고 포스트 상단 yaml에 `category:"카테고리명"`을 추가해주면 해당 카테고리에 삽입 된다.
 
@@ -60,7 +62,7 @@ comment : true
 
 
 
-#### 04.3  custom sidebar
+#### 04.3  sidebar (category and tag List)
 
 ​	내가 사용하는 테마 번들에는`_includes`폴더에 `tag_list.html`와`category_list.html`이 이미 존재하여 비교적 쉽게 편집하였다.
 
@@ -104,9 +106,33 @@ comment : true
 
 
 
+#### 04.3  sidebar (toc)
+
+​	 `post`의 sidebar에 toc 추가하기 tag, cate리스트 추가한것과 마찬가지로 기존 번들의 `toc`로 작업하였다.
+
+`minimal-mistakes`테마의 `_layouts`를 확인해보니 `single.html` ( = layout:single ) 에만 toc설정이 가능하도록 되어있다. 나의 posts의 default 는 레이아웃이 posts&archive로 설정되어있으므로 `sidebar.html`에 편집해 주었다. 간단하게 single레이아웃의 `{% if page.toc %}...{% endif %}`부분을 복사하여 sidebar의 맨 밑에 붙여주었다.
+
+---
+
+- `_include`/`sidebar.html`
+
+  ```html
+  
+  {% if page.toc %}
+  <div class="sidebar sticky">
+    <nav class="toc">
+      <header><h4 class="nav__title"><i class="fas fa-{{ page.toc_icon | default: 'file-alt' }}"></i> {{ page.toc_label | default: site.data.ui-text[site.locale].toc_label | default: "On this page" }}</h4></header>
+      {% include toc.html sanitize=true html=content h_min=1 h_max=6 class="toc__menu" %}
+    </nav>
+  </div>
+  {% endif %}
+  ```
+
+
+
 ----
 
-###### references
+**references**
 
 - 사이드바 카테고리,태그 리스트 추가 : [https://jooz.dev/](https://jooz.dev/blog/jekyll-add-categories-tags/)
 
