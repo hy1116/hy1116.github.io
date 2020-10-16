@@ -1,5 +1,5 @@
 ---
-title : "JeKyll기반의 블로그(Github Page) 만들기"
+title : "JeKyll기반의 블로그(Github Page) 만들기(1)"
 tags : [github,Jekyll]
 last_modified_at: 2020-10-15T16:46:00
 comment : true
