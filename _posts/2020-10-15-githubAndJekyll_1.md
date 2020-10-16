@@ -1,6 +1,7 @@
 ---
 title : "JeKyll기반의 블로그(Github Page) 만들기(1)"
 tags : [ Github Page ,Jekyll ]
+category : "/GithubPage and Jekyll/"
 last_modified_at: 2020-10-15T16:46:00
 comment : true
 
@@ -200,7 +201,7 @@ comment : true
 
 <img src="/assets/images/posts/image-20201016112619389.png" class="image-shadow-card" alt="image-20201015170009781" style="zoom:80%;" />
 
-위와같이 `navigation`에 `category`,`tags`를 추가 하고자 한다면, 이미 `minimal-mistakes`테마에 `navigation`틀이 만들어져있으므로 원하는대로 변경해주기만 하면 된다. `_data`>`navigation.yml`파일을 확인해보면 바로 알 수 있다.
+위와같이 `navigation`에 `category`,`tags`를 추가 하고자 한다면, 이미 `minimal-mistakes`테마에 `navigation`틀이 만들어져있으므로 원하는대로 변경해주기만 하면 된다. `_data`>`navigation.yml`파일을 확인해보면 바로 알 수 있다. 주석을 해제 하고 포스팅 파일 yaml에 `tags : [git,jekyll]`와 같은 형식으로 작성해주면 자동으로 태깅된다.
 
 ----
 
