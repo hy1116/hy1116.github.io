@@ -1,58 +1,72 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-15T17:52:38+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">Github Page및 JeKyll로 블로그 만들기</title><link href="http://localhost:4000/Github-Page%EB%B0%8F-Jekyll%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" rel="alternate" type="text/html" title="Github Page및 JeKyll로 블로그 만들기" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-16T01:46:00+09:00</updated><id>http://localhost:4000/Github%20Page%EB%B0%8F%20Jekyll%EB%A1%9C%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EB%A7%8C%EB%93%A4%EA%B8%B0</id><content type="html" xml:base="http://localhost:4000/Github-Page%EB%B0%8F-Jekyll%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">&lt;h1 id=&quot;making-github-page-history&quot;&gt;Making Github Page History&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-16T11:42:47+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html"></title><link href="http://localhost:4000/history/" rel="alternate" type="text/html" title="" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T20:29:00+09:00</updated><id>http://localhost:4000/history</id><content type="html" xml:base="http://localhost:4000/history/"></content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="github" /><summary type="html"></summary></entry><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기</title><link href="http://localhost:4000/JeKyll%EA%B8%B0%EB%B0%98%EC%9D%98-%EB%B8%94%EB%A1%9C%EA%B7%B8(Github-Page)-%EB%A7%8C%EB%93%A4%EA%B8%B0/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-16T01:46:00+09:00</updated><id>http://localhost:4000/JeKyll%EA%B8%B0%EB%B0%98%EC%9D%98%20%EB%B8%94%EB%A1%9C%EA%B7%B8(Github%20Page)%20%EB%A7%8C%EB%93%A4%EA%B8%B0</id><content type="html" xml:base="http://localhost:4000/JeKyll%EA%B8%B0%EB%B0%98%EC%9D%98-%EB%B8%94%EB%A1%9C%EA%B7%B8(Github-Page)-%EB%A7%8C%EB%93%A4%EA%B8%B0/">&lt;p&gt;&lt;em&gt;아직은 얕은 지식으로나마 현재 이해한 내용을 바탕으로 작성하였습니다.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;20201014&quot;&gt;@20201014~&lt;/h2&gt;
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;making-github-page--jekyll-history&quot;&gt;Making Github Page &amp;amp; Jekyll History&lt;/h2&gt;
+
+&lt;p&gt;@20201015&lt;/p&gt;
 
 &lt;h3 id=&quot;01-make-git-project&quot;&gt;01. make git project&lt;/h3&gt;
 
+&lt;p&gt;&lt;strong&gt;github page&lt;/strong&gt;는 비용이 들지 않고 간단하게 &lt;strong&gt;웹 호스팅&lt;/strong&gt;을 할 수 있도록 해주는 github의 기능중 하나이다.&lt;/p&gt;
+
+&lt;p&gt;하지만, &lt;strong&gt;정적&lt;/strong&gt;인 웹이므로 구현 가능한 기능이 한정적이다. DB를 사용하지 않기 때문에 게시판, 댓글, 통계 등의 기능을 추가 할 수 없으나 이러한 기능을 사용 할 수 있도록 하는것이 &lt;strong&gt;Jekyll&lt;/strong&gt;과 플러그인들을 통해 해당 기능들을 사용 할 수 있도록 만든다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Jekyll&lt;/strong&gt;은 ruby 기반으로 만들어진 &lt;strong&gt;설치형블로그&lt;/strong&gt;이다. 마크다운언어(.md)를 html로 변환하여 정적 사이트를 만들어준다.&lt;/p&gt;
+
+&lt;p&gt;기존에 미리 셋팅을 해두었기에 기억나는 내용을 간략히 정리해 봄.&lt;/p&gt;
+
+&lt;hr /&gt;
+
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;git repository ‘[username].github.io’를 생성&lt;/p&gt;
+    &lt;p&gt;git repository &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[username].github.io&lt;/code&gt;를 생성&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;‘gh-page’ 브랜치 생성&lt;/p&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gh-page&lt;/code&gt; 브랜치 생성&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;jekyll 사용&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;install ruby and setting (http://localhist:40000)&lt;/p&gt;
+    &lt;p&gt;install ruby and setting - &lt;em&gt;로컬로 테스트를 하기 위하여 설치&lt;/em&gt;&lt;/p&gt;
 
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#ruby command&lt;/span&gt;
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# ruby command&lt;/span&gt;
 bundle &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;c&quot;&gt;# deploy&lt;/span&gt;
 jekyll serve &lt;span class=&quot;c&quot;&gt;# server start command&lt;/span&gt;
+  
+&lt;span class=&quot;c&quot;&gt;# http://localhist:40000&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;theme : “minimal-mistakes”&lt;/p&gt;
+    &lt;p&gt;theme : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimal-mistakes&lt;/code&gt; - &lt;a href=&quot;http://jekyllthemes.org/&quot;&gt;Jekyll theme site&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;git 연동 및 수정 : vsCode사용&lt;/p&gt;
+    &lt;p&gt;git 연동 및 수정 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vsCode&lt;/code&gt;사용 ( &lt;em&gt;git bash사용하기 귀찮아서..&lt;/em&gt; )&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;02-posting--update-setting&quot;&gt;02. Posting &amp;amp; update setting&lt;/h3&gt;
+&lt;h3 id=&quot;02-posting&quot;&gt;02. Posting&lt;/h3&gt;
 
 &lt;h4 id=&quot;021-posting&quot;&gt;02.1 Posting&lt;/h4&gt;
 
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimal-mistakes&lt;/code&gt; 테마 적용 기준으로 작성합니다. 해당 테마를 받으면&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;가 친절히 작성되어있으므로 주석을 참고하여 본인의 정보로 수정하여 주면 된다. 포스팅을 하기 위해서는  최상위에  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_post&lt;/code&gt;폴더가 있어야한다. 없으면 생성해주고 해당 폴더에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YYYY-MM-DD-[타이틀명].md&lt;/code&gt;형식의 파일을 추가한다 . 해당 파일의 상단에 yaml front matter(layout 및 해당 포스팅에 대한 세팅)을 작성한후 마크다운형식의 본문을 작성하면 포스팅이 완료된다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;을 통하여 포스팅 디폴트값을 설정 할 수 있다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;최상위에 ‘_post’ 폴더 없을경우 추가&lt;/p&gt;
+    &lt;p&gt;최상위에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_post&lt;/code&gt; 폴더 없을경우 추가&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;‘YYYY-MM-DD-[title].md’형식으로 파일추가&lt;/p&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YYYY-MM-DD-[title].md&lt;/code&gt;형식으로 파일추가 &amp;amp; yaml front matter 작성&lt;/p&gt;
 
-    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  
---
-layout : post
+    &lt;div class=&quot;language-markdown highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;layout : post
 title: &quot;My First Posting (TEST) &quot;
 tags:
-  - Blog
+&lt;span class=&quot;p&quot;&gt;  -&lt;/span&gt; Blog
 last_modified_at: 2020-10-15T08:06:00-05:00
 comment : true
---
-  
-content
-
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
 
     &lt;ul&gt;
@@ -80,7 +94,15 @@ content
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;022-comment&quot;&gt;02.2 Comment&lt;/h4&gt;
+&lt;h3 id=&quot;03-add-service&quot;&gt;03. Add Service&lt;/h3&gt;
+
+&lt;h4 id=&quot;031-comment&quot;&gt;03.1 Comment&lt;/h4&gt;
+
+&lt;p&gt;첫 github Page를 접하였을때 셋팅만해두고 사용하지 않았던 가장 큰 이유이다. 당시에 제대로 알아보지 않았기에 DB를 붙일 방법도 없고 정적으로만 사용가능한 점을 알고 흥미를 보이다가 접게 되었다. 하지만, 이번에 다시 접하면서 지킬기반으로 만들어 여러 플러그인 및 연동을 할 수 있는점을 알게되어 시도해보고싶었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://disqus.com/&quot;&gt;disqus&lt;/a&gt; 서비스를 연동 및 세팅(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;)을 하면 각 포스팅에 댓글을 달수 있게 된다. 간단한 정보를 입력 하여 본인의 사이트를 추가하면 본인의&lt;strong&gt;Universal Embed Code&lt;/strong&gt;를 확인 할 수 있다 해당 코드를 본인이 댓글을 보이고 싶은 위치에 넣어주면된다. (저의 경우는 layout을 post로 사용했기 때문에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_layouts&lt;/code&gt;폴더의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;posts.html&lt;/code&gt;에 추가하였습니다.)&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;disqus&lt;/code&gt;를 이용하여 댓글기능 추가하기&lt;/p&gt;
 
@@ -89,7 +111,7 @@ content
 &lt;span class=&quot;na&quot;&gt;comments&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
   &lt;span class=&quot;na&quot;&gt;provider               &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;disqus&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# false (default), &quot;disqus&quot;, &quot;discourse&quot;, &quot;facebook&quot;, &quot;staticman&quot;, &quot;staticman_v2&quot;, &quot;utterances&quot;, &quot;custom&quot;&lt;/span&gt;
   &lt;span class=&quot;na&quot;&gt;disqus&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;shortname            &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;boguss-diary&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;shortname            &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;[username]&quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-&lt;/span&gt;
   &lt;span class=&quot;na&quot;&gt;discourse&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
     &lt;span class=&quot;na&quot;&gt;server               &lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org&lt;/span&gt;
   &lt;span class=&quot;na&quot;&gt;facebook&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
@@ -107,7 +129,7 @@ content
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;disqus - Universal Embed Code 추가하기&lt;/p&gt;
+    &lt;p&gt;disqus - Universal Embed Code 추가하기(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_layouts&lt;/code&gt;/ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;posts.html&lt;/code&gt;)&lt;/p&gt;
 
     &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  
 &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;id=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;disqus_thread&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
@@ -134,13 +156,21 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;\assets\images\posts\image-20201015170206952.png&quot; alt=&quot;image-20201015170206952&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-20201015170206952.png&quot; alt=&quot;image-20201015170206952&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h4 id=&quot;023-analytics&quot;&gt;02.3 Analytics&lt;/h4&gt;
+&lt;h4 id=&quot;032-analytics&quot;&gt;03.2 Analytics&lt;/h4&gt;
+
+&lt;p&gt;댓글과 마찬가지로 github page 만으로는 사용 할 수 없던 것이 통계이다. Google Analytics를 사용하면 자신의 블로그를 통계 및 분석이 가능해진다.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://analytics.google.com/&quot;&gt;Google Analytics&lt;/a&gt;에 본인의 계정으로 접속하여 본인의 웹을 추가 한 후, 본인 웹의 추적ID( tracking id )를 본인의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;파일에 넣어준다&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;tracking id&lt;/strong&gt;는 본인의 Analytics 홈에서 좌측 하단의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;관리&lt;/code&gt; &amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;속성 설정&lt;/code&gt; 에 들어가면 확인가능하다. (2020/10/16기준)&lt;/p&gt;
+
+&lt;hr /&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;Google Analytics ( minimal-mistakes 사용 )&lt;/p&gt;
+    &lt;p&gt;Google Analytics &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; ( minimal-mistakes 사용 _ 각 테마마다 다르므로 본인 테마의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;config파일&lt;/code&gt; 확인)&lt;/p&gt;
 
     &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Analytics&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;analytics&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
@@ -152,9 +182,11 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;\assets\images\posts\image-20201015170009781.png&quot; alt=&quot;image-20201015170009781&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;image-20201015170009781.png&quot; alt=&quot;image-20201015170009781&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h4 id=&quot;024-font&quot;&gt;02.4 Font&lt;/h4&gt;
+&lt;h3 id=&quot;04-update-settings&quot;&gt;04. Update settings&lt;/h3&gt;
+
+&lt;h4 id=&quot;041-font&quot;&gt;04.1 Font&lt;/h4&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
@@ -170,27 +202,38 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;025-search&quot;&gt;02.5 Search&lt;/h4&gt;
+&lt;h4 id=&quot;042-navigation-변경&quot;&gt;04.2 navigation 변경&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;image-20201016112619389.png&quot; alt=&quot;image-20201016112619389&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;-search&quot;&gt;+ Search&lt;/h4&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;추가예정&lt;/li&gt;
+  &lt;li&gt;검색기능 추가 예정&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;마치며,&lt;/strong&gt; 생각 했던 것과는 달리 한 줄 정도의 수정으로 여러 서비스를 연동 할 수 있어 전혀 어려움울 것이 없었다. 귀찮을 것이라 생각한 것이 민망할정도..&lt;/p&gt;
+
+&lt;p&gt;아직은 부족한 기능이 많지만 앞으로 하나씩 붙여가며 정리 해두고 싶은 내용을 포스팅 해보려 한다.&lt;/p&gt;
+
+&lt;p&gt;본인만의 블로그를 만들어 보고싶은 사람은 한 번쯤 만들어 놓고 여러 기능들을 붙여가며 발전시켜나가는 재미가 있을듯하다. - 2020/10/15&lt;/p&gt;
 
 &lt;hr /&gt;
 
 &lt;h6 id=&quot;references&quot;&gt;references&lt;/h6&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;댓글,통계기능 추가 &lt;a href=&quot;https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/&quot;&gt;https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;theme적용 및 포스팅 : &lt;a href=&quot;https://imreplay.com/blogging/minimal-mistakes-%ED%85%8C%EB%A7%88%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-githubio-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0/&quot;&gt;https://imreplay.com&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;최근 수정일 : &lt;a href=&quot;https://dev-yakuza.github.io/ko/jekyll/jekyll-last-modified-at/&quot;&gt;https://dev-yakuza.github.io/ko/jekyll/jekyll-last-modified-at/&lt;/a&gt;
+  &lt;li&gt;댓글,통계기능 추가 : https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/&lt;/li&gt;
+  &lt;li&gt;theme적용 및 포스팅 : https://imreplay.com/blogging/minimal-mistakes-%ED%85%8C%EB%A7%88%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-githubio-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0/&lt;/li&gt;
+  &lt;li&gt;최근 수정일 : https://dev-yakuza.github.io/ko/jekyll/jekyll-last-modified-at/
     &lt;ul&gt;
-      &lt;li&gt;bundle : &lt;a href=&quot;https://github.com/gjtorikian/jekyll-last-modified-at&quot;&gt;https://github.com/gjtorikian/jekyll-last-modified-at&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;bundle : https://github.com/gjtorikian/jekyll-last-modified-at&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;검색기능추가 : &lt;a href=&quot;https://moon9342.github.io/jekyll-search&quot;&gt;https://moon9342.github.io/jekyll-search&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;https://blog.hax0r.info/2018-02-18/using-search-from-jekyll/&quot;&gt;https://blog.hax0r.info/2018-02-18/using-search-from-jekyll/&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;검색기능추가 : &lt;a href=&quot;https://moon9342.github.io/jekyll-search&quot;&gt;https://moon9342.github.io/jekyll-search&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="github" /><summary type="html">Making Github Page History</summary></entry></feed>
+  &lt;li&gt;&lt;a href=&quot;https://blog.hax0r.info/2018-02-18/using-search-from-jekyll/&quot;&gt;https://blog.hax0r.info/2018-02-18/using-search-from-jekyll/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="github" /><category term="Jekyll" /><summary type="html">아직은 얕은 지식으로나마 현재 이해한 내용을 바탕으로 작성하였습니다.</summary></entry></feed>
