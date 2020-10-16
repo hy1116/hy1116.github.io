@@ -27,11 +27,8 @@ comment : true
 ----
 
 - git repository `[username].github.io`를 생성
-
 - `gh-page` 브랜치 생성
-
 - jekyll 사용
-
 - install ruby and setting - *로컬로 테스트를 하기 위하여 설치*
 
   ```shell
@@ -49,7 +46,6 @@ comment : true
 
 
 ### 02. Posting
-
 #### 02.1 Posting
 
  `minimal-mistakes` 테마 적용 기준으로 작성합니다. 해당 테마를 받으면`_config.yml`가 친절히 작성되어있으므로 주석을 참고하여 본인의 정보로 수정하여 주면 된다. 포스팅을 하기 위해서는  최상위에  `_post`폴더가 있어야한다. 없으면 생성해주고 해당 폴더에 `YYYY-MM-DD-[타이틀명].md`형식의 파일을 추가한다 . 해당 파일의 상단에 yaml front matter(layout 및 해당 포스팅에 대한 세팅)을 작성한후 마크다운형식의 본문을 작성하면 포스팅이 완료된다. `_config.yml`을 통하여 포스팅 디폴트값을 설정 할 수 있다.
@@ -92,7 +88,6 @@ comment : true
 
 
 ### 03. Add Service
-
 #### 03.1 Comment
 
  첫 github Page를 접하였을때 셋팅만해두고 사용하지 않았던 가장 큰 이유이다. 당시에 제대로 알아보지 않았기에 DB를 붙일 방법도 없고 정적으로만 사용가능한 점을 알고 흥미를 보이다가 접게 되었다. 하지만, 이번에 다시 접하면서 지킬기반으로 만들어 여러 플러그인 및 연동을 할 수 있는점을 알게되어 시도해보고싶었다.
@@ -151,9 +146,10 @@ comments:
   {% endif %}           
   ```
 
-<img src="/assets/images/posts/image-20201015170206952.png" alt="image-20201015170206952" style="zoom:80%;" />
+<img src="/assets/images/posts/image-20201015170206952.png" class="image-shadow-card" alt="image-20201015170206952" style="zoom:80%;" />
 
  
+
 
 #### 03.2 Analytics
 
@@ -176,7 +172,7 @@ comments:
       anonymize_ip         : false # true, false (default)
   ```
 
-<img src="/assets/images/posts/image-20201015170009781.png" alt="image-20201015170009781" style="zoom:80%;" />
+<img src="/assets/images/posts/image-20201015170009781.png" class="image-shadow-card" alt="image-20201015170009781" style="zoom:80%;" />
 
 
 
@@ -197,8 +193,7 @@ comments:
 
 #### 04.2 navigation 변경
 
-![image-20201016112619389](/assets/images/posts/image-20201016112619389.png)
-
+<img src="/assets/images/posts/image-20201016112619389.png" class="image-shadow-card" alt="image-20201015170009781" style="zoom:80%;" />
 
 
 ---
@@ -212,7 +207,6 @@ comments:
 ----
 
 ###### references
-
 - 댓글,통계기능 추가 : [https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/](https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/)
 - theme적용 및 포스팅 : [https://imreplay.com/blogging/](https://imreplay.com/blogging/minimal-mistakes-%ED%85%8C%EB%A7%88%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-githubio-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0/)
 - 최근 수정일 : [https://dev-yakuza.github.io/ko/jekyll/jekyll-last-modified-at/](https://dev-yakuza.github.io/ko/jekyll/jekyll-last-modified-at/)

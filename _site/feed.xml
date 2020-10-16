@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-16T12:19:50+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">[JeKyll기반의 블로그(Github Page) 만들기(2)</title><link href="http://localhost:4000/githubAndJekyll_2/" rel="alternate" type="text/html" title="[JeKyll기반의 블로그(Github Page) 만들기(2)" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T20:29:00+09:00</updated><id>http://localhost:4000/githubAndJekyll_2</id><content type="html" xml:base="http://localhost:4000/githubAndJekyll_2/">&lt;hr /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-16T12:34:50+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">[JeKyll기반의 블로그(Github Page) 만들기(2)</title><link href="http://localhost:4000/githubAndJekyll_2/" rel="alternate" type="text/html" title="[JeKyll기반의 블로그(Github Page) 만들기(2)" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T20:29:00+09:00</updated><id>http://localhost:4000/githubAndJekyll_2</id><content type="html" xml:base="http://localhost:4000/githubAndJekyll_2/">&lt;hr /&gt;
 
 &lt;h4 id=&quot;043-search&quot;&gt;04.3 Search&lt;/h4&gt;
 
@@ -23,15 +23,9 @@
 &lt;hr /&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;git repository &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[username].github.io&lt;/code&gt;를 생성&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gh-page&lt;/code&gt; 브랜치 생성&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;jekyll 사용&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;git repository &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[username].github.io&lt;/code&gt;를 생성&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;gh-page&lt;/code&gt; 브랜치 생성&lt;/li&gt;
+  &lt;li&gt;jekyll 사용&lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;install ruby and setting - &lt;em&gt;로컬로 테스트를 하기 위하여 설치&lt;/em&gt;&lt;/p&gt;
 
@@ -45,13 +39,10 @@ jekyll serve &lt;span class=&quot;c&quot;&gt;# server start command&lt;/span&gt;
   &lt;li&gt;
     &lt;p&gt;theme : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimal-mistakes&lt;/code&gt; - &lt;a href=&quot;http://jekyllthemes.org/&quot;&gt;Jekyll theme site&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;git 연동 및 수정 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vsCode&lt;/code&gt;사용 ( &lt;em&gt;git bash사용하기 귀찮아서..&lt;/em&gt; )&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;git 연동 및 수정 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;vsCode&lt;/code&gt;사용 ( &lt;em&gt;git bash사용하기 귀찮아서..&lt;/em&gt; )&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;02-posting&quot;&gt;02. Posting&lt;/h3&gt;
-
 &lt;h4 id=&quot;021-posting&quot;&gt;02.1 Posting&lt;/h4&gt;
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimal-mistakes&lt;/code&gt; 테마 적용 기준으로 작성합니다. 해당 테마를 받으면&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;가 친절히 작성되어있으므로 주석을 참고하여 본인의 정보로 수정하여 주면 된다. 포스팅을 하기 위해서는  최상위에  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_post&lt;/code&gt;폴더가 있어야한다. 없으면 생성해주고 해당 폴더에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YYYY-MM-DD-[타이틀명].md&lt;/code&gt;형식의 파일을 추가한다 . 해당 파일의 상단에 yaml front matter(layout 및 해당 포스팅에 대한 세팅)을 작성한후 마크다운형식의 본문을 작성하면 포스팅이 완료된다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;을 통하여 포스팅 디폴트값을 설정 할 수 있다.&lt;/p&gt;
@@ -99,7 +90,6 @@ comment : true
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;03-add-service&quot;&gt;03. Add Service&lt;/h3&gt;
-
 &lt;h4 id=&quot;031-comment&quot;&gt;03.1 Comment&lt;/h4&gt;
 
 &lt;p&gt;첫 github Page를 접하였을때 셋팅만해두고 사용하지 않았던 가장 큰 이유이다. 당시에 제대로 알아보지 않았기에 DB를 붙일 방법도 없고 정적으로만 사용가능한 점을 알고 흥미를 보이다가 접게 되었다. 하지만, 이번에 다시 접하면서 지킬기반으로 만들어 여러 플러그인 및 연동을 할 수 있는점을 알게되어 시도해보고싶었다.&lt;/p&gt;
@@ -160,7 +150,7 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/image-20201015170206952.png&quot; alt=&quot;image-20201015170206952&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/image-20201015170206952.png&quot; class=&quot;image-shadow-card&quot; alt=&quot;image-20201015170206952&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;032-analytics&quot;&gt;03.2 Analytics&lt;/h4&gt;
 
@@ -186,7 +176,7 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/image-20201015170009781.png&quot; alt=&quot;image-20201015170009781&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/image-20201015170009781.png&quot; class=&quot;image-shadow-card&quot; alt=&quot;image-20201015170009781&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;04-update-settings&quot;&gt;04. Update settings&lt;/h3&gt;
 
@@ -208,7 +198,7 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
 
 &lt;h4 id=&quot;042-navigation-변경&quot;&gt;04.2 navigation 변경&lt;/h4&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/image-20201016112619389.png&quot; alt=&quot;image-20201016112619389&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/image-20201016112619389.png&quot; class=&quot;image-shadow-card&quot; alt=&quot;image-20201015170009781&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -221,7 +211,6 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
 &lt;hr /&gt;
 
 &lt;h6 id=&quot;references&quot;&gt;references&lt;/h6&gt;
-
 &lt;ul&gt;
   &lt;li&gt;댓글,통계기능 추가 : &lt;a href=&quot;https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/&quot;&gt;https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;theme적용 및 포스팅 : &lt;a href=&quot;https://imreplay.com/blogging/minimal-mistakes-%ED%85%8C%EB%A7%88%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-githubio-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0/&quot;&gt;https://imreplay.com/blogging/&lt;/a&gt;&lt;/li&gt;

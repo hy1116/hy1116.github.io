@@ -25,3 +25,28 @@ html {
       font-size: 18px; // change to whatever
     }
   }
+
+/* image custom style */
+.image-shadow-card{
+  border-radius: 3px;
+  box-shadow: 5px 5px 15px #ddd;
+  align-self: center;
+}
+
+/* font color  */
+p{
+  color: #666;
+}
+strong{
+  /**/
+}
+h3{
+  color: darksalmon;
+}
+hr{
+  border-color: #c4c4c4;
+}
+code{
+  color: brown;
+  background: #f0f0f0;
+}
