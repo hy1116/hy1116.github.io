@@ -41,3 +41,8 @@ h3{color: darksalmon;}
 h2>a{font-size: 1em;}
 hr{border-color: #c4c4c4;}
 
+
+/* design */
+.page__taxonomy-item.category-item{width: 90%; margin-top: 5px;}
+.page__taxonomy-item.category-item>.category-count{color : darksalmon; font-weight: bold;}
+.greedy-nav .visible-links a:before{background-color: darksalmon; opacity: 0.5;}

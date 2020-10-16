@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-16T14:25:19+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(4) - setting update</title><link href="http://localhost:4000/githubpage%20and%20jekyll/setting-update/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(4) - setting update" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T22:59:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/setting%20update</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/setting-update/">&lt;h3 id=&quot;04-update-settings&quot;&gt;04. Update settings&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-16T16:29:55+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(4) - setting update</title><link href="http://localhost:4000/githubpage%20and%20jekyll/setting-update/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(4) - setting update" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T22:59:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/setting%20update</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/setting-update/">&lt;h3 id=&quot;04-update-settings&quot;&gt;04. Update settings&lt;/h3&gt;
 
 &lt;h4 id=&quot;041-font&quot;&gt;04.1 Font&lt;/h4&gt;
 
@@ -56,6 +56,33 @@
 
     &lt;p&gt;포스팅 파일 yaml에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tags : [git,jekyll]&lt;/code&gt;와 같은 형식으로 작성해주면 자동으로 태깅된다.&lt;/p&gt;
   &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;043--custom-sidebar&quot;&gt;04.3  custom sidebar&lt;/h4&gt;
+
+&lt;p&gt;​	내가 사용하는 테마 번들에는&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_includes&lt;/code&gt;폴더에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tag_list.html&lt;/code&gt;와&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category_list.html&lt;/code&gt;이 이미 존재하여 비교적 쉽게 편집하였다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;의 default에 value(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category_list : true&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tag_list : true&lt;/code&gt;)를 따로 추가하고 아래와 같이 include된 사이드바의 html만 찾아 추가시켜줌.(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_includes&lt;/code&gt; / &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sidebar.html&lt;/code&gt;)&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_includes&lt;/code&gt; /&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sidebar.html&lt;/code&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;&lt;img src=&quot;\assets\images\posts\image-20201016162539687.png&quot; alt=&quot;image-20201016162539687&quot; class=&quot;image-shadow-card&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h6 id=&quot;references&quot;&gt;references&lt;/h6&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;사이드바 카테고리,태그 리스트 추가 : &lt;a href=&quot;https://jooz.dev/blog/jekyll-add-categories-tags/&quot;&gt;https://jooz.dev/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="Github Page" /><category term="Jekyll" /><summary type="html">04. Update settings</summary></entry><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(3) - add service</title><link href="http://localhost:4000/githubpage%20and%20jekyll/add_service/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(3) - add service" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T20:29:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/add_service</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/add_service/">&lt;h3 id=&quot;03-add-service&quot;&gt;03. Add Service&lt;/h3&gt;
 
 &lt;h4 id=&quot;031-comment&quot;&gt;03.1 Comment&lt;/h4&gt;
@@ -193,7 +220,21 @@ comment : true
 
     &lt;div class=&quot;language-yml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Defaults&lt;/span&gt;
 &lt;span class=&quot;na&quot;&gt;defaults&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# _posts&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# _pages&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;pages&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;values&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;default&quot;&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;author_profile&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;read_time&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;comments&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;share&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;related&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;category_list&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 원하는 value 추가세팅하여 사용&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;tag_list&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;true&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# scope 추가 사용&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# _posts &lt;/span&gt;
   &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;scope&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
       &lt;span class=&quot;na&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;
       &lt;span class=&quot;na&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;posts&lt;/span&gt;

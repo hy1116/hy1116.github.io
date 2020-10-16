@@ -58,5 +58,59 @@ comment : true
 
   포스팅 파일 yaml에 `tags : [git,jekyll]`와 같은 형식으로 작성해주면 자동으로 태깅된다.
 
+
+
+#### 04.3  custom sidebar
+
+​	내가 사용하는 테마 번들에는`_includes`폴더에 `tag_list.html`와`category_list.html`이 이미 존재하여 비교적 쉽게 편집하였다.
+
+`_config.yml`의 default에 value(`category_list : true`,`tag_list : true`)를 따로 추가하고 아래와 같이 include된 사이드바의 html만 찾아 추가시켜줌.(`_includes` / `sidebar.html`) 
+
+---
+
+- `_includes` /`sidebar.html`
+
+  ```html
+  {% if page.author_profile or layout.author_profile or page.sidebar %}
+    <div class="sidebar sticky">
+    {% if page.author_profile or layout.author_profile %}{% include author-profile.html %}{% endif %}
+    {% if page.sidebar %}
+      {% for s in page.sidebar %}
+        {% if s.image %}
+          <img src="{{ s.image | relative_url }}"
+               alt="{% if s.image_alt %}{{ s.image_alt }}{% endif %}">
+        {% endif %}
+        {% if s.title %}<h3>{{ s.title }}</h3>{% endif %}
+        {% if s.text %}{{ s.text | markdownify }}{% endif %}
+        {% if s.nav %}{% include nav_list nav=s.nav %}{% endif %}
+      {% endfor %}
+      {% if page.sidebar.nav %}
+        {% include nav_list nav=page.sidebar.nav %}
+      {% endif %}
+    {% endif %}
+    <!-- 추가된 부분 -->
+    {% if page.category_list %}
+      {% include category-list_sidebar.html %}
+    {% endif %}
+    {% if page.tag_list %}
+      {% include tag-list_sidebar.html %}
+    {% endif %}
+    <!-- //추가된 부분 -->
+    </div>
+  {% endif %}
+  ```
+
+  <img src="\assets\images\posts\image-20201016162539687.png" alt="image-20201016162539687" class="image-shadow-card" style="zoom:80%;" />
+
   
+
+----
+
+###### references
+
+- 사이드바 카테고리,태그 리스트 추가 : [https://jooz.dev/](https://jooz.dev/blog/jekyll-add-categories-tags/)
+
+
+
+
 

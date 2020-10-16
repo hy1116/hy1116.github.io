@@ -35,7 +35,21 @@ comment : true
   ```yml
   # Defaults
   defaults:
-    # _posts
+    # _pages
+    - scope:
+        path: ""
+        type: "pages"
+      values:
+        layout: "default"
+        author_profile: true
+        read_time: true
+        comments: true
+        share: true
+        related: true
+        category_list: true # 원하는 value 추가세팅하여 사용
+        tag_list: true
+    # scope 추가 사용
+    # _posts 
     - scope:
         path: ""
         type: posts

@@ -269,16 +269,33 @@ compress_html:
     envs: development
 
 
-# Defaults
+## Defaults
+# all
 defaults:
-  # _posts
+  # _all
   - scope:
       path: ""
-      type: posts
+      type: "pages"
     values:
-      layout: single
+      layout: default
       author_profile: true
       read_time: true
       comments: true
       share: true
       related: true
+      category_list : true
+      tag_list : true
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: posts
+      author_profile: false
+      toc : true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+      category_list : false
+      tag_list : false
