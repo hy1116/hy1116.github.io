@@ -4,6 +4,7 @@ tags : [ Github Page ,Jekyll ]
 last_modified_at: 2020-10-15T16:46:00
 comment : true
 
+
 ---
 
 ## Making Github Page & Jekyll History
@@ -23,8 +24,11 @@ comment : true
 ----
 
 - git repository `[username].github.io`를 생성
+
 - `gh-page` 브랜치 생성
+
 - jekyll 사용
+
 - install ruby and setting - *로컬로 테스트를 하기 위하여 설치*
 
   ```shell
@@ -37,11 +41,12 @@ comment : true
 
 - theme : `minimal-mistakes` - [Jekyll theme site](http://jekyllthemes.org/)
 
-- git 연동 및 수정 : `vsCode`사용 ( *git bash사용하기 귀찮아서..* ) 
+- git 연동 및 수정 : `vsCode`사용 ( *git bash사용하기 귀찮아서.. 좋은 툴 있다면 알려주세요!! * ) 
 
 
 
 ### 02. Posting
+
 #### 02.1 Posting
 
  `minimal-mistakes` 테마 적용 기준으로 작성합니다. 
@@ -52,6 +57,7 @@ comment : true
 ----
 
 - 최상위에 `_post` 폴더 없을경우 추가
+
 - `YYYY-MM-DD-[title].md`형식으로 파일추가 & yaml front matter 작성
 
   ```markdown
@@ -63,29 +69,30 @@ comment : true
   comment : true
   ```
 
-  - 포스팅 default값 설정
+- 포스팅 default값 설정
 
-    ```yml
-    # Defaults
-    defaults:
-      # _posts
-      - scope:
-          path: ""
-          type: posts
-        values:
-          layout: single
-          author_profile: true
-          read_time: true
-          comments: true
-          share: true
-          related: true
-          
-    ### Scope별로 default값 추가가능
-    ```
+  ```yml
+  # Defaults
+  defaults:
+    # _posts
+    - scope:
+        path: ""
+        type: posts
+      values:
+        layout: single
+        author_profile: true
+        read_time: true
+        comments: true
+        share: true
+        related: true
+        
+  ### Scope별로 default값 추가가능
+  ```
 
 
 
 ### 03. Add Service
+
 #### 03.1 Comment
 
  첫 github Page를 접하였을때 셋팅만해두고 사용하지 않았던 가장 큰 이유이다. 당시에 제대로 알아보지 않았기에 DB를 붙일 방법도 없고 정적으로만 사용가능한 점을 알고 흥미를 보이다가 접게 되었다. 하지만, 이번에 다시 접하면서 지킬기반으로 만들어 여러 플러그인 및 연동을 할 수 있는점을 알게되어 시도해보고싶었다.
@@ -94,29 +101,29 @@ comment : true
 
 ---
 
-`disqus`를 이용하여 댓글기능 추가하기
+- `disqus`를 이용하여 댓글기능 추가하기
 
-```yaml
-# _config.yml에 추가 (사용하는 테마별로 comment기능을 지원하지 않을 수 있음)
-# 댓글기능
-comments:
-  provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
-  disqus:
-    shortname            : "[username]" # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
-  discourse:
-    server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
-  facebook:
-    # https://developers.facebook.com/docs/plugins/comments
-    appid                :
-    num_posts            : # 5 (default)
-    colorscheme          : # "light" (default), "dark"
-  utterances:
-    theme                : # "github-light" (default), "github-dark"
-    issue_term           : # "pathname" (default)
-  staticman:
-    branch               : # "master"
-    endpoint             : # "https://{your Staticman v3 API}/v3/entry/github/"
-```
+  ```yaml
+  # _config.yml에 추가 (사용하는 테마별로 comment기능을 지원하지 않을 수 있음)
+  # 댓글기능
+  comments:
+    provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
+    disqus:
+      shortname            : "[username]" # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    discourse:
+      server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
+    facebook:
+      # https://developers.facebook.com/docs/plugins/comments
+      appid                :
+      num_posts            : # 5 (default)
+      colorscheme          : # "light" (default), "dark"
+    utterances:
+      theme                : # "github-light" (default), "github-dark"
+      issue_term           : # "pathname" (default)
+    staticman:
+      branch               : # "master"
+      endpoint             : # "https://{your Staticman v3 API}/v3/entry/github/"
+  ```
 
 - disqus - Universal Embed Code 추가하기(`_layouts`/ `posts.html`)
 
@@ -175,6 +182,7 @@ comments:
 
 
 ### 04. Update settings
+
 #### 04.1 Font
 
 - 웹폰트 설정
@@ -188,9 +196,40 @@ comments:
 
 
 
-#### 04.2 navigation 변경
+#### 04.2 navigation(category,tags) 변경
 
 <img src="/assets/images/posts/image-20201016112619389.png" class="image-shadow-card" alt="image-20201015170009781" style="zoom:80%;" />
+
+위와같이 `navigation`에 `category`,`tags`를 추가 하고자 한다면, 이미 `minimal-mistakes`테마에 `navigation`틀이 만들어져있으므로 원하는대로 변경해주기만 하면 된다. `_data`>`navigation.yml`파일을 확인해보면 바로 알 수 있다.
+
+----
+
+- `_data`>`navigation.yml`
+
+  ```yaml
+  # main links
+  main:
+    # - title: "Quick-Start Guide"
+    #   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+    # - title: "About"
+    #   url: https://mmistakes.github.io/minimal-mistakes/about/
+    # - title: "Sample Posts"
+    #   url: /year-archive/
+    # - title: "Sample Collections"
+    #   url: /collection-archive/
+    # - title: "Sitemap"
+    #   url: /sitemap/
+    - title: "Categories"
+      url: /categories/
+    - title: "Tags"
+      url: /tags/
+  ```
+
+- 카테고리 목록추가
+
+
+
+
 
 
 ---
@@ -204,12 +243,14 @@ comments:
 ----
 
 ###### references
+
 - 댓글,통계기능 추가 : [https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/](https://khbrst.github.io/dev/apply-dynamic-features-to-github-pages/)
 - theme적용 및 포스팅 : [https://imreplay.com/blogging/](https://imreplay.com/blogging/minimal-mistakes-%ED%85%8C%EB%A7%88%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%B4-githubio-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EA%B5%AC%EC%B6%95%ED%95%98%EA%B8%B0/)
 - 최근 수정일 : [https://dev-yakuza.github.io/ko/jekyll/jekyll-last-modified-at/](https://dev-yakuza.github.io/ko/jekyll/jekyll-last-modified-at/)
   - bundle : [https://github.com/gjtorikian/jekyll-last-modified-at](https://github.com/gjtorikian/jekyll-last-modified-at)
 - 검색기능추가 : [https://moon9342.github.io/jekyll-search](https://moon9342.github.io/jekyll-search)
-- [https://blog.hax0r.info/2018-02-18/using-search-from-jekyll/](https://blog.hax0r.info/2018-02-18/using-search-from-jekyll/)
+  - [https://blog.hax0r.info/2018-02-18/using-search-from-jekyll/](https://blog.hax0r.info/2018-02-18/using-search-from-jekyll/)
+- navigation 변경 : 
 
 
 
