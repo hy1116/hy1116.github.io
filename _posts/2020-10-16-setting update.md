@@ -70,37 +70,7 @@ comment : true
 
 ---
 
-- `_includes` /`sidebar.html`
-
-  ```html
-  {% if page.author_profile or layout.author_profile or page.sidebar %}
-    <div class="sidebar sticky">
-    {% if page.author_profile or layout.author_profile %}{% include author-profile.html %}{% endif %}
-    {% if page.sidebar %}
-      {% for s in page.sidebar %}
-        {% if s.image %}
-          <img src="{{ s.image | relative_url }}"
-               alt="{% if s.image_alt %}{{ s.image_alt }}{% endif %}">
-        {% endif %}
-        {% if s.title %}<h3>{{ s.title }}</h3>{% endif %}
-        {% if s.text %}{{ s.text | markdownify }}{% endif %}
-        {% if s.nav %}{% include nav_list nav=s.nav %}{% endif %}
-      {% endfor %}
-      {% if page.sidebar.nav %}
-        {% include nav_list nav=page.sidebar.nav %}
-      {% endif %}
-    {% endif %}
-    <!-- 추가된 부분 -->
-    {% if page.category_list %}
-      {% include category-list_sidebar.html %}
-    {% endif %}
-    {% if page.tag_list %}
-      {% include tag-list_sidebar.html %}
-    {% endif %}
-    <!-- //추가된 부분 -->
-    </div>
-  {% endif %}
-  ```
+- `_includes` /`sidebar.html`에 if 조건으로 `tag_list.html`와`category_list.html` include.
 
 <img src="\assets\images\posts\image-20201016162539687.png" alt="image-20201016162539687" class="image-shadow-card" style="zoom:80%;" />
 
@@ -110,23 +80,9 @@ comment : true
 
 ​	 `post`의 sidebar에 toc 추가하기 tag, cate리스트 추가한것과 마찬가지로 기존 번들의 `toc`로 작업하였다.
 
-`minimal-mistakes`테마의 `_layouts`를 확인해보니 `single.html` ( = layout:single ) 에만 toc설정이 가능하도록 되어있다. 나의 posts의 default 는 레이아웃이 posts&archive로 설정되어있으므로 `sidebar.html`에 편집해 주었다. 간단하게 single레이아웃의 `{% if page.toc %}...{% endif %}`부분을 복사하여 sidebar의 맨 밑에 붙여주었다.
+`minimal-mistakes`테마의 `_layouts`를 확인해보니 `single.html` ( = layout:single ) 에만 toc설정이 가능하도록 되어있다. ~~나의 posts의 default 는 레이아웃이 posts&archive로 설정되어있으므로 `sidebar.html`에 편집해 주었다. 간단하게 single레이아웃의 `{% if page.toc %}...{% endif %}`부분을 복사하여 sidebar의 맨 밑에 붙여주었다.~~
 
----
-
-- `_include`/`sidebar.html`
-
-  ```html
-  
-  {% if page.toc %}
-  <div class="sidebar sticky">
-    <nav class="toc">
-      <header><h4 class="nav__title"><i class="fas fa-{{ page.toc_icon | default: 'file-alt' }}"></i> {{ page.toc_label | default: site.data.ui-text[site.locale].toc_label | default: "On this page" }}</h4></header>
-      {% include toc.html sanitize=true html=content h_min=1 h_max=6 class="toc__menu" %}
-    </nav>
-  </div>
-  {% endif %}
-  ```
+*`layout :posts`의 레이아웃을  `single` 로 변경하고 `_config.yml`의 default 에 `toc-sticky : true`를 추가함.*
 
 
 

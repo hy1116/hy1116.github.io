@@ -293,6 +293,7 @@ defaults:
       layout: posts
       author_profile: false
       toc : true
+      toc_sticky : true
       read_time: true
       comments: true
       share: true
