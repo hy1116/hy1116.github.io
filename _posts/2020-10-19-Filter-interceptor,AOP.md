@@ -6,7 +6,7 @@ last_modified_at: 2020-10-16T18:00:00
 comment : true
 ---
 
-​	평소 코딩시 **공통 프로세스**는 `Interceptor`나`AOP`로 관리 해왔다. 하지만 요청 프로세스의 순서및 개념을 알지 못하여 breakpoint를 걸어가며 하나씩 확인했으나 이번에 정리하고 숙지하여 앞으로는 막힘이 없고자 한다.
+​	평소 코딩시 **공통 프로세스**는 `Interceptor`나`AOP`로 관리 해왔다. 하지만 요청 프로세스의 순서및 개념을 알지 못하여 이번에 정리하고 숙지하여 앞으로는 막힘이 없고자 한다.
 
 ---
 
@@ -62,6 +62,6 @@ comment : true
 
 **references**
 
-- https://goddaehee.tistory.com/154
+- [https://goddaehee.tistory.com/154](https://goddaehee.tistory.com/154)
 
 - [https://supawer0728.github.io/2018/04/04/spring-filter-interceptor/](https://supawer0728.github.io/2018/04/04/spring-filter-interceptor/)

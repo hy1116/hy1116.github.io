@@ -1,4 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-19T17:27:03+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">Filter, Interceptor, AOP 개념 및 순서</title><link href="http://localhost:4000/spring/Filter-interceptor,AOP/" rel="alternate" type="text/html" title="Filter, Interceptor, AOP 개념 및 순서" /><published>2020-10-19T00:00:00+09:00</published><updated>2020-10-17T03:00:00+09:00</updated><id>http://localhost:4000/spring/Filter-interceptor,AOP</id><content type="html" xml:base="http://localhost:4000/spring/Filter-interceptor,AOP/">&lt;p&gt;​	평소 코딩시 &lt;strong&gt;공통 프로세스&lt;/strong&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interceptor&lt;/code&gt;나&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AOP&lt;/code&gt;로 관리 해왔다. 하지만 요청 프로세스의 순서및 개념을 알지 못하여 breakpoint를 걸어가며 하나씩 확인했으나 이번에 정리하고 숙지하여 앞으로는 막힘이 없고자 한다.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-19T17:49:45+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">Facebook for Developer</title><link href="http://localhost:4000/etc/FaceboocForDeveloper/" rel="alternate" type="text/html" title="Facebook for Developer" /><published>2020-10-19T00:00:00+09:00</published><updated>2020-10-19T00:00:00+09:00</updated><id>http://localhost:4000/etc/FaceboocForDeveloper</id><content type="html" xml:base="http://localhost:4000/etc/FaceboocForDeveloper/">&lt;p&gt;​	instargram 연동 방식이 바뀐다는 말은 들었으나 갑자기 오늘 궁금해져서 찾아보니 &lt;strong&gt;&lt;a href=&quot;https://developers.facebook.com/&quot;&gt;Facebook for Developer&lt;/a&gt;&lt;/strong&gt;에서 연동 가능하도록 바뀐 듯 하여 확인 중이다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;facebook-for-developer&quot;&gt;Facebook for Developer&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;developers.facebook.com&quot;&gt;Facebook for Developer&lt;/a&gt; 에 접속 후 회원가입 또는 로그인을 하게 되면 오른쪽 상단에 시작하기를 눌러 각 목적에 따른 세팅을 진행하여 첫 앱을 추가한다.&lt;/p&gt;
+
+&lt;hr /&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="Etc" /><category term="Etc" /><summary type="html">​ instargram 연동 방식이 바뀐다는 말은 들었으나 갑자기 오늘 궁금해져서 찾아보니 Facebook for Developer에서 연동 가능하도록 바뀐 듯 하여 확인 중이다.</summary></entry><entry><title type="html">Jekyll 환경 변수( JEKYLL_ENV )</title><link href="http://localhost:4000/githubpage%20and%20jekyll/jekyll_env/" rel="alternate" type="text/html" title="Jekyll 환경 변수( JEKYLL_ENV )" /><published>2020-10-19T00:00:00+09:00</published><updated>2020-10-19T00:00:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/jekyll_env</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/jekyll_env/">&lt;h2 id=&quot;jekyll-환경-변수-jekyll_env-&quot;&gt;Jekyll 환경 변수( JEKYLL_ENV )&lt;/h2&gt;
+
+&lt;p&gt;​	disqus comments 위치를 옮기면서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_layouts/single.html&lt;/code&gt;을 체크 하다가 &lt;strong&gt;jekyll.environment&lt;/strong&gt;변수를 확인하게 되었다.&lt;/p&gt;
+
+&lt;div class=&quot;language-django highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;jekyll.environment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;production&quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+   &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;disqus.html&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위와 같이, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;production&lt;/code&gt;운영 환경에서만 disqus댓글을 달 수 있도록 되어있었다. 이를 확인하고  해당 변수를 통해 어떤 작업이 가능한지 짧게 정리 해보려 한다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3 id=&quot;환경-변수-셋팅&quot;&gt;환경 변수 셋팅&lt;/h3&gt;
+
+&lt;p&gt;기본적으로는 default값으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;devleopment&lt;/code&gt;로 세팅 되어있다. (Gitbub page에 올린 경우는 github 내부적으로 JEKYLL_ENV 가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;production&lt;/code&gt;으로 세팅되어있다.) 개발은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;development&lt;/code&gt; 운영은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;products&lt;/code&gt;를 사용함.&lt;/p&gt;
+
+&lt;p&gt;환경 변수를 바꾸고자 한다면 아래와 같이 터미널에서 실행해 주면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;JEKYLL_ENV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;production jekyll build
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;또한, 반대로 개발 환경에서만 확인 하고 싶은 것 이 있다면, 소스에 아래와 같이 작업해 주면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-django highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;jekyll.environment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;development&quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+	&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 개발 환경의 소스 --&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이 외에도, config파일을 분리하여 사용하거나 환경 변수를 주는 방법이 여러가지 있다. 아래의 래퍼런스를 참고하면 다양한 방법으로 사용이 가능하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;지킬 환경변수에 대하여 더 유용하게 사용 될 만한 것이 있다면 이 게시글에 추가로 포스팅 할 예정.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;references&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://jekyllrb.com/docs/configuration/environments/&quot;&gt;https://jekyllrb.com/docs/configuration/environments/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://jekyllrb.com/docs/configuration/options/#build-command-options&quot;&gt;https://jekyllrb.com/docs/configuration/options/#build-command-options&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://blog.seotory.com/post/2017/08/jekyll-development-mode&quot;&gt;https://blog.seotory.com/post/2017/08/jekyll-development-mode&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="jekyll" /><summary type="html">Jekyll 환경 변수( JEKYLL_ENV )</summary></entry><entry><title type="html">Jekyll - Content Code 원문 그대로 출력하기</title><link href="http://localhost:4000/githubpage%20and%20jekyll/jekyll_codeblock/" rel="alternate" type="text/html" title="Jekyll - Content Code 원문 그대로 출력하기" /><published>2020-10-19T00:00:00+09:00</published><updated>2020-10-19T00:00:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/jekyll_codeblock</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/jekyll_codeblock/">&lt;p&gt;jekyll을 통해 포스팅을 해본 지 얼 마 되지 않아서 포스팅 할 때, codeblock안의 내용이 변환 되어버려 당황스러운 적이 있었다. 이를 해결하기 위한 간단한 방법을 정리 하고자 한다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;예를 들자면 아래의 내용을 출력하고 싶은 경우, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;raw &amp;amp; endraw &lt;/code&gt;를 사용하면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-django highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;jekyll.environment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;production&quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+   &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;disqus.html&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-django highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{ % raw % } &lt;span class=&quot;c&quot;&gt;&amp;lt;!--'{','}'(중괄호)와 '%'사이의 공백은 지우고 사용 --&amp;gt;&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;jekyll.environment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;production&quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+   &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;disqus.html&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+
+{ % endraw % } &lt;span class=&quot;c&quot;&gt;&amp;lt;!--'{','}'(중괄호)와 '%'사이의 공백은 지우고 사용 --&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위와 같이 사용하면 된다. html소스도 동일하게 사용.&lt;/p&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="jekyll" /><category term="django" /><summary type="html">jekyll을 통해 포스팅을 해본 지 얼 마 되지 않아서 포스팅 할 때, codeblock안의 내용이 변환 되어버려 당황스러운 적이 있었다. 이를 해결하기 위한 간단한 방법을 정리 하고자 한다.</summary></entry><entry><title type="html">Filter, Interceptor, AOP 개념 및 순서</title><link href="http://localhost:4000/spring/Filter-interceptor,AOP/" rel="alternate" type="text/html" title="Filter, Interceptor, AOP 개념 및 순서" /><published>2020-10-19T00:00:00+09:00</published><updated>2020-10-17T03:00:00+09:00</updated><id>http://localhost:4000/spring/Filter-interceptor,AOP</id><content type="html" xml:base="http://localhost:4000/spring/Filter-interceptor,AOP/">&lt;p&gt;​	평소 코딩시 &lt;strong&gt;공통 프로세스&lt;/strong&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interceptor&lt;/code&gt;나&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AOP&lt;/code&gt;로 관리 해왔다. 하지만 요청 프로세스의 순서및 개념을 알지 못하여 이번에 정리하고 숙지하여 앞으로는 막힘이 없고자 한다.&lt;/p&gt;
 
 &lt;hr /&gt;
 
@@ -66,145 +141,100 @@
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;https://goddaehee.tistory.com/154&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;https://goddaehee.tistory.com/154&quot;&gt;https://goddaehee.tistory.com/154&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;a href=&quot;https://supawer0728.github.io/2018/04/04/spring-filter-interceptor/&quot;&gt;https://supawer0728.github.io/2018/04/04/spring-filter-interceptor/&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="Spring" /><category term="Spring" /><category term="Spring Security" /><summary type="html">​ 평소 코딩시 공통 프로세스는 Interceptor나AOP로 관리 해왔다. 하지만 요청 프로세스의 순서및 개념을 알지 못하여 breakpoint를 걸어가며 하나씩 확인했으나 이번에 정리하고 숙지하여 앞으로는 막힘이 없고자 한다.</summary></entry><entry><title type="html">Jekyll 환경 변수( JEKYLL_ENV )</title><link href="http://localhost:4000/githubpage%20and%20jekyll/jekyll_env/" rel="alternate" type="text/html" title="Jekyll 환경 변수( JEKYLL_ENV )" /><published>2020-10-19T00:00:00+09:00</published><updated>2020-10-19T00:00:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/jekyll_env</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/jekyll_env/">&lt;h2 id=&quot;jekyll-환경-변수-jekyll_env-&quot;&gt;Jekyll 환경 변수( JEKYLL_ENV )&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="Spring" /><category term="Spring" /><category term="Spring Security" /><summary type="html">​ 평소 코딩시 공통 프로세스는 Interceptor나AOP로 관리 해왔다. 하지만 요청 프로세스의 순서및 개념을 알지 못하여 이번에 정리하고 숙지하여 앞으로는 막힘이 없고자 한다.</summary></entry><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(4) - setting update</title><link href="http://localhost:4000/githubpage%20and%20jekyll/setting-update/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(4) - setting update" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T22:59:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/setting%20update</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/setting-update/">&lt;h3 id=&quot;04-update-settings&quot;&gt;04. Update settings&lt;/h3&gt;
 
-&lt;p&gt;​	disqus comments 위치를 옮기면서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_layouts/single.html&lt;/code&gt;을 체크 하다가 &lt;strong&gt;jekyll.environment&lt;/strong&gt;변수를 확인하게 되었다.&lt;/p&gt;
+&lt;h4 id=&quot;041-font&quot;&gt;04.1 Font&lt;/h4&gt;
 
-&lt;div class=&quot;language-django highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;jekyll.environment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;production&quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
-   &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;disqus.html&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
-&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;웹폰트 설정&lt;/p&gt;
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://fonts.googleapis.com/earlyaccess/nanumgothic.css&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 나눔고딕 --&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
 
-&lt;p&gt;위와 같이, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;production&lt;/code&gt;운영 환경에서만 disqus댓글을 달 수 있도록 되어있었다. 이를 확인하고  해당 변수를 통해 어떤 작업이 가능한지 짧게 정리 해보려 한다.&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_layout/default.html&lt;/code&gt;에 해당 폰트링크 추가&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assets/css/screen.css&lt;/code&gt; 파일의  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.post-full-content&lt;/code&gt; 부분을 원하는대로 수정 (‘나눔고딕’은 한글에 적용됨).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;042-navigationcategorytags-변경&quot;&gt;04.2 navigation(category,tags) 변경&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/image-20201016112619389.png&quot; class=&quot;image-shadow-card&quot; alt=&quot;image-20201015170009781&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위와같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;navigation&lt;/code&gt;에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tags&lt;/code&gt;를 추가 하고자 한다면, 이미 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimal-mistakes&lt;/code&gt;테마에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;navigation&lt;/code&gt;틀이 만들어져있으므로 원하는대로 변경해주기만 하면 된다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data&lt;/code&gt;&amp;gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;navigation.yml&lt;/code&gt;파일을 확인해보면 바로 알 수 있다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/category/&lt;/code&gt; ,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/tags/&lt;/code&gt;폴더를 생성해주면 완료된다.&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;h3 id=&quot;환경-변수-셋팅&quot;&gt;환경 변수 셋팅&lt;/h3&gt;
-
-&lt;p&gt;기본적으로는 default값으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;devleopment&lt;/code&gt;로 세팅 되어있다. (Gitbub page에 올린 경우는 github 내부적으로 JEKYLL_ENV 가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;production&lt;/code&gt;으로 세팅되어있다.) 개발은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;development&lt;/code&gt; 운영은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;products&lt;/code&gt;를 사용함.&lt;/p&gt;
-
-&lt;p&gt;환경 변수를 바꾸고자 한다면 아래와 같이 터미널에서 실행해 주면 된다.&lt;/p&gt;
-
-&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;JEKYLL_ENV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;production jekyll build
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;또한, 반대로 개발 환경에서만 확인 하고 싶은 것 이 있다면, 소스에 아래와 같이 작업해 주면 된다.&lt;/p&gt;
-
-&lt;div class=&quot;language-django highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;jekyll.environment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;development&quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
-	&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 개발 환경의 소스 --&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;이 외에도, config파일을 분리하여 사용하거나 환경 변수를 주는 방법이 여러가지 있다. 아래의 래퍼런스를 참고하면 다양한 방법으로 사용이 가능하다.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;지킬 환경변수에 대하여 더 유용하게 사용 될 만한 것이 있다면 이 게시글에 추가로 포스팅 할 예정.&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;references&lt;/strong&gt;&lt;/p&gt;
-
 &lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://jekyllrb.com/docs/configuration/environments/&quot;&gt;https://jekyllrb.com/docs/configuration/environments/&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://jekyllrb.com/docs/configuration/options/#build-command-options&quot;&gt;https://jekyllrb.com/docs/configuration/options/#build-command-options&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data&lt;/code&gt;&amp;gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;navigation.yml&lt;/code&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# main links&lt;/span&gt;
+&lt;span class=&quot;na&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# - title: &quot;Quick-Start Guide&quot;&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;#   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# - title: &quot;About&quot;&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;#   url: https://mmistakes.github.io/minimal-mistakes/about/&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# - title: &quot;Sample Posts&quot;&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;#   url: /year-archive/&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# - title: &quot;Sample Collections&quot;&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;#   url: /collection-archive/&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;# - title: &quot;Sitemap&quot;&lt;/span&gt;
+  &lt;span class=&quot;c1&quot;&gt;#   url: /sitemap/&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Categories&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/categories/&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# 없을경우 폴더생성&lt;/span&gt;
+  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Tags&quot;&lt;/span&gt;
+    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/tags/&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 없을경우 폴더생성&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://blog.seotory.com/post/2017/08/jekyll-development-mode&quot;&gt;https://blog.seotory.com/post/2017/08/jekyll-development-mode&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="jekyll" /><summary type="html">Jekyll 환경 변수( JEKYLL_ENV )</summary></entry><entry><title type="html">Jekyll - Content Code 원문 그대로 출력하기</title><link href="http://localhost:4000/githubpage%20and%20jekyll/jekyll_codeblock/" rel="alternate" type="text/html" title="Jekyll - Content Code 원문 그대로 출력하기" /><published>2020-10-19T00:00:00+09:00</published><updated>2020-10-19T00:00:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/jekyll_codeblock</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/jekyll_codeblock/">&lt;p&gt;jekyll을 통해 포스팅을 해본 지 얼 마 되지 않아서 포스팅 할 때, codeblock안의 내용이 변환 되어버려 당황스러운 적이 있었다. 이를 해결하기 위한 간단한 방법을 정리 하고자 한다.&lt;/p&gt;
+  &lt;li&gt;
+    &lt;p&gt;카테고리 목록 추가&lt;/p&gt;
+
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/category/&lt;/code&gt;폴더에 원하는 카테고리폴더를 만들어주고 포스트 상단 yaml에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category:&quot;카테고리명&quot;&lt;/code&gt;을 추가해주면 해당 카테고리에 삽입 된다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;태깅하기&lt;/p&gt;
+
+    &lt;p&gt;포스팅 파일 yaml에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tags : [git,jekyll]&lt;/code&gt;와 같은 형식으로 작성해주면 자동으로 태깅된다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;043--sidebar-category-and-tag-list&quot;&gt;04.3  sidebar (category and tag List)&lt;/h4&gt;
+
+&lt;p&gt;​	내가 사용하는 테마 번들에는&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_includes&lt;/code&gt;폴더에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tag_list.html&lt;/code&gt;와&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category_list.html&lt;/code&gt;이 이미 존재하여 비교적 쉽게 편집하였다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;의 default에 value(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category_list : true&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tag_list : true&lt;/code&gt;)를 따로 추가하고 아래와 같이 include된 사이드바의 html만 찾아 추가시켜줌.(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_includes&lt;/code&gt; / &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sidebar.html&lt;/code&gt;)&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;예를 들자면 아래의 내용을 출력하고 싶은 경우, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;raw &amp;amp; endraw &lt;/code&gt;를 사용하면 된다.&lt;/p&gt;
-
-&lt;div class=&quot;language-django highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;jekyll.environment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;production&quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
-   &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;disqus.html&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
-&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;language-django highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;{ % raw % } &lt;span class=&quot;c&quot;&gt;&amp;lt;!--'{','}'(중괄호)와 '%'사이의 공백은 지우고 사용 --&amp;gt;&lt;/span&gt;
-
-&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;jekyll.environment&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;production&quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
-   &lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;disqus.html&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
-&lt;span class=&quot;cp&quot;&gt;{%&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%}&lt;/span&gt;
-
-{ % endraw % } &lt;span class=&quot;c&quot;&gt;&amp;lt;!--'{','}'(중괄호)와 '%'사이의 공백은 지우고 사용 --&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;위와 같이 사용하면 된다. html소스도 동일하게 사용.&lt;/p&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="jekyll" /><category term="django" /><summary type="html">jekyll을 통해 포스팅을 해본 지 얼 마 되지 않아서 포스팅 할 때, codeblock안의 내용이 변환 되어버려 당황스러운 적이 있었다. 이를 해결하기 위한 간단한 방법을 정리 하고자 한다.</summary></entry><entry><title type="html">Spring security(1) - 이론 정리</title><link href="http://localhost:4000/spring/SpringSecurity/" rel="alternate" type="text/html" title="Spring security(1) - 이론 정리" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-17T03:00:00+09:00</updated><id>http://localhost:4000/spring/SpringSecurity</id><content type="html" xml:base="http://localhost:4000/spring/SpringSecurity/">&lt;p&gt;​	학교나 학원에서는 알지 못했으나 진행 해야 할 프로젝트의 프레임워크를 확인하던 중 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Spring security&lt;/code&gt;가 사용되고 있음을 알고 이제서야 검색하며 배우는 중이다. ( 주로 유지 보수 진행하거나 프로젝트 기본 세팅은 선임들이 해줘서 프로젝트 세팅 관련된 부분을 유심히 보지 못했다.. )&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;01-스프링-시큐리티&quot;&gt;01. 스프링 시큐리티&lt;/h3&gt;
-
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Spring 기반의 애플리케이션의 &lt;strong&gt;보안&lt;/strong&gt;(인증과 권한, 인가 등)을 담당하는 &lt;strong&gt;스프링 하위 프레임워크&lt;/strong&gt;이다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;‘인증’과 ‘권한’에 대한 부분을 &lt;strong&gt;&lt;a href=&quot;/spring/Filter-interceptor,AOP/&quot;&gt;Filter 흐름&lt;/a&gt;&lt;/strong&gt;에 따라 처리하고 있다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;보안과 관련해서 체계적으로 많은 옵션을 제공해주기 때문에 개발자 입장에서는 일일이 보안관련 로직을 작성하지 않아도 된다는 장점이 있다.&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_includes&lt;/code&gt; /&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sidebar.html&lt;/code&gt;에 if 조건으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tag_list.html&lt;/code&gt;와&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category_list.html&lt;/code&gt; include.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/image-20201016173641596.png&quot; class=&quot;image-shadow-card&quot; alt=&quot;image-20201015170206952&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;\assets\images\posts\image-20201016162539687.png&quot; alt=&quot;image-20201016162539687&quot; class=&quot;image-shadow-card&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;02-인증authentication--인가authorization&quot;&gt;02. 인증(Authentication) &amp;amp; 인가(Authorization)&lt;/h3&gt;
+&lt;h4 id=&quot;043--sidebar-toc&quot;&gt;04.3  sidebar (toc)&lt;/h4&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;인증(Authentication)&lt;/strong&gt;  : 클라이언트가 자신이 주장하는 사용자와 같은 사용자인지 확인하는 과정&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;인가(Authorization)&lt;/strong&gt; : 클라이언트가 하고자 하는 작업이 해당 클라이언트에게 허가된 작업인지 확인&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;​	 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post&lt;/code&gt;의 sidebar에 toc 추가하기 tag, cate리스트 추가한것과 마찬가지로 기존 번들의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;toc&lt;/code&gt;로 작업하였다.&lt;/p&gt;
 
-&lt;p&gt;스프링 시큐리티는 기본적으로 인증 절차를 거친 후 인가 절차를 진행하게 되며  인가 과정에서 해당 리소스에 대한 접근 권한을 확인하게 된다. 인증과 인과를 위해 스프링 시큐리티에서는 Principal을 아이디로 Credential을 비밀번호로 사용하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Credential 기반의 인증 방식&lt;/code&gt;을 사용한다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimal-mistakes&lt;/code&gt;테마의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_layouts&lt;/code&gt;를 확인해보니 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;single.html&lt;/code&gt; ( = layout:single ) 에만 toc설정이 가능하도록 되어있다. &lt;del&gt;나의 posts의 default 는 레이아웃이 posts&amp;amp;archive로 설정되어있으므로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sidebar.html&lt;/code&gt;에 편집해 주었다. 간단하게 single레이아웃의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;...&lt;/code&gt;부분을 복사하여 sidebar의 맨 밑에 붙여주었다.&lt;/del&gt;&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;Principal(접근 주체) : 보호받는 Resource에 접근하는 대상&lt;/li&gt;
-  &lt;li&gt;Credential(비밀번호) : 접근하는 대상의 비밀번호&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;03-spring-security-모듈&quot;&gt;03. Spring Security 모듈&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;SecurityContextHolder&lt;/li&gt;
-  &lt;li&gt;SecurityContext&lt;/li&gt;
-  &lt;li&gt;Authentication&lt;/li&gt;
-  &lt;li&gt;UsernamePasswordAuthenticationToken&lt;/li&gt;
-  &lt;li&gt;AuthenticationProvider&lt;/li&gt;
-  &lt;li&gt;Authentication Manager&lt;/li&gt;
-  &lt;li&gt;UserDetails&lt;/li&gt;
-  &lt;li&gt;UserDetailsService&lt;/li&gt;
-  &lt;li&gt;Password Encoding&lt;/li&gt;
-  &lt;li&gt;GrantedAuthority&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;(간략한 이론정리만 하고 직접 프로젝트에 셋팅해보며 포스팅하자)&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layout :posts&lt;/code&gt;의 레이아웃을  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;single&lt;/code&gt; 로 변경하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;의 default 에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;toc-sticky : true&lt;/code&gt;를 추가함.&lt;/em&gt;&lt;/p&gt;
 
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;strong&gt;references&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-security&quot;&gt;Spring&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://mangkyu.tistory.com/76&quot;&gt;https://mangkyu.tistory.com/76&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="Spring" /><category term="Spring" /><category term="Spring Security" /><summary type="html">​ 학교나 학원에서는 알지 못했으나 진행 해야 할 프로젝트의 프레임워크를 확인하던 중 Spring security가 사용되고 있음을 알고 이제서야 검색하며 배우는 중이다. ( 주로 유지 보수 진행하거나 프로젝트 기본 세팅은 선임들이 해줘서 프로젝트 세팅 관련된 부분을 유심히 보지 못했다.. )</summary></entry><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(3) - add service</title><link href="http://localhost:4000/githubpage%20and%20jekyll/add_service/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(3) - add service" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T20:29:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/add_service</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/add_service/">&lt;h3 id=&quot;03-add-service&quot;&gt;03. Add Service&lt;/h3&gt;
+  &lt;li&gt;사이드바 카테고리,태그 리스트 추가 : &lt;a href=&quot;https://jooz.dev/blog/jekyll-add-categories-tags/&quot;&gt;https://jooz.dev/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="Github Page" /><category term="Jekyll" /><summary type="html">04. Update settings</summary></entry><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(3) - add service</title><link href="http://localhost:4000/githubpage%20and%20jekyll/add_service/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(3) - add service" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T20:29:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/add_service</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/add_service/">&lt;h3 id=&quot;03-add-service&quot;&gt;03. Add Service&lt;/h3&gt;
 
 &lt;h4 id=&quot;031-comment&quot;&gt;03.1 Comment&lt;/h4&gt;
 
@@ -302,97 +332,73 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://disqus.com/&quot;&gt;Disqus&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://analytics.google.com/&quot;&gt;Google Analytics&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="Github Page" /><category term="Jekyll" /><summary type="html">03. Add Service</summary></entry><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(4) - setting update</title><link href="http://localhost:4000/githubpage%20and%20jekyll/setting-update/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(4) - setting update" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T22:59:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/setting%20update</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/setting-update/">&lt;h3 id=&quot;04-update-settings&quot;&gt;04. Update settings&lt;/h3&gt;
-
-&lt;h4 id=&quot;041-font&quot;&gt;04.1 Font&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;웹폰트 설정&lt;/p&gt;
-
-    &lt;div class=&quot;language-html highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;https://fonts.googleapis.com/earlyaccess/nanumgothic.css&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 나눔고딕 --&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_layout/default.html&lt;/code&gt;에 해당 폰트링크 추가&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assets/css/screen.css&lt;/code&gt; 파일의  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.post-full-content&lt;/code&gt; 부분을 원하는대로 수정 (‘나눔고딕’은 한글에 적용됨).&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;042-navigationcategorytags-변경&quot;&gt;04.2 navigation(category,tags) 변경&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/posts/image-20201016112619389.png&quot; class=&quot;image-shadow-card&quot; alt=&quot;image-20201015170009781&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;위와같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;navigation&lt;/code&gt;에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tags&lt;/code&gt;를 추가 하고자 한다면, 이미 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimal-mistakes&lt;/code&gt;테마에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;navigation&lt;/code&gt;틀이 만들어져있으므로 원하는대로 변경해주기만 하면 된다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data&lt;/code&gt;&amp;gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;navigation.yml&lt;/code&gt;파일을 확인해보면 바로 알 수 있다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/category/&lt;/code&gt; ,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/tags/&lt;/code&gt;폴더를 생성해주면 완료된다.&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="Github Page" /><category term="Jekyll" /><summary type="html">03. Add Service</summary></entry><entry><title type="html">Spring security(1) - 이론 정리</title><link href="http://localhost:4000/spring/SpringSecurity/" rel="alternate" type="text/html" title="Spring security(1) - 이론 정리" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-17T03:00:00+09:00</updated><id>http://localhost:4000/spring/SpringSecurity</id><content type="html" xml:base="http://localhost:4000/spring/SpringSecurity/">&lt;p&gt;​	학교나 학원에서는 알지 못했으나 진행 해야 할 프로젝트의 프레임워크를 확인하던 중 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Spring security&lt;/code&gt;가 사용되고 있음을 알고 이제서야 검색하며 배우는 중이다. ( 주로 유지 보수 진행하거나 프로젝트 기본 세팅은 선임들이 해줘서 프로젝트 세팅 관련된 부분을 유심히 보지 못했다.. )&lt;/p&gt;
 
 &lt;hr /&gt;
 
+&lt;h3 id=&quot;01-스프링-시큐리티&quot;&gt;01. 스프링 시큐리티&lt;/h3&gt;
+
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_data&lt;/code&gt;&amp;gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;navigation.yml&lt;/code&gt;&lt;/p&gt;
-
-    &lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# main links&lt;/span&gt;
-&lt;span class=&quot;na&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# - title: &quot;Quick-Start Guide&quot;&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;#   url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# - title: &quot;About&quot;&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;#   url: https://mmistakes.github.io/minimal-mistakes/about/&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# - title: &quot;Sample Posts&quot;&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;#   url: /year-archive/&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# - title: &quot;Sample Collections&quot;&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;#   url: /collection-archive/&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;# - title: &quot;Sitemap&quot;&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;#   url: /sitemap/&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Categories&quot;&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/categories/&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# 없을경우 폴더생성&lt;/span&gt;
-  &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;title&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;Tags&quot;&lt;/span&gt;
-    &lt;span class=&quot;na&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/tags/&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 없을경우 폴더생성&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;Spring 기반의 애플리케이션의 &lt;strong&gt;보안&lt;/strong&gt;(인증과 권한, 인가 등)을 담당하는 &lt;strong&gt;스프링 하위 프레임워크&lt;/strong&gt;이다.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;카테고리 목록 추가&lt;/p&gt;
-
-    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/category/&lt;/code&gt;폴더에 원하는 카테고리폴더를 만들어주고 포스트 상단 yaml에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category:&quot;카테고리명&quot;&lt;/code&gt;을 추가해주면 해당 카테고리에 삽입 된다.&lt;/p&gt;
+    &lt;p&gt;‘인증’과 ‘권한’에 대한 부분을 &lt;strong&gt;&lt;a href=&quot;/spring/Filter-interceptor,AOP/&quot;&gt;Filter 흐름&lt;/a&gt;&lt;/strong&gt;에 따라 처리하고 있다.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;태깅하기&lt;/p&gt;
-
-    &lt;p&gt;포스팅 파일 yaml에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tags : [git,jekyll]&lt;/code&gt;와 같은 형식으로 작성해주면 자동으로 태깅된다.&lt;/p&gt;
+    &lt;p&gt;보안과 관련해서 체계적으로 많은 옵션을 제공해주기 때문에 개발자 입장에서는 일일이 보안관련 로직을 작성하지 않아도 된다는 장점이 있다.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;043--sidebar-category-and-tag-list&quot;&gt;04.3  sidebar (category and tag List)&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/posts/image-20201016173641596.png&quot; class=&quot;image-shadow-card&quot; alt=&quot;image-20201015170206952&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;​	내가 사용하는 테마 번들에는&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_includes&lt;/code&gt;폴더에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tag_list.html&lt;/code&gt;와&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category_list.html&lt;/code&gt;이 이미 존재하여 비교적 쉽게 편집하였다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;의 default에 value(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category_list : true&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tag_list : true&lt;/code&gt;)를 따로 추가하고 아래와 같이 include된 사이드바의 html만 찾아 추가시켜줌.(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_includes&lt;/code&gt; / &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sidebar.html&lt;/code&gt;)&lt;/p&gt;
-
-&lt;hr /&gt;
+&lt;h3 id=&quot;02-인증authentication--인가authorization&quot;&gt;02. 인증(Authentication) &amp;amp; 인가(Authorization)&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_includes&lt;/code&gt; /&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sidebar.html&lt;/code&gt;에 if 조건으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tag_list.html&lt;/code&gt;와&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;category_list.html&lt;/code&gt; include.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;인증(Authentication)&lt;/strong&gt;  : 클라이언트가 자신이 주장하는 사용자와 같은 사용자인지 확인하는 과정&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;인가(Authorization)&lt;/strong&gt; : 클라이언트가 하고자 하는 작업이 해당 클라이언트에게 허가된 작업인지 확인&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;\assets\images\posts\image-20201016162539687.png&quot; alt=&quot;image-20201016162539687&quot; class=&quot;image-shadow-card&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;스프링 시큐리티는 기본적으로 인증 절차를 거친 후 인가 절차를 진행하게 되며  인가 과정에서 해당 리소스에 대한 접근 권한을 확인하게 된다. 인증과 인과를 위해 스프링 시큐리티에서는 Principal을 아이디로 Credential을 비밀번호로 사용하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Credential 기반의 인증 방식&lt;/code&gt;을 사용한다.&lt;/p&gt;
 
-&lt;h4 id=&quot;043--sidebar-toc&quot;&gt;04.3  sidebar (toc)&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Principal(접근 주체) : 보호받는 Resource에 접근하는 대상&lt;/li&gt;
+  &lt;li&gt;Credential(비밀번호) : 접근하는 대상의 비밀번호&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;​	 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;post&lt;/code&gt;의 sidebar에 toc 추가하기 tag, cate리스트 추가한것과 마찬가지로 기존 번들의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;toc&lt;/code&gt;로 작업하였다.&lt;/p&gt;
+&lt;h3 id=&quot;03-spring-security-모듈&quot;&gt;03. Spring Security 모듈&lt;/h3&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimal-mistakes&lt;/code&gt;테마의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_layouts&lt;/code&gt;를 확인해보니 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;single.html&lt;/code&gt; ( = layout:single ) 에만 toc설정이 가능하도록 되어있다. &lt;del&gt;나의 posts의 default 는 레이아웃이 posts&amp;amp;archive로 설정되어있으므로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sidebar.html&lt;/code&gt;에 편집해 주었다. 간단하게 single레이아웃의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;...&lt;/code&gt;부분을 복사하여 sidebar의 맨 밑에 붙여주었다.&lt;/del&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;SecurityContextHolder&lt;/li&gt;
+  &lt;li&gt;SecurityContext&lt;/li&gt;
+  &lt;li&gt;Authentication&lt;/li&gt;
+  &lt;li&gt;UsernamePasswordAuthenticationToken&lt;/li&gt;
+  &lt;li&gt;AuthenticationProvider&lt;/li&gt;
+  &lt;li&gt;Authentication Manager&lt;/li&gt;
+  &lt;li&gt;UserDetails&lt;/li&gt;
+  &lt;li&gt;UserDetailsService&lt;/li&gt;
+  &lt;li&gt;Password Encoding&lt;/li&gt;
+  &lt;li&gt;GrantedAuthority&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;&lt;em&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layout :posts&lt;/code&gt;의 레이아웃을  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;single&lt;/code&gt; 로 변경하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;의 default 에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;toc-sticky : true&lt;/code&gt;를 추가함.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;(간략한 이론정리만 하고 직접 프로젝트에 셋팅해보며 포스팅하자)&lt;/p&gt;
 
 &lt;hr /&gt;
 
 &lt;p&gt;&lt;strong&gt;references&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;사이드바 카테고리,태그 리스트 추가 : &lt;a href=&quot;https://jooz.dev/blog/jekyll-add-categories-tags/&quot;&gt;https://jooz.dev/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="Github Page" /><category term="Jekyll" /><summary type="html">04. Update settings</summary></entry><entry><title type="html">Sass(SCSS)</title><link href="http://localhost:4000/Sass(Scss)/" rel="alternate" type="text/html" title="Sass(SCSS)" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T00:00:00+09:00</updated><id>http://localhost:4000/Sass(Scss)</id><content type="html" xml:base="http://localhost:4000/Sass(Scss)/">&lt;h2 id=&quot;sassscss&quot;&gt;Sass(SCSS)&lt;/h2&gt;
-
-&lt;hr /&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><summary type="html">Sass(SCSS)</summary></entry><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(2) - Posting</title><link href="http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(2) - Posting" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-16T01:46:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting/">&lt;h3 id=&quot;02-posting&quot;&gt;02. Posting&lt;/h3&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://spring.io/projects/spring-security&quot;&gt;Spring&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://mangkyu.tistory.com/76&quot;&gt;https://mangkyu.tistory.com/76&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="Spring" /><category term="Spring" /><category term="Spring Security" /><summary type="html">​ 학교나 학원에서는 알지 못했으나 진행 해야 할 프로젝트의 프레임워크를 확인하던 중 Spring security가 사용되고 있음을 알고 이제서야 검색하며 배우는 중이다. ( 주로 유지 보수 진행하거나 프로젝트 기본 세팅은 선임들이 해줘서 프로젝트 세팅 관련된 부분을 유심히 보지 못했다.. )</summary></entry><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(2) - Posting</title><link href="http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(2) - Posting" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-16T01:46:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting/">&lt;h3 id=&quot;02-posting&quot;&gt;02. Posting&lt;/h3&gt;
 
 &lt;h4 id=&quot;021-posting&quot;&gt;02.1 Posting&lt;/h4&gt;
 
