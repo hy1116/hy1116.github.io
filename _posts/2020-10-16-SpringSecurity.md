@@ -12,13 +12,11 @@ comment : true
 
 ### 01. 스프링 시큐리티
 
-**Spring Security**는 Spring 기반의 애플리케이션의 **보안**(인증과 권한, 인가 등)을 담당하는 스프링 하위 프레임워크이다. 
+- Spring 기반의 애플리케이션의 **보안**(인증과 권한, 인가 등)을 담당하는 **스프링 하위 프레임워크**이다. 
 
-Spring Security는 '인증'과 '권한'에 대한 부분을 [Filter 흐름]()에 따라 처리하고 있다. 
+- '인증'과 '권한'에 대한 부분을 **[Filter 흐름](/spring/Filter-interceptor,AOP/)**에 따라 처리하고 있다. 
 
----
-
-- 인증관련 architecture
+- 보안과 관련해서 체계적으로 많은 옵션을 제공해주기 때문에 개발자 입장에서는 일일이 보안관련 로직을 작성하지 않아도 된다는 장점이 있다.
 
 <img src="/assets/images/posts/image-20201016173641596.png" class="image-shadow-card" alt="image-20201015170206952" style="zoom:80%;" />
 
@@ -37,7 +35,18 @@ Spring Security는 '인증'과 '권한'에 대한 부분을 [Filter 흐름]()에
 
 
 
+### 03. Spring Security 모듈
 
+- SecurityContextHolder
+- SecurityContext
+- Authentication 
+- UsernamePasswordAuthenticationToken 
+- AuthenticationProvider 
+- Authentication Manager
+- UserDetails 
+- UserDetailsService 
+- Password Encoding
+- GrantedAuthority 
 
 
 
