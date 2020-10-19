@@ -1,4 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-19T14:30:52+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(4) - setting update</title><link href="http://localhost:4000/githubpage%20and%20jekyll/setting-update/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(4) - setting update" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T22:59:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/setting%20update</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/setting-update/">&lt;h3 id=&quot;04-update-settings&quot;&gt;04. Update settings&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.1.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-10-19T15:15:00+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Boguss’ Development Diary</title><subtitle>Boguss' Development Diary.</subtitle><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><entry><title type="html">Jekyll 환경변수</title><link href="http://localhost:4000/githubpage%20and%20jekyll/jekyll_env/" rel="alternate" type="text/html" title="Jekyll 환경변수" /><published>2020-10-19T00:00:00+09:00</published><updated>2020-10-19T00:00:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/jekyll_env</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/jekyll_env/">&lt;h2 id=&quot;jekyll-환경-변수-jekyll_env-&quot;&gt;Jekyll 환경 변수( JEKYLL_ENV )&lt;/h2&gt;
+
+&lt;p&gt;​	disqus comments 위치를 옮기면서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_layouts/single.html&lt;/code&gt;을 체크 하다가 &lt;strong&gt;jekyll.environment&lt;/strong&gt;변수를 확인하게 되었다..&lt;/p&gt;
+
+&lt;div class=&quot;language-django highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위와 같이, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;production&lt;/code&gt;운영 환경에서만 disqus댓글을 달 수 있도록 되어있었다. 이를 확인하고  해당 변수를 통해 어떤 작업이 가능한지 짧게 정리 해보려 한다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;기본적으로는 default값으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;devleopment&lt;/code&gt;로 세팅 되어있다. (Gitbub page에 올린 경우는 github 내부적으로 JEKYLL_ENV 가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;production&lt;/code&gt;으로 세팅되어있다.) 개발은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;development&lt;/code&gt; 운영은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;products&lt;/code&gt;를 사용함.&lt;/p&gt;
+
+&lt;p&gt;환경 변수를 바꾸고자 한다면 아래와 같이 터미널에서 실행해 주면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;JEKYLL_ENV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;production jekyll build
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;또한, 반대로 개발 환경에서만 확인 하고 싶은 것 이 있다면, 소스에 아래와 같이 작업해 주면 된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-django highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+	&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 개발 환경의 소스 --&amp;gt;&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이 외에도, config파일을 분리하여 사용하거나 환경 변수를 주는 방법이 여러가지 있다. 아래의 래퍼런스를 참고하면 다양한 방법으로 사용이 가능하다.&lt;/p&gt;
+
+&lt;h6 id=&quot;references&quot;&gt;references&lt;/h6&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://jekyllrb.com/docs/configuration/environments/&quot;&gt;https://jekyllrb.com/docs/configuration/environments/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://jekyllrb.com/docs/configuration/options/#build-command-options&quot;&gt;https://jekyllrb.com/docs/configuration/options/#build-command-options&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://blog.seotory.com/post/2017/08/jekyll-development-mode&quot;&gt;https://blog.seotory.com/post/2017/08/jekyll-development-mode&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="jekyll" /><summary type="html">Jekyll 환경 변수( JEKYLL_ENV )</summary></entry><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(4) - setting update</title><link href="http://localhost:4000/githubpage%20and%20jekyll/setting-update/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(4) - setting update" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T22:59:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/setting%20update</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/setting-update/">&lt;h3 id=&quot;04-update-settings&quot;&gt;04. Update settings&lt;/h3&gt;
 
 &lt;h4 id=&quot;041-font&quot;&gt;04.1 Font&lt;/h4&gt;
 
@@ -184,7 +219,9 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://disqus.com/&quot;&gt;Disqus&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://analytics.google.com/&quot;&gt;Google Analytics&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="Github Page" /><category term="Jekyll" /><summary type="html">03. Add Service</summary></entry><entry><title type="html">Spring security</title><link href="http://localhost:4000/spring/SpringSecurity/" rel="alternate" type="text/html" title="Spring security" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-17T03:00:00+09:00</updated><id>http://localhost:4000/spring/SpringSecurity</id><content type="html" xml:base="http://localhost:4000/spring/SpringSecurity/">&lt;h2 id=&quot;spring-security&quot;&gt;Spring security&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="GithubPage and Jekyll" /><category term="Github Page" /><category term="Jekyll" /><summary type="html">03. Add Service</summary></entry><entry><title type="html">Sass(SCSS)</title><link href="http://localhost:4000/Sass(Scss)/" rel="alternate" type="text/html" title="Sass(SCSS)" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T00:00:00+09:00</updated><id>http://localhost:4000/Sass(Scss)</id><content type="html" xml:base="http://localhost:4000/Sass(Scss)/">&lt;h2 id=&quot;sassscss&quot;&gt;Sass(SCSS)&lt;/h2&gt;
+
+&lt;hr /&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><summary type="html">Sass(SCSS)</summary></entry><entry><title type="html">Spring security</title><link href="http://localhost:4000/spring/SpringSecurity/" rel="alternate" type="text/html" title="Spring security" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-17T03:00:00+09:00</updated><id>http://localhost:4000/spring/SpringSecurity</id><content type="html" xml:base="http://localhost:4000/spring/SpringSecurity/">&lt;h2 id=&quot;spring-security&quot;&gt;Spring security&lt;/h2&gt;
 
 &lt;p&gt;​	학교나 학원에서는 알지 못했으나 진행 해야할 프로젝트의 프레임워크를 확인하던중 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Spring security&lt;/code&gt;가 사용되고 있음을 알고 이제서야 검색하며 배우는 중이다. ( 주로 유지보수 진행하거나 프로젝트 기본 셋팅은 선임들이 해줘서 프로젝트 셋팅 관련된 부분을 유심히 보지 못했다.. )&lt;/p&gt;
 
@@ -215,9 +252,7 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
   &lt;li&gt;
     &lt;p&gt;&lt;a href=&quot;https://mangkyu.tistory.com/76&quot;&gt;https://mangkyu.tistory.com/76&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="Spring" /><category term="Spring" /><category term="Spring Security" /><summary type="html">Spring security</summary></entry><entry><title type="html">Sass(SCSS)</title><link href="http://localhost:4000/Sass(Scss)/" rel="alternate" type="text/html" title="Sass(SCSS)" /><published>2020-10-16T00:00:00+09:00</published><updated>2020-10-16T00:00:00+09:00</updated><id>http://localhost:4000/Sass(Scss)</id><content type="html" xml:base="http://localhost:4000/Sass(Scss)/">&lt;h2 id=&quot;sassscss&quot;&gt;Sass(SCSS)&lt;/h2&gt;
-
-&lt;hr /&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><summary type="html">Sass(SCSS)</summary></entry><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(2) - Posting</title><link href="http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(2) - Posting" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-16T01:46:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting/">&lt;h3 id=&quot;02-posting&quot;&gt;02. Posting&lt;/h3&gt;
+&lt;/ul&gt;</content><author><name>Bogusss</name><email>chybogas@gmail.com</email></author><category term="Spring" /><category term="Spring" /><category term="Spring Security" /><summary type="html">Spring security</summary></entry><entry><title type="html">JeKyll기반의 블로그(Github Page) 만들기(2) - Posting</title><link href="http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting/" rel="alternate" type="text/html" title="JeKyll기반의 블로그(Github Page) 만들기(2) - Posting" /><published>2020-10-15T00:00:00+09:00</published><updated>2020-10-16T01:46:00+09:00</updated><id>http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting</id><content type="html" xml:base="http://localhost:4000/githubpage%20and%20jekyll/jekyll_posting/">&lt;h3 id=&quot;02-posting&quot;&gt;02. Posting&lt;/h3&gt;
 
 &lt;h4 id=&quot;021-posting&quot;&gt;02.1 Posting&lt;/h4&gt;
 
