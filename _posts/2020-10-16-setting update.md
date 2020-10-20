@@ -8,8 +8,6 @@ comment : true
 
 ### 04. Update settings
 
-
-
 #### 04.1 Font
 
 - 웹폰트 설정

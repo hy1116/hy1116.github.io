@@ -4,8 +4,6 @@ tags : [jekyll]
 category : "GithubPage and Jekyll"
 ---
 
-## Jekyll 환경 변수( JEKYLL_ENV )
-
 ​	disqus comments 위치를 옮기면서 `_layouts/single.html`을 체크 하다가 **jekyll.environment**변수를 확인하게 되었다.
 
 ```django

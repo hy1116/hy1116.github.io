@@ -20,7 +20,7 @@ comment : true
 
 - git repository `[username].github.io`를 생성
 
-- `gh-page` 브랜치 생성
+- `gh-page` 브랜치 생성( username.github.io이외의 다른 프로젝트에 해당브랜치를 생성하면 `username.github.io/projectname/`으로 해당 프로젝트를 볼 수 있다.)
 
 - jekyll 사용
 
@@ -28,7 +28,7 @@ comment : true
 
   ```shell
   # ruby command
-  bundle (exec)# deploy
+  bundle (exec)# deploy?
   jekyll serve # server start command
   
   # http://localhist:40000
@@ -36,7 +36,7 @@ comment : true
 
 - theme : **[Minimal Mistake](https://mmistakes.github.io/minimal-mistakes/)** - [Jekyll theme site](http://jekyllthemes.org/)
 
-- git 연동 및 수정 : `vsCode`&`Typora`사용 ( *git bash사용하기 귀찮아서.. 좋은 툴 있다면 알려주세요!!* ) 
+- git 연동 및 수정 : `vsCode`&`Typora`사용
 
 
 
