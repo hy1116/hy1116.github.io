@@ -133,4 +133,9 @@ $(document).ready(function() {
       $(this).append(anchor);
     }
   });
+
+  // footnote
+  $('.footnote').hover(function(){
+    console.log($($(this).attr("id")).text());
+  });
 });
