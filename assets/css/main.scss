@@ -26,9 +26,16 @@ html {
     }
   }
 
+/* 20210923 new */
 .page {
   @media (min-width: 80em) {
     width: 100%;
+  }
+}
+
+.sidebar.sticky{
+  @media (min-width: 64em){
+    overflow-y: unset;
   }
 }
 
