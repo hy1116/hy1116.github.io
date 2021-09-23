@@ -83,13 +83,3 @@ END;
 | 수단독으로 문장 구성 **가능**           | 단독으로 문장 구성 **불가**                |
 | 수식내에서 사용 **불가**                | 수식내에서만 사용 **가능**                 |
 
-
-
-#### 최대값의 idx값구하기
-
-```sql
-select max(ORDNO) KEEP(DENSE_RANK FIRST ORDER BY regdate DESC) 
-from t_coupon_order 
-where to_char(regdate,'YYYYMMDD') = 'YYYYMMDD'
-;
-```
