@@ -136,6 +136,7 @@ $(document).ready(function() {
 
   // footnote
   $('.footnote').hover(function(){
-    console.log($($(this).attr("id")).text());
+    console.log("footnote over");
+    $(this).append("<div style='position:absolute;left:0;'>"+$($(this).attr("id")).text()+"</div>");
   });
 });
