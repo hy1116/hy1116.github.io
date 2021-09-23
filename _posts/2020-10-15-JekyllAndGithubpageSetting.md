@@ -1,5 +1,5 @@
 ---
-title : "JeKyll기반의 블로그(Github Page) 만들기(1) - make gitproject and jekyll setting"
+title : "JeKyll기반의 블로그(Github Page) 만들기(1)"
 tags : [ Github Page ,Jekyll ]
 category : "GithubPage and Jekyll"
 last_modified_at: 2020-10-15T10:21:00

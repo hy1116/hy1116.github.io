@@ -1,5 +1,5 @@
 ---
-title : "Spring security(1) - 이론 정리"
+title : "Spring security"
 tags : [ Spring , Spring Security ]
 category : "Spring"
 last_modified_at: 2020-10-16T18:00:00
