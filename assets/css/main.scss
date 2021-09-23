@@ -26,6 +26,12 @@ html {
     }
   }
 
+.page {
+  @media (min-width: 80em) {
+    width: 100%;
+  }
+}
+
 /* image custom style */
 .image-shadow-card{
   border-radius: 3px;
