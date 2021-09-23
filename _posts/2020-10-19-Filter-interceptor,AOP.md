@@ -6,10 +6,6 @@ last_modified_at: 2020-10-16T18:00:00
 comment : true
 ---
 
-​	평소 코딩시 **공통 프로세스**는 `Interceptor`나`AOP`로 관리 해왔다. 하지만 요청 프로세스의 순서및 개념을 알지 못하여 이번에 정리하고 숙지하여 앞으로는 막힘이 없고자 한다.
-
----
-
 ## Filter, Interceptor, AOP
 
 ### 01. Filter, Interceptor, AOP의 개념 
