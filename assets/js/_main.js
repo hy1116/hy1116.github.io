@@ -135,8 +135,17 @@ $(document).ready(function() {
   });
 
   // footnote
-  $('.footnote').hover(function(){
+  $('.footnote').hover(function(e){
     console.log("footnote over");
     $(this).append("<div style='position:absolute;left:0;'>"+$($(this).attr("id")).text()+"</div>");
+    e.preventDefulat();
+  },function(){
+    console.log("footnote out");
   });
+  $('.footnote').click(function(e){
+    console.log("footnote click");
+    $(this).append("<div style='position:absolute;left:0;'>"+$($(this).attr("id")).text()+"</div>");
+    e.preventDefulat();
+  });
+
 });
