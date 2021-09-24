@@ -135,6 +135,7 @@ $(document).ready(function() {
   });
 
   // footnote
+  /*
   $('.footnote').hover(function(e){
     console.log("footnote over");
     $(this).append("<div style='position:absolute;left:0;'>"+$($(this).attr("id")).text()+"</div>");
@@ -147,5 +148,5 @@ $(document).ready(function() {
     $(this).append("<div style='position:absolute;left:0;'>"+$($(this).attr("id")).text()+"</div>");
     e.preventDefulat();
   });
-
+  */
 });
