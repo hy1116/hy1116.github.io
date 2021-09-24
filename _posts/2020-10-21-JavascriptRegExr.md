@@ -1,6 +1,6 @@
 ---
 titile : "RegEx - 정규표현식 문법 및 예제 정리"
-category : "java"
+category : "Javascript"
 tags : [Java,Javascript]
 ---
 ### RegExpression
