@@ -22,6 +22,7 @@ date : 2021-09-30T12:00:00
 last_modified_at: 2021-09-30T12:00:00
 comment : true
 show_date: true
+read_time: false
 ```
 
 ## layout
