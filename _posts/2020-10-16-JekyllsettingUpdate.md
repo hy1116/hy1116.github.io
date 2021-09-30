@@ -2,6 +2,7 @@
 title : "JeKyll기반의 블로그(Github Page) 만들기(4) - setting update"
 tags : [ Github Page ,Jekyll ]
 category : "GithubPage and Jekyll"
+date: 2020-10-16T13:59:00
 last_modified_at: 2020-10-16T13:59:00
 comment : true
 ---

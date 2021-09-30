@@ -2,6 +2,9 @@
 title : "Jekyll - Content Code 원문 그대로 출력하기"
 tags : [jekyll,django]
 category : "GithubPage and Jekyll"
+date: 2020-10-16T18:00:00
+last_modified_at: 2020-10-16T18:00:00
+comment : true
 ---
 
  jekyll을 통해 포스팅을 해본 지 얼 마 되지 않아서 포스팅 할 때, codeblock안의 내용이 변환 되어버려 당황스러운 적이 있었다. 이를 해결하기 위한 간단한 방법을 정리 하고자 한다.
