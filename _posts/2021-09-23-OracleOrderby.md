@@ -2,6 +2,9 @@
 title : "Oracle - ORDER BY"
 category : "Oracle"
 tages : [Oracle]
+date : 2021-09-23T18:00:00
+last_modified_at: 2021-09-23T18:00:00
+comment : true
 ---
 
 ### ORDER BY NULLS

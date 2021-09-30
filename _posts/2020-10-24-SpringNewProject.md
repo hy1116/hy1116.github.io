@@ -2,6 +2,9 @@
 title : "Spring(1) spring web project start"
 category : "Spring"
 tag : "Spring"
+date : 2020-10-24T18:00:00
+last_modified_at: 2020-10-24T18:00:00
+comment : true
 ---
 
 ### STS install
