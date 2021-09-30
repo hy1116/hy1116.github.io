@@ -6,7 +6,7 @@ tages : [Oracle]
 
 ---
 
-## Select값 Insert하기
+### Select값 Insert하기
 
 ```sql
 insert into t_table(A,B,C)

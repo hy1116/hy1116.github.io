@@ -7,7 +7,7 @@ tages : [Oracle]
 
 ---
 
-## Associative Array
+### Associative Array
 
 - TYPE 이름 IS TABLE OF 값타입 INDEX BY 인덱스타입;
 
@@ -29,7 +29,7 @@ END;
 */
 ```
 
-## VARRY
+### VARRY
 
 - TYPE 이름 IS VARRAY(최대 크기) OF 배열 요소의 타입
 - 가변길이의 배열이다.
