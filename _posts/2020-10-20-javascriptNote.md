@@ -2,6 +2,9 @@
 title : "Javascript - 자주 헷갈리는 것 정리"
 category : "Javascript"
 tags : [Javascript]
+date : 2020-10-20T18:00:00
+last_modified_at: 2020-10-20T18:00:00
+comment : true
 ---
 
 ​	자바와 자바스크립트를 같이 사용하며 자주 혼동 되는 것 들이 있다. 앞으로는 혼동하지 않고자 정리한다.
