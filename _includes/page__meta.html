@@ -1,5 +1,5 @@
 {% assign document = post | default: page %}
-{% assign document.show_date = true %}
+{% assign document.show_date = "true" %}
 {{ document.show_date }}
 {{ document.date | date: "%Y %m %d" }}
 {% if document.read_time or document.show_date %}
