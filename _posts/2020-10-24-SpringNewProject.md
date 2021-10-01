@@ -1,5 +1,5 @@
 ---
-title : "Spring(1) spring web project start"
+title : "Spring - spring web project start"
 category : "Spring"
 tag : "Spring"
 date : 2020-10-24T18:00:00
@@ -33,8 +33,8 @@ comment : true
 
 ### oracle
 
-- DB는 local에 설치하기 부담되서 우선은 AWS의 RDS를 활용해보려한다.[https://aws.amazon.com/ko/](https://aws.amazon.com/ko/)
-  - AWS RDS에서 데이터베이스 생성후 해당 인스턴스 정보로 DB접속
+- ~~DB는 local에 설치하기 부담되서 우선은 AWS의 RDS를 활용해보려한다.[https://aws.amazon.com/ko/](https://aws.amazon.com/ko/)~~
+  -~~AWS RDS에서 데이터베이스 생성후 해당 인스턴스 정보로 DB접속~~ (free tier 사용가능 할 경우)
 
 - SQL developder 설치[https://www.oracle.com/tools/downloads/sqldev-downloads.html](https://www.oracle.com/tools/downloads/sqldev-downloads.html)
 
