@@ -1,4 +1,4 @@
-{% assign post.show_date = true %}
+{% assign show_date = true %}
 {% assign document = post | default: page %}
 {{ document.show_date }}
 {{ document.date | date: "%Y %m %d" }}
