@@ -294,7 +294,8 @@ defaults:
       author_profile: false
       toc : true
       toc_sticky : true
-      read_time: true
+      show_date: true
+      read_time: false
       comments: true
       share: true
       related: true

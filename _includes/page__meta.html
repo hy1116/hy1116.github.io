@@ -1,7 +1,4 @@
-{% assign show_date = true %}
 {% assign document = post | default: page %}
-{{ document.show_date }}
-{{ document.date | date: "%Y %m %d" }}
 {% if document.read_time or document.show_date %}
   <p class="page__meta">
     {% if document.show_date and document.date %}
