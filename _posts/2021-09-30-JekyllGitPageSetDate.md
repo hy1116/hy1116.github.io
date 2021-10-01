@@ -81,6 +81,9 @@ defaults:
       related: true
 ```
 
+#### Result
+<img src="/assets/images/posts/addDateImage2.png" alt="image-20201024170236744" class="image-shadow-card" />
+
 ----
 **references**
 
