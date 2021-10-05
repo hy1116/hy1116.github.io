@@ -51,6 +51,8 @@ h2>a{font-size: 1em;}
 hr{border-color: #c4c4c4;}
 
 /* design */
+.pagination li{width: 12.5%;}
+.pagination li > a{font-size: 0.8em;padding: 10px 2px;}
 .page__taxonomy-item.category-item{width: 100%; margin-top: 5px;}
 .page__taxonomy-item.category-item>.category-count{color : #f15f5f; font-weight: bold;}
 .greedy-nav .visible-links a:before{background-color: #f15f5f; opacity: 0.5;}
