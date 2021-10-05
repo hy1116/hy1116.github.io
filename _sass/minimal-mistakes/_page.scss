@@ -327,12 +327,14 @@ body {
   text-decoration: none;
   border: 1px solid mix(#000, $border-color, 25%);
   border-radius: $border-radius;
-  width: 100%;
 
   &:hover {
     text-decoration: none;
     color: $link-color-hover;
   }
+}
+.page__taxonomy-item.category-item{
+  width: 100%;
 }
 
 .taxonomy__section {
