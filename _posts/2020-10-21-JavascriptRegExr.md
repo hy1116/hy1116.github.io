@@ -49,11 +49,11 @@ boolean regex = Pattern.matches(pattern, testStr); // true
 ```javascript
 var str = "testSting";
 
-var regEx1 = "^[0-9]*$"; // 숫자 체크
+var regEx1 = "^[0-9]*$"; // 처음부터 끝까지 숫자인지 체크
 var bool1 = regEx1.test(str); // boolean값으로 반환
 console.log(bool1); // false
 
-var regEx2 = "^[a-zA-Z]*$"; // 숫자 체크
+var regEx2 = "^[a-zA-Z]*$"; // 처음부터 끝까지 모두 영어인지 체크
 var bool2 = regEx2.test(str); // boolean값으로 반환
 console.log(bool2); // true
 ```
