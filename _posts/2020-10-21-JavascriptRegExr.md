@@ -12,12 +12,12 @@ comment : true
 
 #### Grammer
 
-- `^` : 문자열의 시작
+- `^` : 문자열의 시작 (대괄호 맨 앞에쓰면 부정)
 - `$` : 문자열의 종료
 - `.` : 임의의 한 문자
 - `*` : 무한의(DB에서 사용하는 astar와 같음)
-- `+` : 앞 문자가 하나 이상
-- `?` : 앞 문자가 없거나 하나
+- `+` : 문자가 하나 이상
+- `?` : 문자가 없거나 하나
 - `[]` : 문자의 집합이나 범위를 나타냄 (두 문자 사이는 `-`기호로 범위를 나타냄 - ex. `[1-9]`)
 - `{}` : 횟수 또는 범위
 - `|` : or 연산
@@ -65,3 +65,4 @@ console.log(bool2); // true
 **references**
 
 - [https://coding-factory.tistory.com/529](https://coding-factory.tistory.com/529)
+- [https://zzang9ha.tistory.com/322](https://zzang9ha.tistory.com/322)
