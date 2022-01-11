@@ -1,5 +1,5 @@
 ---
-title : "GitPage - Post 날짜 표기 "
+title : "GitPage - Post_DateTime "
 category : "GitPage"
 tages : [GitPage,Jekyll]
 date : 2021-09-30T12:00:00
