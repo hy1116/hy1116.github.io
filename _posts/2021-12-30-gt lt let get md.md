@@ -8,6 +8,7 @@ last_modified_at: 2021-12-30T12:00:00
 
 ## gt lt let get
 
+| --- | --- |
 | eq(equal) | = |
 | ne(not equal) | != |
 | gt(greater than) | > |

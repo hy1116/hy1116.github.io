@@ -20,8 +20,8 @@ last_modified_at: 2022-01-06T12:00:00
 
 ## :nth-child
 
-| :nth-child(odd) | 홀수 번째 요소 |
 | --- | --- |
+| :nth-child(odd) | 홀수 번째 요소 |
 | :nth-child(even) | 짝수번째 요소 |
 | :nth-child(4) | 4번째 요소 |
 | :nth-child(4n) | 4의 배수 요소 |
