@@ -4,7 +4,6 @@ category : "Java"
 tags : [java]
 date : 2020-10-20T18:00:00
 last_modified_at: 2020-10-20T18:00:00
-comment : true
 ---
 
 ​	기존에 정리했던 java관련 정리 내용을 이 블로그로 옮기고자 작성.

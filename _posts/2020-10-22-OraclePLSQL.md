@@ -4,7 +4,6 @@ category : "Oracle"
 tages : [Oracle]
 date : 2020-10-22T18:00:00
 last_modified_at: 2020-10-22T18:00:00
-comment : true
 ---
 ## PL/SQL
 

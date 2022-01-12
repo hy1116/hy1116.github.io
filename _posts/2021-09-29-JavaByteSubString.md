@@ -4,7 +4,6 @@ category : "Java"
 tages : [Java]
 date : 2021-09-29T18:00:00
 last_modified_at: 2021-09-29T18:00:00
-comment : true
 ---
 ### substring
 

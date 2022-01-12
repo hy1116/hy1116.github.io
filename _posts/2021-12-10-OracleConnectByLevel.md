@@ -4,7 +4,6 @@ category : "Oracle"
 tages : [Oracle]
 date : 2021-12-10T12:00:00
 last_modified_at: 2021-12-10T12:00:00
-comment : true
 ---
 
 ### Connect By level

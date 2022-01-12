@@ -4,7 +4,6 @@ tags : [ Github Page ,Jekyll ]
 category : "GithubPage and Jekyll"
 date: 2020-10-16T13:59:00
 last_modified_at: 2020-10-16T13:59:00
-comment : true
 ---
 
 ### 04. Update settings
