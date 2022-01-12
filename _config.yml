@@ -277,10 +277,9 @@ defaults:
       path: ""
       type: "pages"
     values:
-      layout: default
+      layout: "default"
       author_profile: true
       read_time: true
-      comments: true
       share: true
       related: true
       category_list : true
@@ -288,13 +287,12 @@ defaults:
   # _posts
   - scope:
       path: ""
-      type: posts
+      type: "posts"
     values:
-      layout: posts
+      layout: "posts"
       author_profile: false
       toc : true
       toc_sticky : true
       read_time: true
-      comments: true
       share: true
       related: true
