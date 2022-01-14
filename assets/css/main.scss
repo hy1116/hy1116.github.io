@@ -56,6 +56,7 @@ hr{border-color: #c4c4c4;}
 
 
 /* design */
+.page__taxonomy{overflow-y:scroll;height: 200px;}
 .page__taxonomy-item.category-item{width: 90%; margin-top: 5px;}
 .page__taxonomy-item.category-item>.category-count{color : #f15f5f; font-weight: bold;}
 .greedy-nav .visible-links a:before{background-color: #f15f5f; opacity: 0.5;}
