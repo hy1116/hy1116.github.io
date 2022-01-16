@@ -57,6 +57,8 @@ exclude:
 ### 6. 배포
 `yarn run deploy` 명령어로 빌드 후 결과를 배포 폴더로 옮긴다.
 
+[React-pages](https://hy1116.github.io/react-pages)
+
 ---
 ### TypeError: MiniCssExtractPlugin is not a constructor
 TypeError: MiniCssExtractPlugin is not a constructor 에러 발생 시 아래 플러그인 설치
