@@ -148,6 +148,7 @@ reportWebVitals();
 
 ### 변수 와 props
 1. 변수
+
 ```jsx
 import logo from './logo.svg';
 
