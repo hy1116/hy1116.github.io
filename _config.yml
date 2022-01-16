@@ -281,11 +281,12 @@ defaults:
     values:
       layout: "default"
       author_profile: true
-      read_time: true
+      read_time: false
       share: true
       related: true
       category_list : true
       tag_list : true
+      show_date: true
   # _posts
   - scope:
       path: ""
@@ -295,6 +296,7 @@ defaults:
       author_profile: false
       toc : true
       toc_sticky : true
-      read_time: true
+      read_time: false
       share: true
       related: true
+      show_date: true
