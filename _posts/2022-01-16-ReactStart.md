@@ -173,6 +173,29 @@ function App() {
 }
 ```
 
+1. 컴포넌트 props
+
+```jsx
+ReactDOM.render(<App name="HyunYoung" />, document.getElementById('root'));
+```
+
+```jsx
+function App(props) {
+	console.log(props) /* Object { name: "HyunYoung" } */
+	const name = props.name;
+  return (
+    // return statement
+  );
+}
+
+```
+
+- `prop` : react 컴포넌트에 전달되는 모든 데이터를 뜻함
+- HTML의 요소는 속성을 가지고 있고, react컴포넌트는 `prop` 를 가진다.
+- **React의 데이터 흐름은 단방향** : 부모 컴포넌트에서 자식 컴포넌트로 내려감
+- props는 읽기 전용이다.
+```
+
 ---
 
 References
