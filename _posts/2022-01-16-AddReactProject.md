@@ -46,8 +46,8 @@ exclude:
 
 ```bash
 "predeploy": "npm run build",
-"purge": "rm -rf ../awesome-tools/static && cp -fR ./build/* ../awesome-tools",
-"frontmatter": "echo '---\ntitle: Awesome Tools\nlayout: null\n---\n' | cat - ../awesome-tools/index.html > temp && mv temp ../awesome-tools/index.html",
+"purge": "rm -rf ../react-pages/static && cp -fR ./build/* ../react-pages",
+"frontmatter": "echo '---\ntitle: react-pages\nlayout: null\n---\n' | cat - ../react-pages/index.html > temp && mv temp ../react-pages/index.html",
 "deploy": "npm run purge && npm run frontmatter"
 ```
 - `predeploy` : 배포 전 `npm run build` 명령어로 빌드
