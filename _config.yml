@@ -286,5 +286,5 @@ defaults:
       toc_sticky : true
       read_time: false
       share: true
-      related: true
+      #related: true
       show_date: true
