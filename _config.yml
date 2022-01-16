@@ -16,7 +16,7 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "ko-KR"
-title                    : "Amateur Developer's Note"
+title                    : "Boguss's Note"
 title_separator          : "-"
 subtitle                 : "" # site tagline that appears below site title in masthead
 name                     : "Hyunyoung"
@@ -98,7 +98,7 @@ analytics:
 author:
   name             : "Bogusss"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "“The only way to go fast, is to go well.” ― Robert C. Martin, Clean Architecture"
+  bio              : ""
   location         : "Seoul, Republic of korea"
   email            : "chybogas@gmail.com"
   links:
