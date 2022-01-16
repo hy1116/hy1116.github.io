@@ -43,9 +43,9 @@ last_modified_at: 2022-01-16T12:00:00
     }
     ```
     
-2. Componant 기반 라이브러리
+2. **Componant 기반 라이브러리**
     - 여러 부분을 분할 해서 코드의 재사용성과 유지보수성을 증가
-3. Virtual Dom
+3. **Virtual Dom**
     - 가상 돔은바뀌지 않은 부분과 바뀐 부분을 자동으로 감지해서 업데이트 시켜줌
 
 ### React 의 구조
@@ -104,7 +104,7 @@ function App() {
 export default App;
 ```
 
-1. import 문
+1. **import 문**
     - `React` 모듈을 불러올 때는 경로나 익스텐션을 쓰지 않음
     
     ```jsx
@@ -115,9 +115,9 @@ export default App;
     // 웹 팩 : create-react-app이 우리의 모든 JavaScript 파일을 함께 번들하고 브라우저에 제공하기 위해 사용하는 도구
     ```
     
-2. App Component
+2. **App Component**
     - 대부분의 javascript라이브러리는 카멜케이스의 변수를 사용하지만, react컴포넌트는 파스칼케이스의 변수(첫 단어가 대문자로 시작하는 표기법) → React 컴포넌트이지, 정규 HTML 태그가 아니라는 것을 분명히 하기 위함
-3. Export문
+3. **Export문**
     - `export default App` : 다른 컴포넌트에서 `App` 컴포넌트를 사용할수 있도록함
 
 ### Index.js
@@ -143,10 +143,34 @@ reportWebVitals();
 ```
 
 1. ReactDOM.render()의 두가지 인수
-    - <App /> : 렌더링 하길 원하는 컴포넌트
-    - ocument.getElementById('root') : 렌더링 되길 원하는 요소
+    - `<App />` : 렌더링 하길 원하는 컴포넌트
+    - document.getElementById('root') : 렌더링 되길 원하는 요소
 
 ### 변수 와 props
+1. 변수
+```jsx
+import logo from './logo.svg';
+
+<img src={logo} className="App-logo" alt="logo" />
+// {logo} : JSX가 변수를 인식하는 방법
+// imoort된 logo를 가져와 렌더링함
+```
+
+```jsx
+function App() {
+	const name = 'hyunyoung'; // name 변수선언
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Hi, {name}! {/* name 변수 사용 */}
+        </p>
+      </header>
+    </div>
+  );
+}
+```
 
 ---
 
