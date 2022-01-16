@@ -83,7 +83,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App"> /* HTML의 class속성과 동일하지만, javascript의 class에서 이미 사용하는 단어이므로 코드안에서 사용불가 */
+    <div className="App"> /* HTML의 class속성과 동일하지만, javascript의 class에서 이미 사용하는 예약어이므로 코드안에서 사용불가 */
       <header className="App-header"> 
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -104,7 +104,7 @@ function App() {
 export default App;
 ```
 
-1. **import 문**
+1. **import문**
     - `React` 모듈을 불러올 때는 경로나 익스텐션을 쓰지 않음
     
     ```jsx
@@ -116,7 +116,7 @@ export default App;
     ```
     
 2. **App Component**
-    - 대부분의 javascript라이브러리는 카멜케이스의 변수를 사용하지만, react컴포넌트는 파스칼케이스의 변수(첫 단어가 대문자로 시작하는 표기법) → React 컴포넌트이지, 정규 HTML 태그가 아니라는 것을 분명히 하기 위함
+    - 대부분의 javascript라이브러리는 카멜케이스의 변수를 사용하지만, react컴포넌트는 **파스칼케이스의 변수**(첫 단어가 대문자로 시작하는 표기법) → React 컴포넌트이지, 정규 HTML 태그가 아니라는 것을 분명히 하기 위함
 3. **Export문**
     - `export default App` : 다른 컴포넌트에서 `App` 컴포넌트를 사용할수 있도록함
 
@@ -142,11 +142,13 @@ ReactDOM.render(
 reportWebVitals();
 ```
 
-1. ReactDOM.render()의 두가지 인수
+1. ReactDOM.render() : 리액트의 컴포넌트, 화면에 html 뷰를 생성해주는 역할
+2. ReactDOM.render()의 두가지 인수
     - `<App />` : 렌더링 하길 원하는 컴포넌트
     - document.getElementById('root') : 렌더링 되길 원하는 요소
 
 ### 변수 와 props
+
 1. 변수
 
 ```jsx
@@ -194,7 +196,6 @@ function App(props) {
 - HTML의 요소는 속성을 가지고 있고, react컴포넌트는 `prop` 를 가진다.
 - **React의 데이터 흐름은 단방향** : 부모 컴포넌트에서 자식 컴포넌트로 내려감
 - props는 읽기 전용이다.
-```
 
 ---
 
