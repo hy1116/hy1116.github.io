@@ -2,7 +2,6 @@
 title : "React - React 시작하기"
 category : "React"
 tages : [React]
-show_date : true
 date : 2022-01-16T12:00:00
 last_modified_at: 2022-01-16T12:00:00
 ---
