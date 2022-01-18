@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import LoginForm from './loginForm';
 
 function App() {
   const name = 'HyunYoung';
@@ -10,6 +11,7 @@ function App() {
         <p>
           Hi,{name}!
         </p>
+        <LoginForm />
       </header>
     </div>
   );
