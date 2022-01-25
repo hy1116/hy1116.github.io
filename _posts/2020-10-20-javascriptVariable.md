@@ -5,19 +5,14 @@ tags : [Javascript,Variable]
 date : 2020-10-20T18:00:00
 last_modified_at: 2020-10-20T18:00:00
 ---
-
-​	자바와 자바스크립트를 같이 사용하며 자주 혼동 되는 것 들이 있다. 앞으로는 혼동하지 않고자 정리한다.
-
----
-
-#### var, let, const
+## var, let, const
 
 - `var` => **function**-scoped , 변수 재 선언 가능
 - `let`, `const` => **block**-scoped, 변수 재 선언 불가
   - `let` => 변수 재 할당 가능
   - `const` => 변수 재 할당 불가
 
-#### Javascript 거듭제곱 & 제곱근
+## Javascript 거듭제곱 & 제곱근
 
 ```javascript
 // pow : 특정숫자의 거듭제곱 값을 계산해주는 함수

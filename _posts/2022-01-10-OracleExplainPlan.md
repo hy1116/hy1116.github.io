@@ -5,9 +5,6 @@ tags : [Oracle,ExplainPlan]
 date : 2021-12-20T12:00:00
 last_modified_at: 2021-12-20T12:00:00
 ---
-
-# 2022-01-10-OracleExplainPlan.md
-
 ## Oracle 실행계획 확인
 
 ```sql

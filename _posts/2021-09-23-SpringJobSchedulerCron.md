@@ -5,10 +5,8 @@ tags : [Spring,job schedule]
 date : 2021-09-23T18:00:00
 last_modified_at: 2021-09-23T18:00:00
 ---
-
-크론작업은 반복되는 주기로 예약되며 unix-cron(`    *   *   *   *   *   `)형식으로 지정된다.(ex.매분 매시간 매일 매주 매달)
-
 ## Cron Expression
+- 크론작업은 반복되는 주기로 예약되며 unix-cron(`    *   *   *   *   *   `)형식으로 지정된다.(ex.매분 매시간 매일 매주 매달)
 
 ### Option
 

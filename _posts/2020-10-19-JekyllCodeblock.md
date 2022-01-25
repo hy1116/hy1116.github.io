@@ -5,12 +5,8 @@ category : "GithubPage and Jekyll"
 date: 2020-10-16T18:00:00
 last_modified_at: 2020-10-16T18:00:00
 ---
-
- jekyll을 통해 포스팅을 해본 지 얼 마 되지 않아서 포스팅 할 때, codeblock안의 내용이 변환 되어버려 당황스러운 적이 있었다. 이를 해결하기 위한 간단한 방법을 정리 하고자 한다.
-
----
-
-예를 들자면 아래의 내용을 출력하고 싶은 경우, `raw & endraw `를 사용하면 된다.
+## jekyll Blog - django 원문 출력
+- 예를 들자면 아래의 내용을 출력하고 싶은 경우, `raw & endraw `를 사용하면 된다.
 
 ```django
 {% raw %}
