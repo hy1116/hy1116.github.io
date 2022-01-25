@@ -1,7 +1,7 @@
 ---
 title : "Oracle - Select Insert "
 category : "Oracle"
-tages : [Oracle]
+tags : [Oracle]
 date : 2021-09-29T18:00:00
 last_modified_at: 2021-09-29T18:00:00
 ---

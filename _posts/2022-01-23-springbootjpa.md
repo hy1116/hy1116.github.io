@@ -1,7 +1,7 @@
 ---
 title : "SpringBoot- SpringBoot JPA"
 category : "SpringBoot"
-tages : [SpringBoot,JPA]
+tags : [SpringBoot,JPA]
 date : 2022-01-23T12:00:00
 last_modified_at: 2022-01-23T12:00:00
 ---

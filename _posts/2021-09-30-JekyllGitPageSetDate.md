@@ -1,7 +1,7 @@
 ---
 title : "GitPage - Post_DateTime "
 category : "GitPage"
-tages : [GitPage,Jekyll]
+tags : [GitPage,Jekyll]
 date : 2021-09-30T12:00:00
 last_modified_at: 2021-09-30T12:00:00
 ---

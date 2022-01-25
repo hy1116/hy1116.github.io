@@ -1,7 +1,7 @@
 ---
 title : "Javascript - block Cache"
 category : "Javascript"
-tages : [javascript,cache]
+tags : [javascript,cache]
 date : 2021-12-23T12:00:00
 last_modified_at: 2021-12-23T12:00:00
 ---

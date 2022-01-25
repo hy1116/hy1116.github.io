@@ -1,7 +1,7 @@
 ---
 title : "React - 리액트 프로젝트(1)"
 category : "React"
-tages : [React]
+tags : [React]
 date : 2022-01-16T12:00:00
 last_modified_at: 2022-01-16T12:00:00
 ---

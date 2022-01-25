@@ -1,7 +1,7 @@
 ---
 title : "JSP - compare operator"
 category : "JSP"
-tages : [JSP,compare operator]
+tags : [JSP,compare operator]
 date : 2021-12-30T12:00:00
 last_modified_at: 2021-12-30T12:00:00
 ---

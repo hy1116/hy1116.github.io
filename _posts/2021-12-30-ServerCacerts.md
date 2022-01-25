@@ -1,7 +1,7 @@
 ---
 title : "Server - Server Cacerts 인증서 등록"
 category : "Server"
-tages : [Server,Cacerts]
+tags : [Server,Cacerts]
 date : 2021-12-30T12:00:00
 last_modified_at: 2021-12-30T12:00:00
 ---

@@ -1,7 +1,7 @@
 ---
 title : "Java - Byte단위의 substring & Character Encoding"
 category : "Java"
-tages : [Java]
+tags : [Java]
 date : 2021-09-29T18:00:00
 last_modified_at: 2021-09-29T18:00:00
 ---

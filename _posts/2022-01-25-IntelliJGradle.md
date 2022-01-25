@@ -1,7 +1,7 @@
 ---
 title : "SpringBoot - Gradle & SpringBoot"
 category : "SpringBoot"
-tages : [SpringBoot,Gradle]
+tags : [SpringBoot,Gradle]
 date : 2022-01-25T12:00:00
 last_modified_at: 2022-01-25T12:00:00
 ---

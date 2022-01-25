@@ -1,7 +1,7 @@
 ---
 title : "Java - Split "
 category : "Java"
-tages : [Java]
+tags : [Java]
 date : 2021-09-27T18:00:00
 last_modified_at: 2021-09-27T18:00:00
 ---

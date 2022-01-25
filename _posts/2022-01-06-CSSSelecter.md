@@ -1,7 +1,7 @@
 ---
 title : "CSS - Selecter(:visible/:nth-child)"
 category : "CSS"
-tages : [CSS,Selecter]
+tags : [CSS,Selecter]
 date : 2022-01-06T12:00:00
 last_modified_at: 2022-01-06T12:00:00
 ---
