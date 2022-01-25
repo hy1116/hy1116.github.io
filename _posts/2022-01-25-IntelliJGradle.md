@@ -6,9 +6,9 @@ date : 2022-01-25T12:00:00
 last_modified_at: 2022-01-25T12:00:00
 ---
 
-# Gradle & SpringBoot
+## Gradle & SpringBoot
 
-## Gradle
+### Gradle
 
 - 그래들은 그루비(Grovy)를 기반으로 한 빌드 도구
 - maven과 같은 이전세대 빌드도구 단점을 보완한 오픈소스 빌드도구
