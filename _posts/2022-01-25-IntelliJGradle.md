@@ -4,6 +4,7 @@ category : "SpringBoot"
 tags : [SpringBoot,Gradle]
 date : 2022-01-25T12:00:00
 last_modified_at: 2022-01-25T12:00:00
+comment: true
 ---
 
 ## Gradle & SpringBoot
@@ -92,7 +93,7 @@ public class Application {
 
 ### lombok
 
-> STS 사용시 lombok compile 에러날 시 : jar파일 직접 실행 -> STS실행파일 선택
+> STS 사용시 lombok compile 에러날 시 : jar파일 직접 실행 -> STS실행파일 선택asdasd
 
 - `@Getter` : 선언된 모든 필드의 get 메소드를 생성해줌
 - `@RequiredArgsConstructor` : 성성된 모든 final 필드의 생성자를 생성해줌
