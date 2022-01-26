@@ -275,7 +275,7 @@ defaults:
       category_list : true
       tag_list : true
       show_date: true
-      tags: true
+
   # _posts
   - scope:
       path: ""
