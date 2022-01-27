@@ -7,18 +7,17 @@ last_modified_at: 2022-01-26T12:00:00
 comment: true
 ---
 
-## Java Generices
+## Java Generics
 
-
-
-| <T>  | Type    |
+| Type | 설명    |
 | ---- | ------- |
+| <T>  | Type    |
 | <E>  | Element |
 | <K>  | Key     |
 | <V>  | Value   |
 | <N>  | Number  |
 
-------
+---
 
 **references**
 
