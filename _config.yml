@@ -21,7 +21,7 @@ title_separator          : "-"
 subtitle                 : "" # site tagline that appears below site title in masthead
 name                     : "Hyunyoung"
 description              : "Amateur Developer's Note"
-url                      : "https://hyun0jam.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : "https://hy1116.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : "" # path of fallback teaser image, e.g. "/assets/images/500x300.png"
@@ -120,7 +120,7 @@ footer:
       # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/hyun0jam"
+      url: "https://github.com/hy1116"
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url:
