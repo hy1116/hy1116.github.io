@@ -8,7 +8,6 @@ comment: true
 ---
 
 
-
 ## Java Wrapper Class
 
 - 자바의 타입은 `기본형 자료형(primitive type) 포장클래스(wrapper class)` 가 있어서 기본형 객체로 다루어야 할 경우에 사용
