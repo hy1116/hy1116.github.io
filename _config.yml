@@ -289,3 +289,17 @@ defaults:
       share: true
       #related: true
       show_date: true
+  
+  # _single
+  - scope:
+      path: /_posts/single/
+      type: "single"
+    values:
+      layout: "single"
+      author_profile: false
+      toc : false
+      toc_sticky : false
+      read_time: false
+      share: true
+      #related: true
+      show_date: true
