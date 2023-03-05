@@ -27,7 +27,6 @@ last_modified_at: 2021-12-17T12:00:00
 ### Ex.
 
 ```java
-/* JPA를 사용하는 프로젝트에서 정렬 변경요청으로 JPA를 수정하지않고 해당 페이지에서만 정렬된 리스트를 뿌리기 위해 람다식 정렬 사용 */
 // ex. allocItemInfo객체 리스트에서 객체의 PayPriority를 먼저 비교하고 ExpirEndDateTime 또는 PolicyEnd와 비교하여 정렬
 allocItemInfoList.sort(Comparator.comparing(AllocItemInfo::getPayPriority)
         	.thenComparing(r -> (r.getUsageExpirEndDateTime()!=null?r.getUsageExpirEndDateTime():welfarePolicyEntity.getPolicyEnd())));
