@@ -272,8 +272,8 @@ defaults:
       read_time: false
       share: true
       related: true
-      category_list : true
-      tag_list : true
+      category_list : false
+      tag_list : false
       show_date: true
 
   # _posts

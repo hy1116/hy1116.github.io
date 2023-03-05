@@ -1,7 +1,7 @@
 ---
 title : “JeKyll기반의 블로그(Github Page) 만들기(1)”
 tags : [ Jekyll ]
-category : “Jekyll”
+category : "Jekyll"
 date: 2020-10-15T10:21:00
 last_modified_at: 2020-10-15T10:21:00
 ---
