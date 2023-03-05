@@ -1,10 +1,11 @@
 ---
 title : "Filter, Interceptor, AOP 개념 및 순서"
-tags : [ Spring , Spring Security ]
+tags : [ Spring ]
 category : "Spring"
 date: 2020-10-16T18:00:00
 last_modified_at: 2020-10-16T18:00:00
 ---
+이번에 interceptor작업 할 일이 있어서 작업을 하다가 문득 이전에 학원에서 배우고 사용했던 AOP와의 차이가 뭔지 궁금해서 찾아보고 정리하게됨.
 
 ## Filter, Interceptor, AOP
 

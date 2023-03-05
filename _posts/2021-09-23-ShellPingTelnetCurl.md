@@ -1,10 +1,11 @@
 ---
-title : "shell - ping, telnet, curl"
-category : "shell"
-tags : [shell]
+title : "OS - ping, telnet, curl"
+category : "OS"
+tags : [OS]
 date : 2021-09-23T18:00:00
 last_modified_at: 2021-09-23T18:00:00
 ---
+
 ### ping
 
 - ping(Packet Internet Groper) [^1]

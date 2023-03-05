@@ -1,7 +1,7 @@
 ---
 title : "Java - ArrayList"
-category : "java"
-tags : [java, ArrayList]
+category : "Java"
+tags : [Java, ArrayList]
 date : 2023-01-30T12:00:00
 last_modified_at: 2023-02-28T12:00:00
 comment: true

@@ -1,12 +1,14 @@
 ---
-title : "JeKyll기반의 블로그(Github Page) 만들기(4) - setting update"
-tags : [ Github Page ,Jekyll ]
-category : "GithubPage and Jekyll"
+title : "JeKyll기반의 블로그(Github Page) 만들기(4) - design"
+tags : [ Jekyll ]
+category : "Jekyll"
 date: 2020-10-16T13:59:00
 last_modified_at: 2020-10-16T13:59:00
 ---
 
-### 04. Update settings
+### 04. Update design
+가져온 테마를 내 입맛에 맞게 약간 수정함. Minimal Mistake테마를 사용하였기 때문에 구성이 개인 환경에 따라 다르겠지만 기록용이므로 그냥 쓴다.
+
 
 #### 04.1 Font
 

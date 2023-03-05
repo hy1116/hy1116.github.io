@@ -1,12 +1,11 @@
 ---
-title : "Oracle - Data Language"
-category : "Oracle"
-tages : [Oracle]
+title : "Database - Data Language"
+category : "Database"
+tages : [Database]
 date : 2020-10-22T18:00:00
 last_modified_at: 2020-10-22T18:00:00
 ---
-
-
+그냥 데이터베이스 카테고리 만들고 싶어서 작성해봄.
 
 ## Data Language
 

@@ -1,10 +1,12 @@
 ---
-title : "Oracle - PL/SQL"
-category : "Oracle"
-tages : [Oracle]
+title : "Database - PL/SQL"
+category : "Database"
+tages : [Database]
 date : 2020-10-22T18:00:00
 last_modified_at: 2020-10-22T18:00:00
 ---
+
+
 ## PL/SQL
 
 ### 01. Loop , For, While

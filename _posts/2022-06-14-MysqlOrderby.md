@@ -1,7 +1,7 @@
 ---
 title : "Database - MysqlOrderby"
-category : "MySQL"
-tags : [MySQL]
+category : "Database"
+tags : [Database, MySQL]
 date : 2022-06-14T12:00:00
 last_modified_at: 2023-01-14T12:00:00
 comment: true

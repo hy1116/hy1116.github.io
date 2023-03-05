@@ -1,7 +1,7 @@
 ---
 title : "Java - Collect&Reduce"
 category : "Java"
-tags : [lambda]
+tags : [Lambda]
 date : 2022-09-27T12:00:00
 last_modified_at: 2023-01-14T12:00:00
 comment: true

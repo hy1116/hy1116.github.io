@@ -1,7 +1,7 @@
 ---
 title : "JeKyll기반의 블로그(Github Page) 만들기(3) - add service"
-tags : [ Github Page ,Jekyll ]
-category : "GithubPage and Jekyll"
+tags : [ Jekyll ]
+category : "Jekyll"
 date: 2020-10-16T11:29:00
 last_modified_at: 2020-10-16T11:29:00
 ---
@@ -12,7 +12,7 @@ last_modified_at: 2020-10-16T11:29:00
 
  첫 github Page를 접하였을때 셋팅만해두고 사용하지 않았던 가장 큰 이유이다. 당시에 제대로 알아보지 않았기에 DB를 붙일 방법도 없고 정적으로만 사용가능한 점을 알고 흥미를 보이다가 접게 되었다. 하지만, 이번에 다시 접하면서 지킬기반으로 만들어 여러 플러그인 및 연동을 할 수 있는점을 알게되어 시도해보고싶었다.
 
-[disqus](https://disqus.com/) 서비스를 연동 및 세팅(`_config.yml`)을 하면 각 포스팅에 댓글을 달수 있게 된다. 간단한 정보를 입력 하여 본인의 사이트를 추가하면 본인의**Universal Embed Code**를 확인 할 수 있다 해당 코드를 본인이 댓글을 보이고 싶은 위치에 넣어주면된다. (저의 경우는 layout을 post로 사용했기 때문에 `_layouts`폴더의 `posts.html`에 추가하였습니다.)
+[disqus](https://disqus.com/) 서비스를 연동 및 세팅(`_config.yml`)을 하면 각 포스팅에 댓글을 달수 있게 된다. 간단한 정보를 입력 하여 본인의 사이트를 추가하면 본인의**Universal Embed Code**를 확인 할 수 있다 해당 코드를 본인이 댓글을 보이고 싶은 위치에 넣어주면된다.
 
 ---
 

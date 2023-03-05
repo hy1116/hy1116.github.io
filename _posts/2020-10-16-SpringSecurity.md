@@ -1,6 +1,6 @@
 ---
 title : "Spring security"
-tags : [ Spring , Spring Security ]
+tags : [ Spring , SpringSecurity ]
 category : "Spring"
 date: 2020-10-16T18:00:00
 last_modified_at: 2020-10-16T18:00:00

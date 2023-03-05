@@ -1,15 +1,13 @@
 ---
-titile : "RegEx - 정규표현식 문법 및 예제 정리"
-category : "Javascript"
+titile : "Java 정규표현식 문법"
+category : "Java"
 tags : [Java,Javascript]
 date : 2020-10-21T18:00:00
 last_modified_at: 2020-10-21T18:00:00
 ---
-### RegExpression
+## Java 정규표현식
 
-​	값의 유효성 체크를 할 때 주로 정규표현식을 사용 하게 된다. 문법의 몇 가지만 정리.
-
-#### Grammer
+#### Pattern
 
 - `^` : 문자열의 시작 (대괄호 맨 앞에쓰면 부정)
 - `$` : 문자열의 종료
@@ -57,7 +55,8 @@ var bool2 = regEx2.test(str); // boolean값으로 반환
 console.log(bool2); // true
 ```
 
-
+#### 정규표현식 테스트 사이트
+[https://regexr.com/](https://regexr.com/)
 
 ---
 

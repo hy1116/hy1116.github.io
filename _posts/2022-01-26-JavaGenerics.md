@@ -1,7 +1,7 @@
 ---
 title : "Java- Generics"
 category : "Java"
-tags : [Generics]
+tags : [Java, Generics]
 date : 2022-01-26T12:00:00
 last_modified_at: 2022-01-26T12:00:00
 comment: true

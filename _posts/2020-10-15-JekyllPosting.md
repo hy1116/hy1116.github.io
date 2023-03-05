@@ -1,7 +1,7 @@
 ---
 title : "JeKyll기반의 블로그(Github Page) 만들기(2) - Posting"
-tags : [ Github Page ,Jekyll ]
-category : "GithubPage and Jekyll"
+tags : [ Jekyll ]
+category : "Jekyll"
 date : 2020-10-15T16:46:00
 last_modified_at: 2020-10-15T16:46:00
 ---
@@ -10,10 +10,10 @@ last_modified_at: 2020-10-15T16:46:00
 
 #### 02.1 Posting
 
- `minimal-mistakes` 테마 적용 기준으로 작성합니다. 
+ `minimal-mistakes` 테마 적용 기준으로 작성함
  해당 테마를 받으면`_config.yml`가 친절히 작성되어있으므로 주석을 참고하여 본인의 정보로 수정하여 주면 된다. 우선, 포스팅을 하기 위해서는  최상위에  `_post`폴더가 있어야한다. 없으면 생성해주고 해당 폴더에 `YYYY-MM-DD-[타이틀명].md`형식의 파일을 추가한다 . 
  해당 파일의 상단에 yaml front matter(layout 및 해당 포스팅에 대한 세팅)을 작성한후 마크다운형식의 본문을 작성하면 포스팅이 완료된다. 
- `_config.yml`을 통하여 포스팅 디폴트값을 설정 할 수 있다.
+ 추가로, `_config.yml`을 통하여 포스팅 디폴트값을 설정 할 수 있다.
 
 ----
 

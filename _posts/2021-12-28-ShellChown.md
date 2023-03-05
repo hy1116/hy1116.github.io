@@ -1,7 +1,7 @@
 ---
-title : "Shell - Chown"
-category : "Shell"
-tags : [Shell,Chown]
+title : "OS - Linux Chown"
+category : "OS"
+tags : [OS, Linux, Chown]
 date : 2021-12-28T12:00:00
 last_modified_at: 2021-12-28T12:00:00
 ---

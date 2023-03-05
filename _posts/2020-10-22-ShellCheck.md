@@ -1,7 +1,7 @@
 ---
-title : "shell - install/firewall check"
-category : "shell"
-tags : [shell]
+title : "OS - install/firewall check"
+category : "OS"
+tags : [OS,Linux]
 date : 2020-10-22T18:00:00
 last_modified_at: 2020-10-22T18:00:00
 ---

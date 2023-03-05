@@ -1,7 +1,7 @@
 ---
-title : "Java - Password Management: Password in Configuration File"
+title : "Java - Jasypt를 사용한 프로퍼티 암호화"
 category : "Java"
-tags : [Password in Configuration File]
+tags : [Java, Jasypt]
 date : 2022-10-19T12:00:00
 last_modified_at: 2023-01-14T12:00:00
 comment: true
@@ -10,13 +10,14 @@ comment: true
 
 - DB정보가 담긴 프로퍼티를 plain-text가 아닌 암호화 된 값으로 저장해야 한다는 보안 지적 사항을 전달 받아 아래와 같이 수정함.
 
-- 개발 환경 : `java8`, `spring sts4`, `maven`
+- 개발환경 : `java8`, `spring sts4`, `maven`
 
 ### jasypt
-
+#### 1. 암호화값 추출
+- 아래 사이트에서 암호화대상 텍스트와 key값 입력시 암호화 된 값 확인가능
 [https://www.devglan.com/online-tools/jasypt-online-encryption-decryption](https://www.devglan.com/online-tools/jasypt-online-encryption-decryption)
 
-- `applicationContext.xml` 에 추가
+#### 2. 암복호화 모듈 적용
 
 ```xml
 <!-- properties 암호화 시 오류로 주석처리 -->

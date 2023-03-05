@@ -1,10 +1,12 @@
 ---
 title: "Java - 접근지정자"
 category : "Java"
-tags : [java]
+tags : [Java]
 date : 2020-10-20T18:00:00
 last_modified_at: 2020-10-20T18:00:00
 ---
+public과 private만 사용해오다가 처음으로 protected와 마주치고 당황해서 정리함.
+
 ## 01.접근 지정자(access modifier)
 
 | 접근 지정자 | 접근 범위                                                    |

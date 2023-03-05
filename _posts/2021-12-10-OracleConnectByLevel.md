@@ -1,7 +1,7 @@
 ---
-title : "Oracle - Connect By level "
-category : "Oracle"
-tags : [Oracle]
+title : "Database - Oracle Connect By level "
+category : "Database"
+tags : [Database,Oracle]
 date : 2021-12-10T12:00:00
 last_modified_at: 2021-12-10T12:00:00
 ---

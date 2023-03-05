@@ -1,7 +1,7 @@
 ---
-title : "data structure - Queue"
-category : "data structure"
-tags : [Queue,Heap]
+title : "DataStructure - Queue"
+category : "DataStructure"
+tags : [Java, Queue,Heap]
 date : 2022-07-26T12:00:00
 last_modified_at: 2023-01-14T12:00:00
 comment: true
