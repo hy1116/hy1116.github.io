@@ -4,7 +4,7 @@ category : "OS"
 tags : [OS, Apache]
 date : 2023-02-27T12:00:00
 last_modified_at: 2023-02-28T12:00:00
-comment: true
+comments: true
 ---
 팀장님께서 갑자기 테스트서버 아파치 및 배포환경 셋팅을 내일까지 해놓으라고 하셔서 기존에 회사에서 사용하는 아파치 셋팅을 찾아보고 셋팅해 봄 (기록용)
 
