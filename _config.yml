@@ -34,7 +34,7 @@ words_per_minute         : 200
 comments:
   provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
   disqus:
-    shortname            : "Hyunyoung" # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    shortname            : "boguss-diary" # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
     server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
   facebook:
@@ -283,10 +283,10 @@ defaults:
     values:
       layout: "posts"
       author_profile: false
-      toc : true
-      toc_sticky : true
+      toc : false
+      toc_sticky : false
       read_time: false
-      share: true
+      share: false
       #related: true
       show_date: true
       comments : true
