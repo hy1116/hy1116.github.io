@@ -21,6 +21,7 @@ function App() {
       </header>
       <div className="invitation_con">
       <Info />
+      <Text />
       </div>
     </div>
   );
