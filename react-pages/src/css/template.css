@@ -1,0 +1,41 @@
+body{
+    font-family: 'Diphylleia', serif;
+    color: #444;
+}
+#wrap {
+    max-width: 450px;
+    min-width: 300px;
+    text-align: center;
+    background-color: rgb(255, 250, 242);
+    margin: 0 auto;
+}
+.invitation_con {
+    width: 100%;
+    margin: 20px 0;
+    box-shadow: 3px 3px 12px lightgrey;
+}
+.invitation_con > .head_con {
+    width: 100%;
+    padding: 20px 0;
+}
+.invitation_con > .head_con > .head_txt{
+    line-height: 1.8;    
+    font-size: 18px;
+    font-weight: 600;
+    color: #2e2e2e;
+}
+
+.invitation_con > .intro_con{
+    width: 100%;
+    padding: 20px;
+}
+.invitation_con > .intro_con > .intro_top{
+    margin: 20px 0;
+}
+.invitation_con > .intro_con > .intro_btm >.intro_name{
+    font-weight: bold;
+}
+.invitation_con > .intro_con > .intro_btm >.intro_sub_txt {
+    color: gray;
+    font-size: 10pt;
+}
