@@ -5,10 +5,9 @@ import Text from './template/text';
 import Cal from './template/calender';
 import Map from './template/map';
 import Gallery from './template/gallery';
-{/*
 import Attention from './template/attention';
 import Comment from './template/comment';
-*/}
+
 
 function App() {
   return (
@@ -19,13 +18,11 @@ function App() {
         <Info />
         <Img />
         <Text />
-        {/*<Cal />*/}
+        <Cal />
         <Map />
         <Gallery />
-        {/*
         <Attention />
-        <Comment />      
-        */}
+        <Comment />        
       </div>
     </div>
   );

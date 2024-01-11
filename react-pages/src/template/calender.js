@@ -3,10 +3,11 @@ import 'react-calendar/dist/Calendar.css';
 import Calendar from 'react-calendar'
 
 function Calender() {
-  {/*const [value, onChange] = useState(new Date());*/}
+  const [value, onChange] = useState(new Date());
+
   return (
     <div className="area calendar-wrap">
-      <Calendar />
+      <Calendar value={value}/>
     </div>
   );
 }

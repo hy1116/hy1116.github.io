@@ -37,6 +37,7 @@ body{
 }
 .invitation_con > .intro_con > .intro_top{
     margin: 20px 0;
+    color: #ddd;
 }
 .invitation_con > .intro_con > .intro_btm{
     letter-spacing: 5px;
@@ -47,4 +48,9 @@ body{
 .invitation_con > .intro_con > .intro_btm >.intro_sub_txt {
     color: gray;
     font-size: 10pt;
+}
+
+.invitation_con > .cal_con > .react-calendar {
+    margin: 0 auto;
+    border: none;
 }
