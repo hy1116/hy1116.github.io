@@ -1,6 +1,6 @@
-function Text() {
+function text() {
   return (
-    <div class="intro_con">
+    <div class="intro_con area">
         <div class="intro_top">
             <span class="intro_top">invitation</span>
         </div>
@@ -33,4 +33,4 @@ function Text() {
   );
 }
 
-export default Text;
+export default text;

@@ -1,36 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+
 body{
-    font-family: 'Diphylleia', serif;
+    font-family: 'Nanum Pen Script', cursive;
     color: #444;
+    background-color: rgba(255, 255, 255, 0.9);
 }
 #wrap {
     max-width: 450px;
     min-width: 300px;
     text-align: center;
-    background-color: rgb(255, 250, 242);
     margin: 0 auto;
 }
 .invitation_con {
-    width: 100%;
-    margin: 20px 0;
-    box-shadow: 3px 3px 12px lightgrey;
+    text-align: center;
+    max-width: 600px;
+    margin: 20px auto;
+    box-shadow: 3px 3px 12px lightgray;
+    background-color: white;
+}
+.area {
+    padding: 20px;
 }
 .invitation_con > .head_con {
-    width: 100%;
-    padding: 20px 0;
+    padding-top: 40px;
 }
 .invitation_con > .head_con > .head_txt{
     line-height: 1.8;    
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     color: #2e2e2e;
 }
 
 .invitation_con > .intro_con{
-    width: 100%;
+    font-size: 13pt;
     padding: 20px;
 }
 .invitation_con > .intro_con > .intro_top{
     margin: 20px 0;
+}
+.invitation_con > .intro_con > .intro_btm{
+    letter-spacing: 5px;
 }
 .invitation_con > .intro_con > .intro_btm >.intro_name{
     font-weight: bold;
