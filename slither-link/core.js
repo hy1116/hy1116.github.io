@@ -250,6 +250,23 @@ function generatePuzzle(R, C, difficulty, rand = Math.random) {
   return { R, C, difficulty, clues, solution: sol };
 }
 
+/* ───────── 시드 난수 (오늘의 퍼즐: 같은 날짜 → 모든 기기에서 같은 퍼즐) ─────────
+ * 주의: generatePuzzle 의 난수 사용 순서를 바꾸면 같은 날짜의 퍼즐이 달라진다. */
+function seedRandom(seed) {
+  let h = 1779033703 ^ seed.length;
+  for (let i = 0; i < seed.length; i++) {
+    h = Math.imul(h ^ seed.charCodeAt(i), 3432918353);
+    h = (h << 13) | (h >>> 19);
+  }
+  let a = h >>> 0;
+  return () => {                                  // mulberry32
+    a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
 /* ───────── 공유 링크용 퍼즐 코드 ─────────
  * 예) "7n.2b31a0..."  = 크기 7, 난이도(e/n/h), 칸 숫자 0~3, 빈칸 묶음은 a(1칸)~z(26칸)
  * 정답은 넣지 않는다 (받는 쪽에서 풀어서 유일해인지 다시 확인). */
@@ -284,5 +301,5 @@ function decodePuzzle(code) {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = { DIFFICULTY, Grid, Solver, generatePuzzle, encodePuzzle, decodePuzzle };
+  module.exports = { DIFFICULTY, Grid, Solver, generatePuzzle, encodePuzzle, decodePuzzle, seedRandom };
 }

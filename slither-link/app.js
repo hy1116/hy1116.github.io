@@ -24,6 +24,15 @@ const fmt = (sec) => {
 };
 const esc = (v) => String(v).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
+/* ───────── 날짜 (오늘의 퍼즐은 한국 시간 기준) ───────── */
+const kstToday = () => new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
+const addDays = (date, n) => new Date(Date.parse(date + 'T00:00:00Z') + n * 864e5).toISOString().slice(0, 10);
+const weekday = (date) => new Date(date + 'T00:00:00Z').getUTCDay();          // 0=일 … 6=토
+const dayLabel = (date) => `${Number(date.slice(5, 7))}월 ${Number(date.slice(8, 10))}일`;
+const shortDay = (date) => `${Number(date.slice(5, 7))}/${Number(date.slice(8, 10))}`;
+const DAILY_SEED = 'slither-daily-v1:';      // 바꾸면 모든 날짜의 퍼즐이 바뀜
+const dailyConfig = (date) => ([0, 6].includes(weekday(date)) ? { n: 10, diff: '보통' } : { n: 7, diff: '보통' });
+
 /* ───────── 통계 (데스크톱 버전과 같은 형식) ───────── */
 class Stats {
   constructor() {
@@ -31,23 +40,26 @@ class Stats {
     this.games = Array.isArray(d.games) ? d.games.filter((g) => g && typeof g === 'object') : [];
   }
   save() { store.set(K_STATS, { version: 1, games: this.games }); }
-  add(size, diff, secs, result, undo) {
+  add(size, diff, secs, result, undo, extra = {}) {
     const n = new Date(), p = (x) => String(x).padStart(2, '0');
-    this.games.push({
+    const g = {
       date: `${n.getFullYear()}-${p(n.getMonth() + 1)}-${p(n.getDate())} ${p(n.getHours())}:${p(n.getMinutes())}`,
       size, diff, time: Math.floor(secs), result, undo,
-    });
+    };
+    for (const k in extra) if (extra[k]) g[k] = extra[k];      // hints, daily (있을 때만)
+    this.games.push(g);
     this.save();
   }
   clear() { this.games = []; this.save(); }
   summary(size = null, diff = null) {
     const gs = this.games.filter((g) => (size === null || g.size === size) && (diff === null || g.diff === diff));
-    const won = gs.filter((g) => g.result === Stats.WIN).map((g) => g.time || 0);
+    const won = gs.filter((g) => g.result === Stats.WIN);
+    const clean = won.filter((g) => !g.hints).map((g) => g.time || 0);   // 힌트 쓴 판은 기록 제외
     return {
       played: gs.length, won: won.length,
       rate: gs.length ? won.length / gs.length : null,
-      best: won.length ? Math.min(...won) : null,
-      avg: won.length ? won.reduce((a, b) => a + b, 0) / won.length : null,
+      best: clean.length ? Math.min(...clean) : null,
+      avg: clean.length ? clean.reduce((a, b) => a + b, 0) / clean.length : null,
     };
   }
   best(size, diff) { return this.summary(size, diff).best; }
@@ -59,6 +71,18 @@ class Stats {
     return [cur, best];
   }
   recent(n = 10) { return this.games.slice(-n).reverse(); }
+  dailyWin(date) { return this.games.find((g) => g.daily === date && g.result === Stats.WIN) || null; }
+  dailyStreaks(today) {                    // [지금 연속, 최고 연속, 총 완료 일수]
+    const days = new Set(this.games.filter((g) => g.daily && g.result === Stats.WIN).map((g) => g.daily));
+    let cur = 0, d = days.has(today) ? today : addDays(today, -1);
+    while (days.has(d)) { cur++; d = addDays(d, -1); }
+    let best = 0, run = 0, prev = null;
+    for (const x of [...days].sort()) {
+      run = prev && addDays(prev, 1) === x ? run + 1 : 1;
+      best = Math.max(best, run); prev = x;
+    }
+    return [cur, best, days.size];
+  }
 }
 Stats.WIN = '완성'; Stats.REVEAL = '정답 보기'; Stats.QUIT = '포기';
 
@@ -74,6 +98,9 @@ const G = {
   undoCount: 0, newBest: false, prevBest: null,
   mode: LINE, hover: -1, genId: 0, statsTab: 0,
   challenge: null,                  // 공유받은 기록 { time } — 이기면 비교
+  daily: null,                      // 오늘의 퍼즐이면 날짜 'YYYY-MM-DD'
+  practice: false,                  // 이미 완료한 오늘의 퍼즐 다시 풀기 (기록 안 남김)
+  hints: 0, hl: null,               // 힌트 사용 횟수 / 보드 강조 표시
 };
 const stats = new Stats();
 
@@ -94,6 +121,7 @@ function saveGame() {
   store.set(K_GAME, {
     size: G.size, diff: G.diff, clues: G.clues, solution: G.solution, state: G.state,
     elapsed: elapsed(), undoCount: G.undoCount, challenge: G.challenge,
+    daily: G.daily, practice: G.practice, hints: G.hints,
   });
 }
 function restoreGame() {
@@ -104,9 +132,11 @@ function restoreGame() {
   if (!Array.isArray(s.state) || s.state.length !== ne || !Array.isArray(s.solution) || s.solution.length !== ne) return false;
   G.size = s.size; G.diff = s.diff;
   loadPuzzle({ R: s.size, C: s.size, clues: s.clues, solution: s.solution }, s.state,
-    (s.elapsed || 0) * 1000, s.undoCount || 0);
-  G.challenge = s.challenge && Number.isFinite(s.challenge.time) ? { time: s.challenge.time } : null;
-  render();
+    (s.elapsed || 0) * 1000, s.undoCount || 0, {
+      challenge: s.challenge && Number.isFinite(s.challenge.time) ? { time: s.challenge.time } : null,
+      daily: typeof s.daily === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s.daily) ? s.daily : null,
+      practice: !!s.practice, hints: Number(s.hints) || 0,
+    });
   return true;
 }
 
@@ -119,7 +149,7 @@ function syncJob(msg) {               // 워커를 못 쓸 때 (예: 파일로 �
     const sols = s.solve(2);
     return { count: s.aborted ? -1 : sols.length, solution: sols[0] || null };
   }
-  return { puzzle: generatePuzzle(msg.n, msg.n, msg.diff) };
+  return { puzzle: generatePuzzle(msg.n, msg.n, msg.diff, msg.seed ? seedRandom(msg.seed) : Math.random) };
 }
 function runJob(msg) {
   return new Promise((resolve) => {
@@ -141,20 +171,29 @@ try {
   };
 } catch (e) { worker = null; }
 
-function newGame() {
+/* opts: { seed, daily, practice, challenge } — 오늘의 퍼즐은 날짜 시드로 만든다 */
+function newGame(opts = {}) {
   if (G.generating) return;
   G.generating = true;
   G.grid = null; G.state = []; G.undo = []; G.redo = [];
   G.solved = G.won = G.revealed = G.overlayHidden = false;
-  G.acc = 0; G.since = null; G.hover = -1; G.undoCount = 0; G.challenge = null;
+  G.acc = 0; G.since = null; G.hover = -1; G.undoCount = 0;
+  G.challenge = null; G.daily = opts.daily || null; G.practice = false; G.hints = 0; G.hl = null;
   store.del(K_GAME);
   $('board').textContent = '';
   render();
   const id = ++G.genId;
-  runJob({ type: 'gen', n: G.size, diff: G.diff }).then((r) => { if (id === G.genId) loadPuzzle(r.puzzle); });
+  runJob({ type: 'gen', n: G.size, diff: G.diff, seed: opts.seed }).then((r) => {
+    if (id === G.genId) loadPuzzle(r.puzzle, null, 0, 0, opts);
+  });
 }
 
-function loadPuzzle(p, state = null, accMs = 0, undoCount = 0) {
+function loadPuzzle(p, state = null, accMs = 0, undoCount = 0, meta = {}) {
+  G.challenge = meta.challenge || null;
+  G.daily = meta.daily || null;
+  G.practice = !!meta.practice;
+  G.hints = meta.hints || 0;
+  G.hl = null;
   G.grid = new Grid(p.R, p.C);
   G.clues = p.clues; G.solution = p.solution;
   G.state = state ? state.slice() : new Array(G.grid.ne).fill(EMPTY);
@@ -171,7 +210,7 @@ function loadPuzzle(p, state = null, accMs = 0, undoCount = 0) {
 
 /* ───────── 보드 (SVG) ───────── */
 const svg = $('board');
-let edgeEls = [], crossEls = [], clueEls = [], dotEls = [];
+let edgeEls = [], crossEls = [], clueEls = [], dotEls = [], hlCell = null, hlVert = null;
 
 function mk(tag, attrs, parent) {
   const el = document.createElementNS(NS, tag);
@@ -184,7 +223,9 @@ function buildBoard() {
   const g = G.grid, C = g.C, R = g.R;
   svg.setAttribute('viewBox', `${-MARGIN} ${-MARGIN} ${C * CELL + 2 * MARGIN} ${R * CELL + 2 * MARGIN}`);
   svg.textContent = '';
-  const gClue = mk('g', {}, svg), gEdge = mk('g', {}, svg), gDot = mk('g', {}, svg);
+  const gHl = mk('g', {}, svg), gClue = mk('g', {}, svg), gEdge = mk('g', {}, svg), gDot = mk('g', {}, svg);
+  hlCell = mk('rect', { class: 'hl-cell', width: CELL - 12, height: CELL - 12, rx: 16 }, gHl);
+  hlVert = mk('circle', { class: 'hl-vert', r: 24 }, gDot);
   clueEls = G.clues.map((k, cell) => {
     if (k === null) return null;
     const t = mk('text', { class: 'clue', x: (cell % C + 0.5) * CELL, y: (Math.floor(cell / C) + 0.5) * CELL }, gClue);
@@ -218,7 +259,15 @@ function renderBoard() {
     edgeEls[e].classList.toggle('on', s === LINE);
     edgeEls[e].classList.toggle('hover', s === EMPTY && e === G.hover);
     crossEls[e].classList.toggle('on', s === CROSS);
+    edgeEls[e].classList.toggle('hl', !!G.hl && !G.hl.wrong && G.hl.e === e);
+    edgeEls[e].classList.toggle('wrong', !!(G.hl && G.hl.wrong && G.hl.e === e));   // undefined 면 toggle 이 뒤집기로 동작하므로 반드시 boolean
   }
+  const hc = G.hl && G.hl.cell !== undefined ? G.hl.cell : -1;
+  hlCell.classList.toggle('on', hc >= 0);
+  if (hc >= 0) { hlCell.setAttribute('x', (hc % g.C) * CELL + 6); hlCell.setAttribute('y', Math.floor(hc / g.C) * CELL + 6); }
+  const hv = G.hl && G.hl.vert !== undefined ? G.hl.vert : -1;
+  hlVert.classList.toggle('on', hv >= 0);
+  if (hv >= 0) { hlVert.setAttribute('cx', (hv % (g.C + 1)) * CELL); hlVert.setAttribute('cy', Math.floor(hv / (g.C + 1)) * CELL); }
   G.clues.forEach((k, cell) => {
     if (k === null) return;
     let n = 0;
@@ -237,21 +286,24 @@ function render() {
   setOn($('seg-diff'), DIFFS.indexOf(G.diff));
   setOn($('seg-mode'), G.mode === LINE ? 0 : 1);
   $('btn-new').disabled = G.generating;
+  renderDailyButton();
 
   const playing = running();
   $('t-undo').disabled = !(playing && G.undo.length);
   $('t-redo').disabled = !(playing && G.redo.length);
   $('t-cross').disabled = !playing;
+  $('t-hint').disabled = !playing;
   $('t-reset').disabled = !(playing && G.state.some((s) => s));
   renderReveal();
 
   const st = $('status');
   st.classList.toggle('win-text', G.won);
-  st.classList.toggle('challenge', !!G.challenge && playing);
+  st.classList.toggle('challenge', (!!G.challenge || !!G.daily) && playing);
   if (G.generating) st.textContent = '퍼즐을 만드는 중…';
   else if (G.won) st.textContent = `완성!  기록 ${fmt(elapsed())}`;
   else if (G.revealed) st.textContent = '정답을 공개했어요 · 새 게임으로 다시 도전해 보세요';
   else if (G.challenge) st.textContent = `⚑ 친구 기록 ${fmt(G.challenge.time)}에 도전 중!`;
+  else if (G.daily) st.textContent = `📅 ${dayLabel(G.daily)} 오늘의 퍼즐${G.practice ? ' (연습 · 기록 안 남음)' : ''}`;
   else st.textContent = isTouch() ? '탭: 선   ·   길게 누르기: X 표시'
     : '왼쪽 클릭·드래그: 선    오른쪽 클릭: X 표시';
 
@@ -259,10 +311,17 @@ function render() {
   const showWin = G.won && !G.overlayHidden;
   $('win').hidden = !showWin;
   if (showWin) {
-    $('win-meta').textContent = `${G.size}×${G.size} · ${G.diff} · 기록 ${fmt(elapsed())}`;
+    const what = G.daily ? `${dayLabel(G.daily)} 오늘의 퍼즐` : `${G.size}×${G.size} · ${G.diff}`;
+    $('win-meta').textContent = `${what} · 기록 ${fmt(elapsed())}${G.hints ? ` · 힌트 ${G.hints}회` : ''}`;
     const b = $('win-best');
-    b.classList.toggle('new', G.newBest);
-    b.textContent = G.newBest ? '★  최고 기록 달성!' : `최고 기록 ${fmt(G.prevBest)}`;
+    let best, isNew = false;
+    if (G.practice) best = '연습이라 기록은 남지 않아요';
+    else if (G.daily) { best = `🔥 오늘의 퍼즐 ${stats.dailyStreaks(kstToday())[0]}일 연속 완료!`; isNew = true; }
+    else if (G.newBest) { best = '★  최고 기록 달성!'; isNew = true; }
+    else if (G.hints) best = G.prevBest === null ? '힌트를 쓴 판은 최고 기록에서 빠져요' : `최고 기록 ${fmt(G.prevBest)} · 힌트 쓴 판은 제외`;
+    else best = `최고 기록 ${fmt(G.prevBest)}`;
+    b.classList.toggle('new', isNew);
+    b.textContent = best;
     const ch = $('win-challenge');
     ch.hidden = !G.challenge;
     if (G.challenge) {
@@ -289,10 +348,21 @@ function renderReveal() {
   $('reveal-label').textContent = label;
 }
 
+let shownDay = kstToday();
 setInterval(() => {
   $('timer').textContent = fmt(elapsed());
   if (running()) renderReveal();
+  if (kstToday() !== shownDay) { shownDay = kstToday(); renderDailyButton(); }   // 자정이 지나면
 }, 250);
+
+function renderDailyButton() {
+  const today = kstToday(), done = stats.dailyWin(today), btn = $('btn-daily');
+  const now = G.daily === today && !G.practice && (running() || G.generating);
+  btn.classList.toggle('on', now);
+  btn.classList.toggle('done', !!done && !now);
+  $('daily-label').textContent = done ? `오늘 ✓ ${fmt(done.time)}` : '오늘의 퍼즐';
+  btn.disabled = G.generating;
+}
 
 /* ───────── 편집 · 되돌리기 ───────── */
 function applyBatch(batch) {
@@ -337,12 +407,19 @@ function autoCross() {
   }
   if (targets.size) applyBatch([...targets].map((e) => [e, EMPTY, CROSS]));
 }
+function recordResult(result, secs) {
+  if (G.practice) return;
+  stats.add(G.size, G.diff, secs, result, G.undoCount, { hints: G.hints, daily: G.daily });
+}
+const recordQuit = () => recordResult(Stats.QUIT, elapsed());
+
 function showSolution() {
   if (!running() || !revealReady()) return;
   pauseClock();
   G.state = G.solution.map((s) => (s ? LINE : EMPTY));
   G.solved = G.revealed = true;
-  stats.add(G.size, G.diff, elapsed(), Stats.REVEAL, G.undoCount);
+  G.hl = null;
+  recordResult(Stats.REVEAL, elapsed());
   store.del(K_GAME);
   render();
 }
@@ -365,9 +442,90 @@ function checkWin() {
   G.solved = G.won = true; G.hover = -1;
   const t = Math.floor(elapsed());
   G.prevBest = stats.best(G.size, G.diff);
-  G.newBest = G.prevBest === null || t < G.prevBest;
-  stats.add(G.size, G.diff, t, Stats.WIN, G.undoCount);
+  G.newBest = !G.hints && !G.practice && (G.prevBest === null || t < G.prevBest);
+  G.hl = null;
+  recordResult(Stats.WIN, t);
   store.del(K_GAME);
+}
+
+/* ───────── 힌트 ─────────
+ * 1) 잘못된 표시가 있으면 그것부터 지운다
+ * 2) 지금 상태에서 바로 확정되는 선 (칸 숫자 / 점의 연결)
+ * 3) 주변을 따져 보면(전파) 확정되는 선
+ * 4) 그래도 없으면 정답에서 선 하나 (끊긴 선 끝 근처 우선) */
+function findHint() {
+  const g = G.grid, sol = G.solution, st = G.state;
+  for (let e = 0; e < g.ne; e++) {
+    if (st[e] === LINE && !sol[e]) return { e, wrong: true, msg: '이 선은 정답에 없어서 지웠어요' };
+    if (st[e] === CROSS && sol[e]) return { e, wrong: true, msg: '여기엔 선이 들어가야 해서 X를 지웠어요' };
+  }
+  const cur = st.map((s) => (s === LINE ? 1 : s === CROSS ? 0 : -1));
+  const ok = (e) => sol[e] === 1;          // 안전장치: 정답과 다른 힌트는 절대 주지 않음
+  for (let cell = 0; cell < G.clues.length; cell++) {
+    const k = G.clues[cell];
+    if (k === null) continue;
+    const es = g.cellEdges[cell], unk = es.filter((e) => cur[e] === -1);
+    const on = es.filter((e) => cur[e] === 1).length;
+    if (unk.length && on < k && on + unk.length === k && ok(unk[0]))
+      return { e: unk[0], cell, msg: `이 ${k} 칸은 남은 변이 모두 선이어야 개수가 맞아요` };
+  }
+  const deg = (v) => g.vertEdges[v].filter((e) => cur[e] === 1).length;
+  for (let v = 0; v < g.nvert; v++) {
+    const unk = g.vertEdges[v].filter((e) => cur[e] === -1);
+    if (deg(v) === 1 && unk.length === 1 && ok(unk[0]))
+      return { e: unk[0], vert: v, msg: '선이 끊기지 않으려면 여기로 이어져야 해요' };
+  }
+  const looseEnd = (e) => g.edgeVerts[e].some((v) => deg(v) === 1);
+  const pick = (cands) => cands.find(looseEnd) ?? cands[0];
+  const closed = cur.slice();
+  new Solver(g, G.clues).propagate(closed, Array.from({ length: g.ne }, (_, i) => i));
+  const deduced = [];
+  for (let e = 0; e < g.ne; e++) if (cur[e] === -1 && closed[e] === 1 && ok(e)) deduced.push(e);
+  if (deduced.length) return { e: pick(deduced), msg: '주변 숫자와 선을 따져 보면 여기는 선이 들어가야 해요' };
+  const rest = [];
+  for (let e = 0; e < g.ne; e++) if (cur[e] === -1 && sol[e]) rest.push(e);
+  if (rest.length) return { e: pick(rest), msg: '어려운 자리라서 정답에서 한 칸 알려 드려요' };
+  return null;
+}
+
+let hlTimer = null;
+function useHint() {
+  if (!running()) return;
+  const h = findHint();
+  if (!h) return;
+  G.hints++;
+  applyBatch([[h.e, G.state[h.e], h.wrong ? EMPTY : LINE]]);
+  if (!G.won) {
+    G.hl = h;
+    renderBoard();
+    clearTimeout(hlTimer);
+    hlTimer = setTimeout(() => { G.hl = null; renderBoard(); }, 2600);
+  }
+  toast(`💡 ${h.msg}`, 3400);
+}
+
+/* ───────── 오늘의 퍼즐 ───────── */
+function startDaily(practice = false, challenge = null) {
+  const date = kstToday(), cfg = dailyConfig(date);
+  G.size = cfg.n; G.diff = cfg.diff;            // 일반 게임 설정(prefs)은 그대로 둠
+  newGame({ seed: DAILY_SEED + date, daily: date, practice, challenge });
+}
+function requestDaily(challenge = null) {
+  if (G.generating) return;
+  const date = kstToday();
+  if (G.daily === date && running() && !challenge) { toast('지금 오늘의 퍼즐을 풀고 있어요'); return; }
+  const done = stats.dailyWin(date), quit = hasProgress();
+  const go = (practice) => { if (quit) recordQuit(); startDaily(practice, challenge); };
+  const quitMsg = quit ? ' 지금 풀던 퍼즐은 \'포기\'로 기록돼요.' : '';
+  if (done) {
+    openConfirm({
+      title: '오늘의 퍼즐 다시 풀기', icon: '📅', ok: '다시 풀기',
+      msg: `오늘은 이미 ${fmt(done.time)}에 완료했어요. 다시 풀면 기록은 남지 않아요.${quitMsg}`,
+      action: () => go(true),
+    });
+  } else if (quit) {
+    openConfirm({ title: '오늘의 퍼즐을 시작할까요?', icon: '📅', ok: '시작', msg: quitMsg.trim(), action: () => go(false) });
+  } else go(false);
 }
 
 /* ───────── 입력: 마우스 · 터치 ───────── */
@@ -464,12 +622,12 @@ svg.addEventListener('contextmenu', (ev) => ev.preventDefault());
 
 /* ───────── 공유 ───────── */
 let toastTimer = null;
-function toast(msg) {
+function toast(msg, ms = 2200) {
   const t = $('toast');
   t.textContent = msg;
   t.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+  toastTimer = setTimeout(() => t.classList.remove('show'), ms);
 }
 
 async function copyText(text) {
@@ -483,10 +641,13 @@ async function copyText(text) {
   return ok;
 }
 
+/* 공유 링크는 쿼리 문자열(?p=…&t=…)로 만든다.
+   '#' 뒤 부분은 카카오톡 등 일부 앱/인앱 브라우저에서 잘릴 수 있어서. (예전 #p= 링크도 계속 열림) */
 function shareUrl(withTime) {
-  let h = `#p=${encodePuzzle(G.size, G.diff, G.clues)}`;
-  if (withTime) h += `&t=${Math.floor(elapsed())}`;
-  return location.origin + location.pathname + h;
+  let q = `?p=${encodePuzzle(G.size, G.diff, G.clues)}`;
+  if (withTime) q += `&t=${Math.floor(elapsed())}`;
+  if (G.daily) q += `&d=${G.daily}`;
+  return location.origin + location.pathname + q;
 }
 
 /* ───────── 공유 이미지 (캔버스로 그리기) ───────── */
@@ -512,7 +673,7 @@ function renderShareImage(brag) {
   x.fillStyle = IMG.text; x.textBaseline = 'middle';
   x.font = `800 44px ${IMG_FONT}`;
   x.fillText('Slither Link', 60, 76);
-  const tag = `${n}×${n} · ${G.diff}`;
+  const tag = G.daily ? `오늘의 퍼즐 · ${shortDay(G.daily)}` : `${n}×${n} · ${G.diff}`;
   x.font = `700 26px ${IMG_FONT}`;
   const tw = x.measureText(tag).width + 40;
   x.fillStyle = IMG.chip; roundRect(x, W - 60 - tw, 52, tw, 48, 24); x.fill();
@@ -586,11 +747,14 @@ let SH = null;   // 지금 열린 공유 정보 { brag, url, text, title, canvas
 function openShare(brag) {
   if (!G.grid || G.generating) return;
   brag = !!brag && G.won;
-  const t = fmt(elapsed()), sz = `${G.size}×${G.size} ${G.diff}`;
+  const t = fmt(elapsed());
+  const sz = G.daily ? `오늘의 퍼즐(${dayLabel(G.daily)})` : `${G.size}×${G.size} ${G.diff}`;
+  const extra = brag && G.hints ? ` (힌트 ${G.hints}회)` : '';
+  const streak = brag && G.daily && !G.practice ? ` 🔥 ${stats.dailyStreaks(kstToday())[0]}일 연속!` : '';
   SH = {
     brag, url: shareUrl(brag),
-    title: brag ? `슬리더 링크 ${sz} — ${t} 완성!` : `슬리더 링크 ${sz} 퍼즐`,
-    text: brag ? `슬리더 링크 ${sz} 퍼즐을 ${t}에 풀었어요! 나보다 빨리 풀 수 있어요? 🧩`
+    title: brag ? `슬리더 링크 ${sz} — ${t} 완성!` : `슬리더 링크 ${sz}`,
+    text: brag ? `슬리더 링크 ${sz} 퍼즐을 ${t}에 풀었어요${extra}!${streak} 나보다 빨리 풀 수 있어요? 🧩`
       : `슬리더 링크 ${sz} 퍼즐 같이 풀어요 🧩`,
     canvas: renderShareImage(brag), blob: null, kakaoImage: null,
   };
@@ -659,15 +823,23 @@ function shareSave() {
   toast('이미지를 저장했어요');
 }
 
-/* 공유 링크로 들어왔을 때: #p=<퍼즐 코드>&t=<친구 기록(초)> */
+/* 공유 링크로 들어왔을 때: ?p=<퍼즐 코드>&t=<친구 기록(초)>  (예전 형식 #p=… 도 지원) */
+function shareParams() {
+  const search = new URLSearchParams(location.search);
+  if (search.has('p')) return search;
+  if (location.hash.startsWith('#p=')) return new URLSearchParams(location.hash.slice(1));
+  return null;
+}
 function readShareHash() {
-  if (!location.hash.startsWith('#p=')) return null;
-  const q = new URLSearchParams(location.hash.slice(1));
-  history.replaceState(null, '', location.pathname + location.search);   // 새로고침 때 다시 열리지 않게
+  const q = shareParams();
+  if (!q) return null;
+  history.replaceState(null, '', location.pathname);   // 새로고침 때 다시 열리지 않게
   const p = decodePuzzle(q.get('p'));
   if (!p || !SIZES.includes(p.n) || !DIFFS.includes(p.diff)) return { bad: true };
   const t = Number(q.get('t'));
   p.time = Number.isInteger(t) && t >= 0 && t < 360000 ? t : null;
+  const d = q.get('d');
+  p.daily = d && /^\d{4}-\d{2}-\d{2}$/.test(d) ? d : null;
   return p;
 }
 
@@ -677,15 +849,14 @@ async function openShared(p) {
   const go = () => {
     G.genId++;                                  // 만들던 퍼즐이 있으면 버림
     G.size = p.n; G.diff = p.diff; savePrefs();
-    loadPuzzle({ R: p.n, C: p.n, clues: p.clues, solution: res.solution });
-    G.challenge = p.time !== null ? { time: p.time } : null;
-    saveGame(); render();
+    loadPuzzle({ R: p.n, C: p.n, clues: p.clues, solution: res.solution }, null, 0, 0,
+      { challenge: p.time !== null ? { time: p.time } : null });
     toast(G.challenge ? `친구 기록 ${fmt(p.time)}에 도전!` : '공유받은 퍼즐을 열었어요');
   };
   if (hasProgress()) {
     openConfirm({
       title: '공유받은 퍼즐을 열까요?', msg: '지금 풀던 퍼즐은 \'포기\'로 기록돼요.', ok: '열기', icon: '↗',
-      action: () => { stats.add(G.size, G.diff, elapsed(), Stats.QUIT, G.undoCount); go(); },
+      action: () => { recordQuit(); go(); },
     });
   } else go();
   return true;
@@ -694,7 +865,13 @@ async function openShared(p) {
 async function handleShareHash() {
   const p = readShareHash();
   if (!p) return false;
-  if (p.bad || !(await openShared(p))) { toast('잘못된 공유 링크예요'); return false; }
+  if (p.bad) { toast('잘못된 공유 링크예요'); return false; }
+  // 오늘 날짜의 '오늘의 퍼즐' 링크이고 아직 안 풀었으면 → 진짜 오늘의 퍼즐로 (기록도 오늘의 퍼즐로 남음)
+  if (p.daily === kstToday() && !stats.dailyWin(p.daily)) {
+    requestDaily(p.time !== null ? { time: p.time } : null);
+    return true;
+  }
+  if (!(await openShared(p))) { toast('잘못된 공유 링크예요'); return false; }
   return true;
 }
 
@@ -737,7 +914,7 @@ function requestNewGame(before = null, title = '새 게임을 시작할까요?')
   openConfirm({
     title, msg: '지금 풀던 퍼즐은 \'포기\'로 기록돼요.', ok: '새 게임', icon: '↻',
     action: () => {   // 확인 창에서 '새 게임'을 눌렀을 때만 포기로 기록
-      stats.add(G.size, G.diff, elapsed(), Stats.QUIT, G.undoCount);
+      recordQuit();
       go();
     },
   });
@@ -745,6 +922,15 @@ function requestNewGame(before = null, title = '새 게임을 시작할까요?')
 
 /* ───────── 통계 창 ───────── */
 function renderStats() {
+  const today = kstToday(), [dc, db, dt] = stats.dailyStreaks(today);
+  let strip = '';
+  for (let i = 6; i >= 0; i--) {
+    const d = addDays(today, -i), done = !!stats.dailyWin(d);
+    strip += `<div class="${done ? 'done' : ''} ${i === 0 ? 'today' : ''}">${i === 0 ? '오늘' : '일월화수목금토'[weekday(d)]}<i>${done ? '✓' : ''}</i></div>`;
+  }
+  $('stat-daily').innerHTML = `<div class="daily-head"><b>📅 오늘의 퍼즐</b>
+    <span><span class="fire">🔥 ${dc}일 연속</span> · 최고 ${db}일 · 총 ${dt}회</span></div>
+    <div class="daily-strip">${strip}</div>`;
   const st = stats.summary(), [cur, bestStreak] = stats.streaks();
   const tiles = [
     [st.played, '플레이'], [st.won, '완성'],
@@ -776,7 +962,8 @@ function renderStats() {
       games.forEach((g, i) => {
         const cls = { '완성': 'r-완성', '포기': 'r-포기', '정답 보기': 'r-정답' }[g.result] || '';
         html += `<tr class="${i % 2 === 0 ? 'alt' : ''}"><td class="date">${esc(String(g.date || '').slice(5))}</td>
-          <td>${esc(g.size)}×${esc(g.size)}&nbsp; ${esc(g.diff)}</td><td>${fmt(g.time || 0)}</td>
+          <td>${g.daily ? '📅 ' : ''}${esc(g.size)}×${esc(g.size)}&nbsp; ${esc(g.diff)}</td>
+          <td>${fmt(g.time || 0)}${g.hints ? ` <span class="none">💡${esc(g.hints)}</span>` : ''}</td>
           <td class="${cls}">${esc(g.result)}</td></tr>`;
       });
       html += '</table>';
@@ -845,6 +1032,8 @@ $('btn-theme').addEventListener('click', toggleTheme);
 $('t-undo').addEventListener('click', undo);
 $('t-redo').addEventListener('click', redo);
 $('t-cross').addEventListener('click', autoCross);
+$('t-hint').addEventListener('click', useHint);
+$('btn-daily').addEventListener('click', () => requestDaily());
 $('t-reset').addEventListener('click', resetBoard);
 $('t-reveal').addEventListener('click', showSolution);
 $('confirm-ok').addEventListener('click', confirmOk);
@@ -869,6 +1058,7 @@ document.addEventListener('keydown', (ev) => {
   if (ev.code === 'KeyN') requestNewGame();
   else if (ev.code === 'KeyD') toggleTheme();
   else if (ev.code === 'KeyS') openStats();
+  else if (ev.code === 'KeyH') useHint();
 });
 
 /* iOS: 빠르게 두 번 탭하면 확대되는 것 / 두 손가락 확대 막기 (버튼 연타는 그대로 동작) */
@@ -900,10 +1090,9 @@ if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.
 syncThemeColor();
 (async () => {
   const restored = restoreGame();
-  if (location.hash.startsWith('#p=')) {
-    if (!restored) { G.generating = true; render(); }       // 확인하는 동안 로딩 표시
+  if (shareParams()) {
+    if (!restored) $('spinner').hidden = false;             // 링크 확인하는 동안 로딩 표시
     const ok = await handleShareHash();
-    if (!restored) G.generating = false;
     if (ok || restored) return;
   }
   if (!restored) newGame();
