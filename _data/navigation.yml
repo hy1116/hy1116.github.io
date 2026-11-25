@@ -10,6 +10,8 @@ main:
   #   url: /collection-archive/
   - title: "React"
     url: /react-pages/
+  - title: "Slither Link"
+    url: /slither-link/
   - title: "Categories"
     url: /categories/
   - title: "Tags"

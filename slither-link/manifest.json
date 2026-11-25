@@ -1,0 +1,17 @@
+{
+  "name": "Slither Link · 슬리더 링크",
+  "short_name": "Slither Link",
+  "description": "점을 이어 하나의 고리를 만드는 논리 퍼즐",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#EEF1F8",
+  "theme_color": "#5B5BF0",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
