@@ -489,19 +489,174 @@ function shareUrl(withTime) {
   return location.origin + location.pathname + h;
 }
 
-async function sharePuzzle(withTime) {
-  if (!G.grid || G.generating) return;
-  withTime = withTime && G.won;
-  const url = shareUrl(withTime);
-  const text = withTime
-    ? `슬리더 링크 ${G.size}×${G.size} ${G.diff} 퍼즐을 ${fmt(elapsed())}에 풀었어요! 도전해 보세요 🧩`
-    : `슬리더 링크 ${G.size}×${G.size} ${G.diff} 퍼즐 같이 풀어요 🧩`;
-  if (navigator.share && isTouch()) {          // 휴대폰: 공유 시트 (카톡, 메시지 등)
-    try { await navigator.share({ title: 'Slither Link', text, url }); return; } catch (e) {
-      if (e && e.name === 'AbortError') return;  // 사용자가 닫음
-    }
+/* ───────── 공유 이미지 (캔버스로 그리기) ───────── */
+const IMG = { bg: '#EEF1F8', card: '#FFFFFF', text: '#1B1E2E', sub: '#6E7491', dot: '#C3C8D8',
+  clue: '#1B1E2E', done: '#B9BED0', line: '#5B5BF0', win: '#10B981', accent: '#5B5BF0', chip: '#E2E6F1' };
+const IMG_FONT = '-apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", "Malgun Gothic", sans-serif';
+
+function roundRect(x, X, Y, w, h, r) {
+  x.beginPath();
+  x.moveTo(X + r, Y); x.arcTo(X + w, Y, X + w, Y + h, r); x.arcTo(X + w, Y + h, X, Y + h, r);
+  x.arcTo(X, Y + h, X, Y, r); x.arcTo(X, Y, X + w, Y, r); x.closePath();
+}
+
+function renderShareImage(brag) {
+  const W = 800, c = document.createElement('canvas');
+  c.width = W; c.height = W;
+  const x = c.getContext('2d'), g = G.grid, n = g.R;
+  const grad = x.createLinearGradient(0, 0, W, W);
+  grad.addColorStop(0, '#EEF1F8'); grad.addColorStop(1, '#E3E5FB');
+  x.fillStyle = grad; x.fillRect(0, 0, W, W);
+
+  // 머리글
+  x.fillStyle = IMG.text; x.textBaseline = 'middle';
+  x.font = `800 44px ${IMG_FONT}`;
+  x.fillText('Slither Link', 60, 76);
+  const tag = `${n}×${n} · ${G.diff}`;
+  x.font = `700 26px ${IMG_FONT}`;
+  const tw = x.measureText(tag).width + 40;
+  x.fillStyle = IMG.chip; roundRect(x, W - 60 - tw, 52, tw, 48, 24); x.fill();
+  x.fillStyle = IMG.text; x.textAlign = 'center'; x.fillText(tag, W - 60 - tw / 2, 77); x.textAlign = 'left';
+
+  // 판
+  const B = 560, bx = (W - B) / 2, by = 130;
+  x.save(); x.shadowColor = 'rgba(42,51,88,.14)'; x.shadowBlur = 30; x.shadowOffsetY = 10;
+  x.fillStyle = IMG.card; roundRect(x, bx, by, B, B, 34); x.fill(); x.restore();
+  const pad = 40, cs = (B - pad * 2) / n, ox = bx + pad, oy = by + pad;
+  const lines = brag ? G.solution : G.state.map((v) => (v === LINE ? 1 : 0));
+  x.font = `600 ${Math.round(cs * 0.46)}px "Segoe UI", ${IMG_FONT}`;
+  x.textAlign = 'center';
+  G.clues.forEach((k, cell) => {
+    if (k === null) return;
+    x.fillStyle = brag ? IMG.done : IMG.clue;
+    x.fillText(String(k), ox + (cell % n + 0.5) * cs, oy + (Math.floor(cell / n) + 0.55) * cs);
+  });
+  x.strokeStyle = brag ? IMG.win : IMG.line; x.lineWidth = cs * 0.13; x.lineCap = 'round';
+  for (let e = 0; e < g.ne; e++) {
+    if (!lines[e]) continue;
+    const [a, b] = g.edgeVerts[e];
+    x.beginPath();
+    x.moveTo(ox + (a % (n + 1)) * cs, oy + Math.floor(a / (n + 1)) * cs);
+    x.lineTo(ox + (b % (n + 1)) * cs, oy + Math.floor(b / (n + 1)) * cs);
+    x.stroke();
   }
-  toast(await copyText(`${text}\n${url}`) ? '링크를 복사했어요' : '복사하지 못했어요');
+  x.fillStyle = IMG.dot;
+  for (let v = 0; v < g.nvert; v++) {
+    if (g.vertEdges[v].some((e) => lines[e])) continue;
+    x.beginPath(); x.arc(ox + (v % (n + 1)) * cs, oy + Math.floor(v / (n + 1)) * cs, Math.max(3, cs * 0.055), 0, Math.PI * 2); x.fill();
+  }
+
+  // 아래 문구
+  x.textAlign = 'center';
+  if (brag) {
+    x.fillStyle = IMG.win; x.font = `800 44px ${IMG_FONT}`;
+    x.fillText(`✓ ${fmt(elapsed())} 만에 완성!`, W / 2, 735);
+  } else {
+    x.fillStyle = IMG.accent; x.font = `800 40px ${IMG_FONT}`;
+    x.fillText('이 퍼즐 같이 풀어볼래요?', W / 2, 735);
+  }
+  return c;
+}
+
+/* ───────── 카카오톡 공유 (JavaScript 키 · 등록된 도메인에서만 동작) ───────── */
+const KAKAO_KEY = '7d4bc1ef953608ec41d536ba29ff43a4';
+const KAKAO_SDK = 'https://t1.kakaocdn.net/kakao_js_sdk/2.8.2/kakao.min.js';
+const KAKAO_SRI = 'sha384-zt/G7/KfaRQ9dT/QIkS0ujMtzouJqzuSJcXVQu50x0rl/+mD1dc70AeOejVbMD9E';
+const OG_IMAGE = 'https://hy1116.github.io/slither-link/og-image.png';
+let kakaoLoading = null;
+
+function loadKakao() {
+  if (!kakaoLoading) {
+    kakaoLoading = new Promise((resolve, reject) => {
+      if (window.Kakao) { resolve(window.Kakao); return; }
+      const el = document.createElement('script');
+      el.src = KAKAO_SDK; el.integrity = KAKAO_SRI; el.crossOrigin = 'anonymous';
+      el.onload = () => (window.Kakao ? resolve(window.Kakao) : reject(new Error('no Kakao')));
+      el.onerror = () => reject(new Error('Kakao SDK load failed'));
+      document.head.appendChild(el);
+    }).then((K) => { if (!K.isInitialized()) K.init(KAKAO_KEY); return K; })
+      .catch((e) => { kakaoLoading = null; throw e; });
+  }
+  return kakaoLoading;
+}
+
+/* ───────── 공유 창 ───────── */
+let SH = null;   // 지금 열린 공유 정보 { brag, url, text, title, canvas, blob, kakaoImage }
+
+function openShare(brag) {
+  if (!G.grid || G.generating) return;
+  brag = !!brag && G.won;
+  const t = fmt(elapsed()), sz = `${G.size}×${G.size} ${G.diff}`;
+  SH = {
+    brag, url: shareUrl(brag),
+    title: brag ? `슬리더 링크 ${sz} — ${t} 완성!` : `슬리더 링크 ${sz} 퍼즐`,
+    text: brag ? `슬리더 링크 ${sz} 퍼즐을 ${t}에 풀었어요! 나보다 빨리 풀 수 있어요? 🧩`
+      : `슬리더 링크 ${sz} 퍼즐 같이 풀어요 🧩`,
+    canvas: renderShareImage(brag), blob: null, kakaoImage: null,
+  };
+  $('share-title').textContent = brag ? '자랑하기' : '퍼즐 공유하기';
+  $('share-msg').textContent = brag ? `${t} 기록이 담긴 도전 링크를 보내요. 친구가 열면 내 기록과 비교돼요.`
+    : '친구가 링크를 열면 똑같은 퍼즐이 나와요.';
+  $('share-preview').src = SH.canvas.toDataURL('image/png');
+  $('share-more').hidden = !navigator.share;
+  openModal('share');
+
+  // 카카오톡을 누르는 순간 바로 열리도록 미리 준비 (SDK + 이미지 업로드)
+  const cur = SH;
+  new Promise((res) => cur.canvas.toBlob(res, 'image/png')).then((blob) => {
+    cur.blob = blob;
+    return loadKakao().then((K) => K.Share.uploadImage({ file: [new File([blob], 'slither-link.png', { type: 'image/png' })] }));
+  }).then((r) => { cur.kakaoImage = r.infos.original; }).catch(() => { /* 실패하면 기본 이미지 사용 */ });
+}
+
+function kakaoPayload(sh) {
+  const img = sh.kakaoImage || { url: OG_IMAGE, width: 1200, height: 630 };
+  const link = { mobileWebUrl: sh.url, webUrl: sh.url };
+  return {
+    objectType: 'feed',
+    content: {
+      title: sh.title,
+      description: sh.brag ? '나보다 빨리 풀 수 있어요? 같은 퍼즐로 도전해 보세요!' : '점을 이어 하나의 고리를 만드는 논리 퍼즐. 같이 풀어봐요!',
+      imageUrl: img.url, imageWidth: img.width, imageHeight: img.height, link,
+    },
+    buttons: [{ title: sh.brag ? '도전하기' : '퍼즐 풀기', link }],
+  };
+}
+
+async function shareKakao() {
+  const sh = SH;
+  try {
+    const K = await loadKakao();
+    K.Share.sendDefault(kakaoPayload(sh));
+    closeModal('share');
+  } catch (e) {
+    toast('카카오톡 공유를 열지 못했어요');
+  }
+}
+
+async function shareCopy() {
+  const ok = await copyText(`${SH.text}\n${SH.url}`);
+  toast(ok ? '링크를 복사했어요' : '복사하지 못했어요');
+  if (ok) closeModal('share');
+}
+
+async function shareMore() {
+  const sh = SH, data = { title: 'Slither Link', text: sh.text, url: sh.url };
+  if (sh.brag && sh.blob) {                     // 자랑하기: 이미지도 함께 (지원하는 기기만)
+    const file = new File([sh.blob], 'slither-link.png', { type: 'image/png' });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) data.files = [file];
+  }
+  try { await navigator.share(data); closeModal('share'); } catch (e) {
+    if (e && e.name !== 'AbortError') toast('공유하지 못했어요');
+  }
+}
+
+function shareSave() {
+  const a = document.createElement('a');
+  a.href = SH.canvas.toDataURL('image/png');
+  a.download = SH.brag ? `slither-link-${G.size}x${G.size}-${fmt(elapsed()).replace(/:/g, '')}.png` : 'slither-link-puzzle.png';
+  document.body.appendChild(a); a.click(); a.remove();
+  toast('이미지를 저장했어요');
 }
 
 /* 공유 링크로 들어왔을 때: #p=<퍼즐 코드>&t=<친구 기록(초)> */
@@ -544,7 +699,7 @@ async function handleShareHash() {
 }
 
 /* ───────── 모달 ───────── */
-const MODALS = ['confirm', 'stats', 'help'];
+const MODALS = ['confirm', 'share', 'stats', 'help'];
 const isOpen = (id) => !$(id).hidden;
 const modalOpen = () => MODALS.some(isOpen);
 let confirmAction = null;
@@ -670,8 +825,12 @@ $('seg-stab').querySelectorAll('button').forEach((b) =>
 
 $('btn-new').addEventListener('click', () => requestNewGame());
 $('btn-next').addEventListener('click', () => requestNewGame());
-$('btn-share').addEventListener('click', () => sharePuzzle(false));
-$('btn-share-win').addEventListener('click', () => sharePuzzle(true));
+$('btn-share').addEventListener('click', () => openShare(false));
+$('btn-share-win').addEventListener('click', () => openShare(true));
+$('share-kakao').addEventListener('click', shareKakao);
+$('share-copy').addEventListener('click', shareCopy);
+$('share-more').addEventListener('click', shareMore);
+$('share-save').addEventListener('click', shareSave);
 /* 완성 카드 바깥을 눌러 닫기. 마지막 선을 그은 손가락이 떼어질 때 뒤늦게 오는 click 이
    막 나타난 카드 배경에 떨어져 바로 닫히지 않도록, 누르기 시작한 곳도 배경이어야 한다. */
 let winPressed = false;

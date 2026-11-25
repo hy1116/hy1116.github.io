@@ -10,6 +10,16 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Slither Link">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <!-- 링크 미리보기 (카카오톡 · 메시지 등) -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Slither Link">
+  <meta property="og:title" content="Slither Link · 슬리더 링크">
+  <meta property="og:description" content="점을 이어 하나의 고리를 만드는 논리 퍼즐. 같이 풀어봐요!">
+  <meta property="og:image" content="https://hy1116.github.io/slither-link/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://hy1116.github.io/slither-link/">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="icon" type="image/png" href="icon-192.png">
   <link rel="manifest" href="manifest.json">
@@ -70,7 +80,7 @@
           <p class="challenge" id="win-challenge" hidden></p>
           <div class="win-actions">
             <button class="btn ghost" id="btn-share-win">
-              <svg viewBox="0 0 24 24"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5"/><path d="M5 13v5.5A2.5 2.5 0 0 0 7.5 21h9a2.5 2.5 0 0 0 2.5-2.5V13"/></svg>기록 공유
+              <svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4.5a2.5 2.5 0 0 0 0 5H7M17 6h2.5a2.5 2.5 0 0 1 0 5H17"/></svg>자랑하기
             </button>
             <button class="btn primary" id="btn-next">다음 퍼즐 →</button>
           </div>
@@ -152,6 +162,33 @@
       <div class="m-foot">
         <button class="btn ghost sm" id="btn-clear-stats">기록 초기화</button>
         <span class="hint">이 기기의 브라우저에 저장돼요</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 공유 / 자랑하기 -->
+  <div class="modal" id="share" hidden>
+    <div class="modal-card share-card" role="dialog" aria-modal="true" aria-labelledby="share-title">
+      <div class="m-head"><h3 id="share-title">공유하기</h3><button class="icon-btn sm" data-close aria-label="닫기"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17"/></svg></button></div>
+      <img class="share-preview" id="share-preview" alt="공유 이미지 미리보기">
+      <p class="share-msg" id="share-msg"></p>
+      <div class="share-opts">
+        <button class="share-opt" id="share-kakao">
+          <span class="so-icon kakao"><svg viewBox="0 0 24 24" class="fill"><path d="M12 3.5C6.75 3.5 2.5 6.86 2.5 11c0 2.66 1.77 5 4.43 6.33l-.9 3.3c-.08.3.26.54.52.37l3.93-2.6c.5.07 1 .1 1.52.1 5.25 0 9.5-3.36 9.5-7.5S17.25 3.5 12 3.5z"/></svg></span>
+          <span>카카오톡</span>
+        </button>
+        <button class="share-opt" id="share-copy">
+          <span class="so-icon"><svg viewBox="0 0 24 24"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></svg></span>
+          <span>링크 복사</span>
+        </button>
+        <button class="share-opt" id="share-more">
+          <span class="so-icon"><svg viewBox="0 0 24 24" class="fill"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></span>
+          <span>다른 앱</span>
+        </button>
+        <button class="share-opt" id="share-save">
+          <span class="so-icon"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5"/><path d="M5 19h14"/></svg></span>
+          <span>이미지 저장</span>
+        </button>
       </div>
     </div>
   </div>

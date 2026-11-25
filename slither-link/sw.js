@@ -1,5 +1,5 @@
 /* 오프라인 지원: 온라인이면 항상 최신 파일(네트워크 우선), 오프라인이면 저장된 파일 */
-const CACHE = 'slither-link-v2';
+const CACHE = 'slither-link-v3';
 const FILES = ['./', 'index.html', 'style.css', 'core.js', 'app.js', 'worker.js', 'manifest.json',
   'icon-192.png', 'icon-512.png', 'apple-touch-icon.png'];
 
