@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
   <title>Slither Link · 슬리더 링크</title>
   <meta name="description" content="점을 이어 하나의 고리를 만드는 논리 퍼즐, 슬리더 링크">
   <meta name="theme-color" content="#EEF1F8">
@@ -30,6 +30,9 @@
         <span class="sub">슬리더 링크</span>
       </div>
       <div class="icons">
+        <button class="icon-btn" id="btn-share" aria-label="이 퍼즐 공유" title="이 퍼즐 공유">
+          <svg viewBox="0 0 24 24"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5"/><path d="M5 13v5.5A2.5 2.5 0 0 0 7.5 21h9a2.5 2.5 0 0 0 2.5-2.5V13"/></svg>
+        </button>
         <button class="icon-btn" id="btn-stats" aria-label="통계" title="통계 (S)">
           <svg viewBox="0 0 24 24" class="fill"><rect x="4" y="11" width="4" height="9" rx="2"/><rect x="10" y="4" width="4" height="16" rx="2"/><rect x="16" y="8" width="4" height="12" rx="2"/></svg>
         </button>
@@ -64,7 +67,13 @@
           <h2>완성!</h2>
           <p class="meta" id="win-meta"></p>
           <p class="best" id="win-best"></p>
-          <button class="btn primary" id="btn-next">다음 퍼즐 →</button>
+          <p class="challenge" id="win-challenge" hidden></p>
+          <div class="win-actions">
+            <button class="btn ghost" id="btn-share-win">
+              <svg viewBox="0 0 24 24"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5"/><path d="M5 13v5.5A2.5 2.5 0 0 0 7.5 21h9a2.5 2.5 0 0 0 2.5-2.5V13"/></svg>기록 공유
+            </button>
+            <button class="btn primary" id="btn-next">다음 퍼즐 →</button>
+          </div>
         </div>
       </div>
     </main>
@@ -124,6 +133,7 @@
         <div class="touch-only"><kbd>선 / X 버튼</kbd><span>탭으로 그릴 것을 전환</span></div>
         <div class="fine-only"><kbd>Ctrl+Z / Ctrl+Y</kbd><span>되돌리기 / 다시</span></div>
         <div class="fine-only"><kbd>N · D · S</kbd><span>새 게임 · 다크 모드 · 통계</span></div>
+        <div><kbd>공유 버튼</kbd><span>친구에게 같은 퍼즐 보내기</span></div>
       </div>
       <p class="note">정답 보기는 시작 10분 후에 열려요.</p>
     </div>
@@ -145,6 +155,8 @@
       </div>
     </div>
   </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="core.js"></script>
   <script src="app.js"></script>

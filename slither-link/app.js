@@ -18,8 +18,9 @@ const store = {
   del(k) { try { localStorage.removeItem(k); } catch (e) { /* 무시 */ } },
 };
 const fmt = (sec) => {
-  const s = Math.max(0, Math.floor(sec));
-  return `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+  const s = Math.max(0, Math.floor(sec)), p = (x) => String(x).padStart(2, '0');
+  if (s >= 3600) return `${Math.floor(s / 3600)}:${p(Math.floor(s / 60) % 60)}:${p(s % 60)}`;
+  return `${p(Math.floor(s / 60))}:${p(s % 60)}`;
 };
 const esc = (v) => String(v).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
 
@@ -72,6 +73,7 @@ const G = {
   acc: 0, since: null,                // 시계: 누적 ms + 진행 중 구간 시작 시각
   undoCount: 0, newBest: false, prevBest: null,
   mode: LINE, hover: -1, genId: 0, statsTab: 0,
+  challenge: null,                  // 공유받은 기록 { time } — 이기면 비교
 };
 const stats = new Stats();
 
@@ -91,7 +93,7 @@ function saveGame() {
   if (!running()) { store.del(K_GAME); return; }
   store.set(K_GAME, {
     size: G.size, diff: G.diff, clues: G.clues, solution: G.solution, state: G.state,
-    elapsed: elapsed(), undoCount: G.undoCount,
+    elapsed: elapsed(), undoCount: G.undoCount, challenge: G.challenge,
   });
 }
 function restoreGame() {
@@ -103,14 +105,40 @@ function restoreGame() {
   G.size = s.size; G.diff = s.diff;
   loadPuzzle({ R: s.size, C: s.size, clues: s.clues, solution: s.solution }, s.state,
     (s.elapsed || 0) * 1000, s.undoCount || 0);
+  G.challenge = s.challenge && Number.isFinite(s.challenge.time) ? { time: s.challenge.time } : null;
+  render();
   return true;
 }
 
 /* ───────── 퍼즐 생성 (Web Worker) ───────── */
-let worker = null;
+let worker = null, jobSeq = 0;
+const jobs = new Map();
+function syncJob(msg) {               // 워커를 못 쓸 때 (예: 파일로 직접 열었을 때)
+  if (msg.type === 'solve') {
+    const s = new Solver(new Grid(msg.n, msg.n), msg.clues, 300000);
+    const sols = s.solve(2);
+    return { count: s.aborted ? -1 : sols.length, solution: sols[0] || null };
+  }
+  return { puzzle: generatePuzzle(msg.n, msg.n, msg.diff) };
+}
+function runJob(msg) {
+  return new Promise((resolve) => {
+    if (!worker) { setTimeout(() => resolve(syncJob(msg)), 30); return; }
+    const id = ++jobSeq;
+    jobs.set(id, { msg, resolve });
+    worker.postMessage({ ...msg, id });
+  });
+}
 try {
   worker = new Worker('worker.js');
-  worker.onerror = () => { worker = null; if (G.generating) { G.generating = false; newGame(); } };
+  worker.onmessage = (ev) => {
+    const job = jobs.get(ev.data.id);
+    if (job) { jobs.delete(ev.data.id); job.resolve(ev.data); }
+  };
+  worker.onerror = () => {             // 워커가 죽으면 남은 일을 직접 처리
+    worker = null;
+    for (const [id, job] of jobs) { jobs.delete(id); job.resolve(syncJob(job.msg)); }
+  };
 } catch (e) { worker = null; }
 
 function newGame() {
@@ -118,18 +146,12 @@ function newGame() {
   G.generating = true;
   G.grid = null; G.state = []; G.undo = []; G.redo = [];
   G.solved = G.won = G.revealed = G.overlayHidden = false;
-  G.acc = 0; G.since = null; G.hover = -1; G.undoCount = 0;
+  G.acc = 0; G.since = null; G.hover = -1; G.undoCount = 0; G.challenge = null;
   store.del(K_GAME);
   $('board').textContent = '';
   render();
-  const id = ++G.genId, n = G.size, diff = G.diff;
-  const done = (p) => { if (id === G.genId) loadPuzzle(p); };
-  if (worker) {
-    worker.onmessage = (ev) => { if (ev.data.id === id) done(ev.data.puzzle); };
-    worker.postMessage({ id, n, diff });
-  } else {
-    setTimeout(() => done(generatePuzzle(n, n, diff)), 30);
-  }
+  const id = ++G.genId;
+  runJob({ type: 'gen', n: G.size, diff: G.diff }).then((r) => { if (id === G.genId) loadPuzzle(r.puzzle); });
 }
 
 function loadPuzzle(p, state = null, accMs = 0, undoCount = 0) {
@@ -225,9 +247,11 @@ function render() {
 
   const st = $('status');
   st.classList.toggle('win-text', G.won);
+  st.classList.toggle('challenge', !!G.challenge && playing);
   if (G.generating) st.textContent = '퍼즐을 만드는 중…';
   else if (G.won) st.textContent = `완성!  기록 ${fmt(elapsed())}`;
   else if (G.revealed) st.textContent = '정답을 공개했어요 · 새 게임으로 다시 도전해 보세요';
+  else if (G.challenge) st.textContent = `⚑ 친구 기록 ${fmt(G.challenge.time)}에 도전 중!`;
   else st.textContent = isTouch() ? '탭: 선   ·   길게 누르기: X 표시'
     : '왼쪽 클릭·드래그: 선    오른쪽 클릭: X 표시';
 
@@ -239,7 +263,17 @@ function render() {
     const b = $('win-best');
     b.classList.toggle('new', G.newBest);
     b.textContent = G.newBest ? '★  최고 기록 달성!' : `최고 기록 ${fmt(G.prevBest)}`;
+    const ch = $('win-challenge');
+    ch.hidden = !G.challenge;
+    if (G.challenge) {
+      const mine = Math.floor(elapsed()), theirs = G.challenge.time;
+      ch.classList.toggle('lose', mine > theirs);
+      ch.textContent = mine < theirs ? `⚑ 친구 기록 ${fmt(theirs)}보다 ${fmt(theirs - mine)} 빨랐어요!`
+        : mine === theirs ? `⚑ 친구 기록 ${fmt(theirs)}와 동점!`
+          : `친구 기록 ${fmt(theirs)}보다 ${fmt(mine - theirs)} 늦었어요`;
+    }
   }
+  $('btn-share').disabled = !G.grid || G.generating;
   $('timer').textContent = fmt(elapsed());
   renderBoard();
 }
@@ -428,6 +462,87 @@ svg.addEventListener('pointercancel', finishPointer);
 svg.addEventListener('pointerleave', (ev) => { if (ev.pointerType === 'mouse' && !drag) setHover(-1); });
 svg.addEventListener('contextmenu', (ev) => ev.preventDefault());
 
+/* ───────── 공유 ───────── */
+let toastTimer = null;
+function toast(msg) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+async function copyText(text) {
+  try { await navigator.clipboard.writeText(text); return true; } catch (e) { /* 아래 방법으로 */ }
+  const ta = document.createElement('textarea');
+  ta.value = text; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;opacity:0';
+  document.body.appendChild(ta); ta.select();
+  let ok = false;
+  try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+  ta.remove();
+  return ok;
+}
+
+function shareUrl(withTime) {
+  let h = `#p=${encodePuzzle(G.size, G.diff, G.clues)}`;
+  if (withTime) h += `&t=${Math.floor(elapsed())}`;
+  return location.origin + location.pathname + h;
+}
+
+async function sharePuzzle(withTime) {
+  if (!G.grid || G.generating) return;
+  withTime = withTime && G.won;
+  const url = shareUrl(withTime);
+  const text = withTime
+    ? `슬리더 링크 ${G.size}×${G.size} ${G.diff} 퍼즐을 ${fmt(elapsed())}에 풀었어요! 도전해 보세요 🧩`
+    : `슬리더 링크 ${G.size}×${G.size} ${G.diff} 퍼즐 같이 풀어요 🧩`;
+  if (navigator.share && isTouch()) {          // 휴대폰: 공유 시트 (카톡, 메시지 등)
+    try { await navigator.share({ title: 'Slither Link', text, url }); return; } catch (e) {
+      if (e && e.name === 'AbortError') return;  // 사용자가 닫음
+    }
+  }
+  toast(await copyText(`${text}\n${url}`) ? '링크를 복사했어요' : '복사하지 못했어요');
+}
+
+/* 공유 링크로 들어왔을 때: #p=<퍼즐 코드>&t=<친구 기록(초)> */
+function readShareHash() {
+  if (!location.hash.startsWith('#p=')) return null;
+  const q = new URLSearchParams(location.hash.slice(1));
+  history.replaceState(null, '', location.pathname + location.search);   // 새로고침 때 다시 열리지 않게
+  const p = decodePuzzle(q.get('p'));
+  if (!p || !SIZES.includes(p.n) || !DIFFS.includes(p.diff)) return { bad: true };
+  const t = Number(q.get('t'));
+  p.time = Number.isInteger(t) && t >= 0 && t < 360000 ? t : null;
+  return p;
+}
+
+async function openShared(p) {
+  const res = await runJob({ type: 'solve', n: p.n, clues: p.clues });
+  if (res.count !== 1) return false;           // 답이 없거나 여러 개 → 잘못된 링크
+  const go = () => {
+    G.genId++;                                  // 만들던 퍼즐이 있으면 버림
+    G.size = p.n; G.diff = p.diff; savePrefs();
+    loadPuzzle({ R: p.n, C: p.n, clues: p.clues, solution: res.solution });
+    G.challenge = p.time !== null ? { time: p.time } : null;
+    saveGame(); render();
+    toast(G.challenge ? `친구 기록 ${fmt(p.time)}에 도전!` : '공유받은 퍼즐을 열었어요');
+  };
+  if (hasProgress()) {
+    openConfirm({
+      title: '공유받은 퍼즐을 열까요?', msg: '지금 풀던 퍼즐은 \'포기\'로 기록돼요.', ok: '열기', icon: '↗',
+      action: () => { stats.add(G.size, G.diff, elapsed(), Stats.QUIT, G.undoCount); go(); },
+    });
+  } else go();
+  return true;
+}
+
+async function handleShareHash() {
+  const p = readShareHash();
+  if (!p) return false;
+  if (p.bad || !(await openShared(p))) { toast('잘못된 공유 링크예요'); return false; }
+  return true;
+}
+
 /* ───────── 모달 ───────── */
 const MODALS = ['confirm', 'stats', 'help'];
 const isOpen = (id) => !$(id).hidden;
@@ -555,6 +670,8 @@ $('seg-stab').querySelectorAll('button').forEach((b) =>
 
 $('btn-new').addEventListener('click', () => requestNewGame());
 $('btn-next').addEventListener('click', () => requestNewGame());
+$('btn-share').addEventListener('click', () => sharePuzzle(false));
+$('btn-share-win').addEventListener('click', () => sharePuzzle(true));
 /* 완성 카드 바깥을 눌러 닫기. 마지막 선을 그은 손가락이 떼어질 때 뒤늦게 오는 click 이
    막 나타난 카드 배경에 떨어져 바로 닫히지 않도록, 누르기 시작한 곳도 배경이어야 한다. */
 let winPressed = false;
@@ -595,6 +712,16 @@ document.addEventListener('keydown', (ev) => {
   else if (ev.code === 'KeyS') openStats();
 });
 
+/* iOS: 빠르게 두 번 탭하면 확대되는 것 / 두 손가락 확대 막기 (버튼 연타는 그대로 동작) */
+let lastTouchEnd = 0;
+document.addEventListener('touchend', (ev) => {
+  const now = Date.now();
+  if (now - lastTouchEnd < 350 && !ev.target.closest('button, a, input, textarea')) ev.preventDefault();
+  lastTouchEnd = now;
+}, { passive: false });
+document.addEventListener('gesturestart', (ev) => ev.preventDefault());
+document.addEventListener('dblclick', (ev) => ev.preventDefault());
+
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) { pauseClock(); saveGame(); } else { resumeClock(); }
 });
@@ -612,4 +739,16 @@ if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.
 
 /* 시작 */
 syncThemeColor();
-if (!restoreGame()) newGame();
+(async () => {
+  const restored = restoreGame();
+  if (location.hash.startsWith('#p=')) {
+    if (!restored) { G.generating = true; render(); }       // 확인하는 동안 로딩 표시
+    const ok = await handleShareHash();
+    if (!restored) G.generating = false;
+    if (ok || restored) return;
+  }
+  if (!restored) newGame();
+})();
+window.addEventListener('hashchange', () => {
+  if (location.hash.startsWith('#p=') && !G.generating) handleShareHash();
+});

@@ -250,4 +250,39 @@ function generatePuzzle(R, C, difficulty, rand = Math.random) {
   return { R, C, difficulty, clues, solution: sol };
 }
 
-if (typeof module !== 'undefined') module.exports = { DIFFICULTY, Grid, Solver, generatePuzzle };
+/* ───────── 공유 링크용 퍼즐 코드 ─────────
+ * 예) "7n.2b31a0..."  = 크기 7, 난이도(e/n/h), 칸 숫자 0~3, 빈칸 묶음은 a(1칸)~z(26칸)
+ * 정답은 넣지 않는다 (받는 쪽에서 풀어서 유일해인지 다시 확인). */
+const DIFF_CODE = { '쉬움': 'e', '보통': 'n', '어려움': 'h' };
+
+function encodePuzzle(n, diff, clues) {
+  let s = '', run = 0;
+  const flush = () => {
+    while (run > 0) { const k = Math.min(run, 26); s += String.fromCharCode(96 + k); run -= k; }
+  };
+  for (const c of clues) {
+    if (c === null) run++;
+    else { flush(); s += c; }
+  }
+  flush();
+  return `${n}${DIFF_CODE[diff]}.${s}`;
+}
+
+function decodePuzzle(code) {
+  const m = /^(\d{1,2})([enh])\.([0-3a-z]{1,400})$/.exec(String(code || ''));
+  if (!m) return null;
+  const n = Number(m[1]);
+  const diff = Object.keys(DIFF_CODE).find((k) => DIFF_CODE[k] === m[2]);
+  const clues = [];
+  for (const ch of m[3]) {
+    if (ch >= 'a') for (let i = 0; i < ch.charCodeAt(0) - 96; i++) clues.push(null);
+    else clues.push(Number(ch));
+    if (clues.length > n * n) return null;
+  }
+  if (clues.length !== n * n) return null;
+  return { n, diff, clues };
+}
+
+if (typeof module !== 'undefined') {
+  module.exports = { DIFFICULTY, Grid, Solver, generatePuzzle, encodePuzzle, decodePuzzle };
+}
