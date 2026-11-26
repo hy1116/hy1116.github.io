@@ -10,7 +10,7 @@ const $ = (id) => document.getElementById(id);
 const isTouch = () => matchMedia('(pointer: coarse)').matches;
 
 /* ───────── 저장소 ───────── */
-const K_PREFS = 'mines.prefs.v1', K_STATS = 'mines.stats.v1', K_GAME = 'mines.game.v1';
+const K_PREFS = 'mines.prefs.v1', K_STATS = 'mines.stats.v2', K_GAME = 'mines.game.v1';
 const store = {
   get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* 무시 */ } },
@@ -22,11 +22,75 @@ const fmt = (sec) => {
   return `${p(Math.floor(s / 60))}:${p(s % 60)}`;
 };
 
+const esc = (v) => String(v).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
+
+/* ───────── 날짜 (오늘의 게임은 한국 시간 기준) ───────── */
+const kstToday = () => new Date(Date.now() + 9 * 3600e3).toISOString().slice(0, 10);
+const addDays = (date, k) => new Date(Date.parse(date + 'T00:00:00Z') + k * 864e5).toISOString().slice(0, 10);
+const weekday = (date) => new Date(date + 'T00:00:00Z').getUTCDay();          // 0=일 … 6=토
+const dayLabel = (date) => `${Number(date.slice(5, 7))}월 ${Number(date.slice(8, 10))}일`;
+const DAILY_SEED = 'mines-daily-v1:';        // 바꾸면 모든 날짜의 판이 바뀜
+const dailyLevel = (date) => ([0, 6].includes(weekday(date)) ? '고급' : '중급');   // 주말은 고급
+
+/* ───────── 기록 ───────── */
+const WIN = '성공', LOSE = '실패', QUIT = '포기';
+class Stats {
+  constructor() {
+    const d = store.get(K_STATS, {});
+    this.games = Array.isArray(d.games) ? d.games.filter((g) => g && typeof g === 'object') : [];
+  }
+  save() { store.set(K_STATS, { version: 2, games: this.games }); }
+  add(level, secs, result, extra = {}) {
+    const t = new Date(), p = (x) => String(x).padStart(2, '0');
+    const g = { date: `${t.getFullYear()}-${p(t.getMonth() + 1)}-${p(t.getDate())} ${p(t.getHours())}:${p(t.getMinutes())}`,
+      level, time: Math.floor(secs), result };
+    for (const k in extra) if (extra[k]) g[k] = extra[k];       // daily, rescued (있을 때만)
+    this.games.push(g);
+    this.save();
+  }
+  popLast(result) {                         // 실수 되돌리기: 방금 남긴 '실패' 기록을 지운다
+    const last = this.games[this.games.length - 1];
+    if (last && last.result === result) { this.games.pop(); this.save(); }
+  }
+  clear() { this.games = []; this.save(); }
+  summary(level = null) {
+    const gs = this.games.filter((g) => level === null || g.level === level);
+    const won = gs.filter((g) => g.result === WIN);
+    const clean = won.filter((g) => !g.rescued).map((g) => g.time || 0);   // 되돌린 판은 기록 제외
+    return {
+      played: gs.length, won: won.length,
+      rate: gs.length ? won.length / gs.length : null,
+      best: clean.length ? Math.min(...clean) : null,
+      avg: clean.length ? clean.reduce((a, b) => a + b, 0) / clean.length : null,
+    };
+  }
+  best(level) { return this.summary(level).best; }
+  streaks() {
+    let cur = 0, best = 0;
+    for (const g of this.games) { if (g.result === WIN) { cur++; best = Math.max(best, cur); } else cur = 0; }
+    return [cur, best];
+  }
+  recent(k = 10) { return this.games.slice(-k).reverse(); }
+  dailyWin(date) { return this.games.find((g) => g.daily === date && g.result === WIN) || null; }
+  dailyStreaks(today) {                     // [지금 연속, 최고 연속, 총 완료 일수]
+    const days = new Set(this.games.filter((g) => g.daily && g.result === WIN).map((g) => g.daily));
+    let cur = 0, d = days.has(today) ? today : addDays(today, -1);
+    while (days.has(d)) { cur++; d = addDays(d, -1); }
+    let best = 0, run = 0, prev = null;
+    for (const x of [...days].sort()) { run = prev && addDays(prev, 1) === x ? run + 1 : 1; best = Math.max(best, run); prev = x; }
+    return [cur, best, days.size];
+  }
+}
+const stats = new Stats();
+function record(result) {
+  if (G.practice) return;                   // 이미 완료한 오늘의 게임을 다시 풀 때는 기록 안 남김
+  stats.add(G.level, elapsed(), result, { daily: G.daily, rescued: G.rescued });
+}
+
 const prefs = store.get(K_PREFS, {});
-const stats = store.get(K_STATS, {});      // { 초급: { played, won, best } … }
-const statOf = (lv) => (stats[lv] ||= { played: 0, won: 0, best: null });
-function savePrefs() {
-  store.set(K_PREFS, { level: G.level, theme: document.documentElement.dataset.theme || null });
+function savePrefs() {                     // 오늘의 게임 난이도는 평소 설정으로 저장하지 않는다
+  if (!G.daily) prefs.level = G.level;
+  store.set(K_PREFS, { level: prefs.level, theme: document.documentElement.dataset.theme || null });
 }
 
 /* ───────── 게임 상태 ───────── */
@@ -39,6 +103,8 @@ const G = {
   prev: null,                           // 실수 되돌리기용 (마지막 동작 직전 상태)
   rescued: false, newBest: false, prevBest: null,
   acc: 0, since: null, mode: M_OPEN, hover: -1, overlayHidden: false,
+  acted: false,                         // 한 번이라도 눌렀는지 (오늘의 게임은 미리 열린 채로 시작해서)
+  daily: null, practice: false,         // 오늘의 게임이면 날짜 / 이미 완료한 날 다시 풀기
 };
 const n = () => G.R * G.C;
 const started = () => !!G.mines;
@@ -47,14 +113,19 @@ const playing = () => started() && !G.over;
 /* ───────── 시계 ───────── */
 const elapsed = () => (G.acc + (G.since !== null ? Date.now() - G.since : 0)) / 1000;
 function pauseClock() { if (G.since !== null) { G.acc += Date.now() - G.since; G.since = null; } }
-function resumeClock() { if (G.since === null && playing() && !document.hidden) G.since = Date.now(); }
-setInterval(() => { $('timer').textContent = fmt(elapsed()); }, 250);
+function resumeClock() { if (G.since === null && playing() && G.acted && !document.hidden) G.since = Date.now(); }
+let shownDay = kstToday();
+setInterval(() => {
+  $('timer').textContent = fmt(elapsed());
+  if (kstToday() !== shownDay) { shownDay = kstToday(); renderDailyButton(); }   // 자정이 지나면
+}, 250);
 
 /* ───────── 저장 / 복원 (새로고침해도 이어서) ───────── */
 function saveGame() {
   if (!playing()) { store.del(K_GAME); return; }
   store.set(K_GAME, { level: G.level, R: G.R, C: G.C, M: G.M, mines: Array.from(G.mines),
-    state: Array.from(G.state), elapsed: elapsed(), rescued: G.rescued });
+    state: Array.from(G.state), elapsed: elapsed(), rescued: G.rescued,
+    acted: G.acted, daily: G.daily, practice: G.practice });
 }
 function restoreGame() {
   const s = store.get(K_GAME, null);
@@ -69,25 +140,37 @@ function restoreGame() {
   G.flags = G.state.filter((v) => v === FLAG).length;
   G.over = G.won = false; G.boom = -1; G.prev = null; G.rescued = !!s.rescued;
   G.acc = (s.elapsed || 0) * 1000; G.since = null;
+  G.acted = s.acted !== false;
+  G.daily = typeof s.daily === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s.daily) ? s.daily : null;
+  G.practice = !!s.practice;
   buildBoard();
   resumeClock();
   return true;
 }
 
 /* ───────── 새 게임 ───────── */
-function newGame() {
+/* opts: { daily, practice } — 오늘의 게임은 날짜 시드로 판과 시작 칸을 정하고, 시작 칸을 미리 열어 둔다 */
+function newGame(opts = {}) {
   const L = LEVELS[G.level];
-  // 고급은 화면이 가로로 넓으면 30열 × 16행으로 돌려서
-  const landscape = innerWidth > innerHeight && L.R !== L.C;
+  // 고급은 화면이 가로로 넓으면 30열 × 16행으로 돌려서 (오늘의 게임은 모두 같은 판이어야 하니 그대로)
+  const landscape = !opts.daily && innerWidth > innerHeight && L.R !== L.C;
   G.R = landscape ? L.C : L.R; G.C = landscape ? L.R : L.C; G.M = L.M;
   G.mines = G.num = null;
   G.state = new Uint8Array(n());
   G.opened = G.flags = 0;
   G.over = G.won = false; G.boom = -1; G.prev = null;
   G.rescued = G.newBest = false; G.prevBest = null; G.overlayHidden = false;
-  G.acc = 0; G.since = null; G.hover = -1;
+  G.acc = 0; G.since = null; G.hover = -1; G.acted = false;
+  G.daily = opts.daily || null; G.practice = !!opts.practice;
   store.del(K_GAME);
   buildBoard();
+  if (G.daily) {
+    const b = dailyBoard(G.R, G.C, G.M, DAILY_SEED + G.daily);
+    G.mines = Uint8Array.from(b.mines);
+    G.num = countNumbers(G.R, G.C, G.mines);
+    flood(b.start);
+    saveGame();
+  }
   render();
 }
 
@@ -95,9 +178,9 @@ function startAt(i) {                     // 첫 칸: 이 칸 주변은 비워 �
   const b = generateBoard(G.R, G.C, G.M, i);
   G.mines = Uint8Array.from(b.mines);
   G.num = countNumbers(G.R, G.C, G.mines);
-  statOf(G.level).played++;
-  store.set(K_STATS, stats);
-  resumeClock();
+}
+function act() {                           // 첫 동작에서 시계 시작
+  if (!G.acted) { G.acted = true; resumeClock(); }
 }
 
 /* ───────── 동작 ───────── */
@@ -121,6 +204,7 @@ function openCells(list) {                 // 지뢰를 밟으면 true
 function openCell(i) {
   if (G.state[i] !== COVER) return;
   if (!started()) startAt(i);
+  act();
   G.prev = snapshot();
   if (!openCells([i])) checkWin();
   afterChange();
@@ -132,12 +216,14 @@ function chord(i) {
   if (!G.num[i] || !covered.length) return;
   const f = nb.filter((j) => G.state[j] === FLAG).length;
   if (f !== G.num[i]) { flash(covered); return; }
+  act();
   G.prev = snapshot();
   if (!openCells(covered)) checkWin();
   afterChange();
 }
 function toggleFlag(i) {
   if (!started() || G.state[i] === OPEN) return;
+  act();
   G.state[i] = G.state[i] === FLAG ? COVER : FLAG;
   G.flags += G.state[i] === FLAG ? 1 : -1;
   if (navigator.vibrate && isTouch()) navigator.vibrate(10);
@@ -175,21 +261,21 @@ function checkWin() {
   pauseClock();
   G.over = G.won = true;
   for (let i = 0; i < n(); i++) if (G.mines[i] && G.state[i] !== FLAG) { G.state[i] = FLAG; G.flags++; }
-  const st = statOf(G.level), t = Math.floor(elapsed());
-  G.prevBest = st.best;
-  st.won++;
-  G.newBest = !G.rescued && (st.best === null || t < st.best);
-  if (G.newBest) st.best = t;
-  store.set(K_STATS, stats);
+  const t = Math.floor(elapsed());
+  G.prevBest = stats.best(G.level);
+  G.newBest = !G.rescued && !G.practice && (G.prevBest === null || t < G.prevBest);
+  record(WIN);
   resetZoom();
 }
 function lose(i) {
   pauseClock();
   G.over = true; G.won = false; G.boom = i;
+  record(LOSE);
   if (navigator.vibrate) navigator.vibrate([30, 40, 60]);
 }
 function rescue() {                        // 실수 되돌리기: 밟기 직전으로 (최고 기록에서는 제외)
   if (!G.over || G.won || !G.prev) return;
+  if (!G.practice) stats.popLast(LOSE);      // 실패로 끝난 게 아니니 그 기록은 지운다
   Object.assign(G, G.prev);
   G.state = G.prev.state.slice();
   G.over = false; G.boom = -1; G.rescued = true; G.overlayHidden = false;
@@ -274,11 +360,14 @@ function render() {
   $('left').textContent = G.M - G.flags;
   $('timer').textContent = fmt(elapsed());
 
-  const st = $('status'), best = statOf(G.level).best;
+  renderDailyButton();
+  const st = $('status'), best = stats.best(G.level);
   st.classList.toggle('win-text', G.won);
   st.classList.toggle('lose-text', G.over && !G.won);
+  st.classList.toggle('daily-text', !!G.daily && !G.over);
   if (G.won) st.textContent = `성공!  기록 ${fmt(elapsed())}`;
   else if (G.over) st.textContent = '지뢰를 밟았어요';
+  else if (G.daily) st.textContent = `📅 ${dayLabel(G.daily)} 오늘의 게임 · ${G.level}${G.practice ? ' (연습 · 기록 안 남음)' : ''}`;
   else if (!started()) st.textContent = `아무 칸이나 눌러 시작하세요${best !== null ? `  ·  최고 기록 ${fmt(best)}` : ''}`;
   else if (G.rescued) st.textContent = '되돌린 판이라 기록은 최고 기록에서 빠져요';
   else st.textContent = isTouch()
@@ -292,18 +381,106 @@ function render() {
     badge.className = `badge${G.won ? '' : ' lose'}`;
     badge.textContent = G.won ? '✓' : '💥';
     $('over-title').textContent = G.won ? '성공!' : '펑!';
-    const what = `${G.level} · ${G.C}×${G.R} · 지뢰 ${G.M}개`;
+    const what = G.daily ? `${dayLabel(G.daily)} 오늘의 게임 · ${G.level}` : `${G.level} · ${G.C}×${G.R} · 지뢰 ${G.M}개`;
     $('over-meta').textContent = G.won ? `${what} · ${fmt(elapsed())}` : what;
     const b = $('over-best');
-    b.classList.toggle('new', G.won && G.newBest);
+    const dailyWin = G.won && G.daily && !G.practice;
+    b.classList.toggle('new', G.won && (G.newBest || dailyWin));
     if (!G.won) b.textContent = '찍을 필요 없는 판이었어요. 다시 한번 따져 볼까요?';
+    else if (G.practice) b.textContent = '연습이라 기록은 남지 않아요';
+    else if (dailyWin) b.textContent = `🔥 오늘의 게임 ${stats.dailyStreaks(kstToday())[0]}일 연속 완료!`;
     else if (G.newBest) b.textContent = '★  최고 기록 달성!';
     else if (G.rescued) b.textContent = '되돌린 판이라 최고 기록에서 빠져요';
-    else b.textContent = `최고 기록 ${fmt(G.prevBest)}`;
+    else b.textContent = G.prevBest === null ? '' : `최고 기록 ${fmt(G.prevBest)}`;
     $('btn-rescue').hidden = G.won || !G.prev;
     $('btn-again').textContent = G.won ? '다음 판 →' : '새 게임';
   }
   renderBoard();
+}
+
+function renderDailyButton() {
+  const today = kstToday(), done = stats.dailyWin(today), btn = $('btn-daily');
+  const now = G.daily === today && !G.practice && playing();
+  btn.classList.toggle('on', now);
+  btn.classList.toggle('done', !!done && !now);
+  $('daily-label').textContent = done ? `오늘 ✓ ${fmt(done.time)}` : '오늘의 게임';
+}
+
+/* ───────── 오늘의 게임 ───────── */
+const hasProgress = () => playing() && G.acted;
+function requestDaily() {
+  const date = kstToday();
+  if (G.daily === date && playing()) { toast('지금 오늘의 게임을 하고 있어요'); return; }
+  const done = stats.dailyWin(date), quit = hasProgress();
+  const go = (practice) => {
+    if (quit) record(QUIT);
+    G.level = dailyLevel(date);              // 일반 게임 설정(prefs)은 그대로 둠
+    newGame({ daily: date, practice });
+  };
+  const quitMsg = quit ? ' 지금 하던 판은 \'포기\'로 기록돼요.' : '';
+  if (done) openConfirm('오늘의 게임 다시 하기', `오늘은 이미 ${fmt(done.time)}에 완료했어요. 다시 하면 기록은 남지 않아요.${quitMsg}`, '다시 하기', () => go(true));
+  else if (quit) openConfirm('오늘의 게임을 시작할까요?', quitMsg.trim(), '시작', () => go(false));
+  else go(false);
+}
+
+/* ───────── 통계 창 ───────── */
+let statsTab = 0;
+function renderStats() {
+  const today = kstToday(), [dc, db, dt] = stats.dailyStreaks(today);
+  let strip = '';
+  for (let i = 6; i >= 0; i--) {
+    const d = addDays(today, -i), done = !!stats.dailyWin(d);
+    strip += `<div class="${done ? 'done' : ''} ${i === 0 ? 'today' : ''}">${i === 0 ? '오늘' : '일월화수목금토'[weekday(d)]}<i>${done ? '✓' : ''}</i></div>`;
+  }
+  $('stat-daily').innerHTML = `<div class="daily-head"><b>📅 오늘의 게임</b>
+    <span><span class="fire">🔥 ${dc}일 연속</span> · 최고 ${db}일 · 총 ${dt}회</span></div>
+    <div class="daily-strip">${strip}</div>`;
+  const s = stats.summary(), [cur, bestStreak] = stats.streaks();
+  const tiles = [[s.played, '플레이'], [s.won, '성공'],
+    [s.rate === null ? '-' : `${Math.round(s.rate * 100)}%`, '성공률'], [cur, `연속 성공 · 최고 ${bestStreak}`]];
+  $('stat-tiles').innerHTML = tiles.map(([v, l], i) =>
+    `<div class="tile"><b class="${i === 3 && cur ? 'accent' : ''}">${esc(v)}</b><span>${esc(l)}</span></div>`).join('');
+  [...$('seg-stab').children].forEach((b, i) => b.classList.toggle('on', i === statsTab));
+
+  const none = '<span class="none">-</span>';
+  let html;
+  if (statsTab === 0) {
+    html = '<table class="stable"><tr><th>난이도</th><th>플레이</th><th>성공률</th><th>최고</th><th>평균</th></tr>';
+    for (const lv of LEVEL_NAMES) {
+      const x = stats.summary(lv);
+      html += `<tr class="${lv === G.level ? 'here' : ''}"><td>${esc(lv)}</td><td>${x.played || none}</td>
+        <td>${x.rate === null ? none : Math.round(x.rate * 100) + '%'}</td>
+        <td class="${x.best !== null ? 'best' : ''}">${x.best === null ? none : fmt(x.best)}</td>
+        <td>${x.avg === null ? none : fmt(x.avg)}</td></tr>`;
+    }
+    html += '</table>';
+  } else {
+    const games = stats.recent(10);
+    if (!games.length) html = '<p class="empty">아직 기록이 없어요.<br>한 판 해 보세요!</p>';
+    else {
+      html = '<table class="stable">';
+      games.forEach((g, i) => {
+        const cls = { [WIN]: 'r-win', [LOSE]: 'r-lose', [QUIT]: 'r-quit' }[g.result] || '';
+        html += `<tr class="${i % 2 === 0 ? 'alt' : ''}"><td class="date">${esc(String(g.date || '').slice(5))}</td>
+          <td>${g.daily ? '📅 ' : ''}${esc(g.level)}</td>
+          <td>${fmt(g.time || 0)}${g.rescued ? ' <span class="none">↺</span>' : ''}</td>
+          <td class="${cls}">${esc(g.result)}</td></tr>`;
+      });
+      html += '</table>';
+    }
+  }
+  $('stat-body').innerHTML = html;
+  $('btn-clear-stats').disabled = !stats.games.length;
+}
+function openStats() { renderStats(); openModal('stats'); }
+
+let toastTimer = null;
+function toast(msg, ms = 2200) {
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), ms);
 }
 
 /* ───────── 확대 · 이동 (슬리더 링크와 같은 방식: viewBox 를 바꾼다) ───────── */
@@ -464,16 +641,17 @@ svg.addEventListener('wheel', (ev) => {
 }, { passive: false });
 
 /* ───────── 모달 ───────── */
-const MODALS = ['confirm', 'help'];
+const MODALS = ['confirm', 'stats', 'help'];   // 확인 창이 가장 위
 const isOpen = (id) => !$(id).hidden;
 const modalOpen = () => MODALS.some(isOpen);
 let confirmAction = null;
 function openModal(id) { $(id).hidden = false; setHover(-1); }
 function closeModal(id) { $(id).hidden = true; }
-function openConfirm(title, msg, ok, action) {
+function openConfirm(title, msg, ok, action, danger = false) {
   $('confirm-title').textContent = title;
   $('confirm-msg').textContent = msg;
   $('confirm-ok').textContent = ok;
+  $('confirm-ok').classList.toggle('danger', danger);
   confirmAction = action;
   openModal('confirm');
 }
@@ -485,9 +663,14 @@ function confirmOk() {
 }
 /* 진행 중이면 확인 후 새 게임 */
 function requestNewGame(before = null, title = '새 게임을 시작할까요?') {
-  const go = () => { if (before) before(); savePrefs(); newGame(); };
-  if (!playing() || G.opened === 0) { go(); return; }
-  openConfirm(title, '지금 풀던 판은 사라져요.', '새 게임', go);
+  const go = () => {
+    if (before) before();
+    else if (G.daily) G.level = LEVEL_NAMES.includes(prefs.level) ? prefs.level : '초급';   // 오늘의 게임 뒤엔 원래 난이도로
+    G.daily = null;
+    savePrefs(); newGame();
+  };
+  if (!hasProgress()) { go(); return; }
+  openConfirm(title, '지금 하던 판은 \'포기\'로 기록돼요.', '새 게임', () => { record(QUIT); go(); });
 }
 
 /* ───────── 테마 ───────── */
@@ -509,7 +692,7 @@ LEVEL_NAMES.forEach((name) => {
   b.innerHTML = `${name} <small>· ${L.M}</small>`;
   b.title = `${L.C}×${L.R} · 지뢰 ${L.M}개`;
   b.addEventListener('click', () => {
-    if (name === G.level && !G.over && playing()) return;
+    if (name === G.level && !G.daily && playing()) return;
     requestNewGame(() => { G.level = name; }, `${name}(으)로 바꿀까요?`);
   });
   $('seg-level').appendChild(b);
@@ -520,6 +703,12 @@ $('btn-new').addEventListener('click', () => requestNewGame());
 $('btn-again').addEventListener('click', () => requestNewGame());
 $('btn-rescue').addEventListener('click', rescue);
 $('btn-help').addEventListener('click', () => openModal('help'));
+$('btn-stats').addEventListener('click', openStats);
+$('btn-daily').addEventListener('click', requestDaily);
+$('seg-stab').querySelectorAll('button').forEach((b) =>
+  b.addEventListener('click', () => { statsTab = Number(b.dataset.tab); renderStats(); }));
+$('btn-clear-stats').addEventListener('click', () => openConfirm('통계를 초기화할까요?',
+  '모든 기록이 삭제되고 되돌릴 수 없어요.', '초기화', () => { stats.clear(); renderStats(); render(); }, true));
 $('btn-theme').addEventListener('click', toggleTheme);
 $('zoom-reset').addEventListener('click', resetZoom);
 $('zoom-in').addEventListener('click', () => zoomCenter(1.5));
@@ -544,6 +733,7 @@ document.addEventListener('keydown', (ev) => {
   if (modalOpen() || ev.ctrlKey || ev.metaKey || ev.altKey) return;
   if (ev.code === 'KeyN') requestNewGame();
   else if (ev.code === 'KeyD') toggleTheme();
+  else if (ev.code === 'KeyS') openStats();
   else if (ev.key === '+' || ev.key === '=') zoomCenter(1.25);
   else if (ev.key === '-' || ev.key === '_') zoomCenter(1 / 1.25);
   else if (ev.key === '0') resetZoom();

@@ -140,6 +140,31 @@ function generateBoard(R, C, M, start, rand = Math.random, maxTries = 20000) {
   return { mines: Array.from(mines), tries, noGuess: false };   // 아주 드물게 실패하면 그냥 판
 }
 
+/* ───────── 시드 난수 (오늘의 게임: 같은 날짜 → 모든 기기에서 같은 판) ─────────
+ * 주의: generateBoard / dailyBoard 의 난수 사용 순서를 바꾸면 같은 날짜의 판이 달라진다. */
+function seedRandom(seed) {
+  let h = 1779033703 ^ seed.length;
+  for (let i = 0; i < seed.length; i++) {
+    h = Math.imul(h ^ seed.charCodeAt(i), 3432918353);
+    h = (h << 13) | (h >>> 19);
+  }
+  let a = h >>> 0;
+  return () => {                                  // mulberry32
+    a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+/* 오늘의 게임 판: 시작 칸도 시드로 정한다 (가장자리에서 2칸 이상 안쪽) */
+function dailyBoard(R, C, M, seed) {
+  const rand = seedRandom(seed);
+  const r = 2 + Math.floor(rand() * (R - 4)), c = 2 + Math.floor(rand() * (C - 4));
+  const start = r * C + c;
+  return { start, ...generateBoard(R, C, M, start, rand) };
+}
+
 if (typeof module !== 'undefined') {
-  module.exports = { LEVELS, neighbors, countNumbers, solvable, generateBoard };
+  module.exports = { LEVELS, neighbors, countNumbers, solvable, generateBoard, seedRandom, dailyBoard };
 }
