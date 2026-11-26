@@ -10,6 +10,8 @@ main:
   #   url: /collection-archive/
   - title: "Slither Link"
     url: /slither-link/
+  - title: "Minesweeper"
+    url: /minesweeper/
   - title: "Categories"
     url: /categories/
   - title: "Tags"

@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>Minesweeper · 지뢰찾기</title>
+  <meta name="description" content="찍을 필요 없는 지뢰찾기. 모바일에서도 숫자를 탭하면 주변이 한 번에 열려요.">
+  <meta name="theme-color" content="#EEF1F8">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="지뢰찾기">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Minesweeper · 지뢰찾기">
+  <meta property="og:description" content="찍을 필요 없는 지뢰찾기. 논리만으로 끝까지 풀려요!">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%235B5BF0'/%3E%3Ccircle cx='32' cy='34' r='13' fill='%23fff'/%3E%3Cpath d='M32 13v8M32 47v8M11 34h8M45 34h8M17 19l6 6M41 43l6 6M17 49l6-6M41 25l6-6' stroke='%23fff' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    try {
+      const t = JSON.parse(localStorage.getItem('mines.prefs.v1') || '{}').theme;
+      if (t) document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <div class="app">
+    <header class="top">
+      <div class="brand">
+        <h1>Minesweeper</h1>
+        <span class="sub">지뢰찾기</span>
+      </div>
+      <div class="icons">
+        <button class="icon-btn" id="btn-help" aria-label="규칙" title="규칙">
+          <svg viewBox="0 0 24 24"><path d="M9.2 9a3 3 0 0 1 5.8 1c0 2-3 2.6-3 4.5"/><circle cx="12" cy="18.2" r=".6" class="dotfill"/></svg>
+        </button>
+        <button class="icon-btn" id="btn-theme" aria-label="다크 모드 전환" title="다크 모드 (D)">
+          <svg viewBox="0 0 24 24" class="moon"><path d="M20.5 13.4A8.5 8.5 0 1 1 10.6 3.5a6.6 6.6 0 0 0 9.9 9.9z"/></svg>
+          <svg viewBox="0 0 24 24" class="sun"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="row">
+      <div class="chips">
+        <div class="chip" id="timer" title="시간">00:00</div>
+        <div class="chip mines" title="남은 지뢰">
+          <svg viewBox="0 0 24 24" class="flag-ico"><path d="M6 21V4"/><path d="M6 4.5h10.5l-2.5 4 2.5 4H6" class="fl"/></svg><span id="left">10</span>
+        </div>
+      </div>
+      <button class="btn primary" id="btn-new">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>새 게임
+      </button>
+    </div>
+
+    <div class="row">
+      <div class="seg" id="seg-level" role="tablist" aria-label="난이도"></div>
+    </div>
+
+    <main class="board-card" id="board-card">
+      <svg id="board" aria-label="지뢰찾기 판">
+        <defs>
+          <symbol id="i-flag" viewBox="0 0 100 100">
+            <path d="M34 80V20" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+            <path d="M34 22h36l-10 15 10 15H34z" style="fill: var(--cloth, #F43F5E)"/>
+            <path d="M22 80h28" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+          </symbol>
+          <symbol id="i-mine" viewBox="0 0 100 100">
+            <path d="M50 14v14M50 72v14M14 50h14M72 50h14M25 25l10 10M65 65l10 10M25 75l10-10M65 35l10-10" stroke="currentColor" stroke-width="8" stroke-linecap="round"/>
+            <circle cx="50" cy="50" r="22" fill="currentColor"/>
+            <circle cx="43" cy="43" r="6" style="fill: var(--mine-hi, #fff)" opacity=".85"/>
+          </symbol>
+        </defs>
+      </svg>
+      <div class="over" id="over" hidden>
+        <div class="over-card">
+          <div class="badge" id="over-badge"></div>
+          <h2 id="over-title"></h2>
+          <p class="meta" id="over-meta"></p>
+          <p class="best" id="over-best"></p>
+          <div class="over-actions">
+            <button class="btn ghost" id="btn-rescue">
+              <svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>실수 되돌리기
+            </button>
+            <button class="btn primary" id="btn-again">새 게임</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div class="status-row">
+      <div class="ctl-row">
+        <div class="seg mode touch-only" id="seg-mode" aria-label="탭 동작">
+          <button data-mode="0" class="on"><svg viewBox="0 0 24 24"><path d="M4 20 14 10M13 4l7 7M11 6l7 7"/></svg>열기</button>
+          <button data-mode="1"><svg viewBox="0 0 24 24" class="flag-ico"><path d="M6 21V4"/><path d="M6 4.5h10.5l-2.5 4 2.5 4H6" class="fl"/></svg>깃발</button>
+        </div>
+        <div class="zoom-ctl" aria-label="확대">
+          <button id="zoom-out" aria-label="축소" title="축소 (-)"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></button>
+          <button id="zoom-reset" aria-label="원래 크기로" title="원래 크기로 (0)"><span id="zoom-label">1.0×</span></button>
+          <button id="zoom-in" aria-label="확대" title="확대 (+)"><svg viewBox="0 0 24 24"><path d="M12 6v12M6 12h12"/></svg></button>
+        </div>
+      </div>
+      <p class="status" id="status"></p>
+    </div>
+
+    <footer class="credit">Created by hyunyoung with Claude</footer>
+  </div>
+
+  <!-- 확인 창 -->
+  <div class="modal" id="confirm" hidden>
+    <div class="modal-card small" role="dialog" aria-modal="true">
+      <h3 id="confirm-title"></h3>
+      <p id="confirm-msg"></p>
+      <div class="m-actions">
+        <button class="btn ghost" id="confirm-cancel">취소</button>
+        <button class="btn primary" id="confirm-ok">새 게임</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 규칙 -->
+  <div class="modal" id="help" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="help-title">
+      <div class="m-head"><h3 id="help-title">게임 규칙</h3><button class="icon-btn sm" data-close aria-label="닫기"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17"/></svg></button></div>
+      <ul class="rules">
+        <li>지뢰가 없는 칸을 <b>모두 열면</b> 성공이에요.</li>
+        <li>숫자는 주변 8칸에 있는 <b>지뢰의 개수</b>예요.</li>
+        <li>지뢰라고 생각되는 칸에는 깃발을 꽂아 두세요.</li>
+        <li>모든 판은 <b>찍지 않고 논리만으로</b> 끝까지 풀 수 있게 만들어져요.</li>
+      </ul>
+      <h4>조작법</h4>
+      <div class="keys">
+        <div><kbd class="touch-only">탭</kbd><kbd class="fine-only">왼쪽 클릭</kbd><span>칸 열기</span></div>
+        <div><kbd class="touch-only">길게 누르기</kbd><kbd class="fine-only">오른쪽 클릭</kbd><span>깃발 꽂기 / 빼기</span></div>
+        <div><kbd>열린 숫자 탭</kbd><span>깃발 수가 맞으면 주변을 한 번에 열기</span></div>
+        <div class="touch-only"><kbd>열기 / 깃발 버튼</kbd><span>탭으로 할 동작 바꾸기</span></div>
+        <div class="touch-only"><kbd>두 손가락</kbd><span>벌려서 확대 · 확대 후 한 손가락으로 이동</span></div>
+        <div class="fine-only"><kbd>휠 · + / −</kbd><span>확대 / 축소 (0: 원래대로)</span></div>
+        <div class="fine-only"><kbd>드래그</kbd><span>확대한 판 이동</span></div>
+        <div class="fine-only"><kbd>N · D</kbd><span>새 게임 · 다크 모드</span></div>
+      </div>
+      <p class="note">지뢰를 밟아도 '실수 되돌리기'로 이어서 풀 수 있어요. (이 판은 최고 기록에서 빠져요)</p>
+    </div>
+  </div>
+
+  <script src="core.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
