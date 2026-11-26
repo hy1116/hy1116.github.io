@@ -75,9 +75,6 @@
 
     <main class="board-card" id="board-card">
       <svg id="board" aria-label="퍼즐 판"></svg>
-      <button class="zoom-reset" id="zoom-reset" hidden title="원래 크기로 (0)" aria-label="원래 크기로">
-        <svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5M8 10.5h5"/></svg><span id="zoom-label">1.0×</span>
-      </button>
       <div class="spinner" id="spinner" hidden><div class="ring"></div><span>퍼즐을 만드는 중…</span></div>
       <div class="win" id="win" hidden>
         <div class="win-card">
@@ -97,9 +94,16 @@
     </main>
 
     <div class="status-row">
-      <div class="seg mode touch-only" id="seg-mode" aria-label="입력 모드">
-        <button data-mode="1" class="on"><svg viewBox="0 0 24 24"><path d="M5 12h14" class="thick"/></svg>선</button>
-        <button data-mode="2"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17"/></svg>X</button>
+      <div class="ctl-row">
+        <div class="seg mode touch-only" id="seg-mode" aria-label="입력 모드">
+          <button data-mode="1" class="on"><svg viewBox="0 0 24 24"><path d="M5 12h14" class="thick"/></svg>선</button>
+          <button data-mode="2"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17"/></svg>X</button>
+        </div>
+        <div class="zoom-ctl" aria-label="확대">
+          <button id="zoom-out" aria-label="축소" title="축소 (-)"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></button>
+          <button id="zoom-reset" aria-label="원래 크기로" title="원래 크기로 (0)"><span id="zoom-label">1.0×</span></button>
+          <button id="zoom-in" aria-label="확대" title="확대 (+)"><svg viewBox="0 0 24 24"><path d="M12 6v12M6 12h12"/></svg></button>
+        </div>
       </div>
       <p class="status" id="status"></p>
     </div>

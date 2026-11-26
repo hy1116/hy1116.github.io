@@ -265,8 +265,10 @@ function applyView(x, y, w) {        // 판 밖으로 나가지 않게 맞춘 �
   y = Math.min(f.y + f.h - h, Math.max(f.y, y));
   Z.view = { x, y, w, h };
   svg.setAttribute('viewBox', `${x} ${y} ${w} ${h}`);
-  const z = zoomLevel(), btn = $('zoom-reset');
-  btn.hidden = z < 1.02;
+  const z = zoomLevel();
+  $('zoom-reset').classList.toggle('on', z >= 1.02);
+  $('zoom-reset').disabled = $('zoom-out').disabled = z < 1.02;
+  $('zoom-in').disabled = z > maxZoom() - 0.02;
   $('zoom-label').textContent = `${z.toFixed(1)}×`;
 }
 /* 화면 좌표 (cx, cy) 아래의 판 위치를 그대로 둔 채 factor 배 확대 */
@@ -726,6 +728,8 @@ svg.addEventListener('wheel', (ev) => {          // 마우스 휠 / 트랙패드
 svg.addEventListener('mousedown', (ev) => { if (ev.button === 1) ev.preventDefault(); });   // 자동 스크롤 막기
 svg.addEventListener('auxclick', (ev) => { if (ev.button === 1) ev.preventDefault(); });
 $('zoom-reset').addEventListener('click', resetZoom);
+$('zoom-in').addEventListener('click', () => zoomCenter(1.5));
+$('zoom-out').addEventListener('click', () => zoomCenter(1 / 1.5));
 
 /* ───────── 공유 ───────── */
 let toastTimer = null;
