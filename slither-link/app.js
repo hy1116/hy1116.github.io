@@ -2,7 +2,7 @@
 'use strict';
 
 const EMPTY = 0, LINE = 1, CROSS = 2;
-const SIZES = [5, 7, 10];
+const SIZES = [5, 7, 10, 12];
 const DIFFS = Object.keys(DIFFICULTY);
 const REVEAL_DELAY = 600;           // 정답 보기 잠금(초)
 const CELL = 100, MARGIN = 40;      // SVG 좌표 단위
@@ -1104,7 +1104,7 @@ function buildSeg(el, labels, onPick) {
     el.appendChild(b);
   });
 }
-buildSeg($('seg-size'), SIZES.map((n) => `${n} × ${n}`), (i) => {
+buildSeg($('seg-size'), SIZES.map((n) => `${n}×${n}`), (i) => {
   if (SIZES[i] === G.size && !G.solved) return;
   requestNewGame(() => { G.size = SIZES[i]; }, `${SIZES[i]} × ${SIZES[i]} 크기로 바꿀까요?`);
 });
