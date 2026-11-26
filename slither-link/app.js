@@ -221,7 +221,9 @@ function mk(tag, attrs, parent) {
 
 function buildBoard() {
   const g = G.grid, C = g.C, R = g.R;
-  svg.setAttribute('viewBox', `${-MARGIN} ${-MARGIN} ${C * CELL + 2 * MARGIN} ${R * CELL + 2 * MARGIN}`);
+  Z.full = { x: -MARGIN, y: -MARGIN, w: C * CELL + 2 * MARGIN, h: R * CELL + 2 * MARGIN };
+  cancelAnimationFrame(Z.anim);
+  applyView(Z.full.x, Z.full.y, Z.full.w);
   svg.textContent = '';
   const gHl = mk('g', {}, svg), gClue = mk('g', {}, svg), gEdge = mk('g', {}, svg), gDot = mk('g', {}, svg);
   hlCell = mk('rect', { class: 'hl-cell', width: CELL - 12, height: CELL - 12, rx: 16 }, gHl);
@@ -247,6 +249,70 @@ function buildBoard() {
   }
   svg.classList.add('fresh');
   requestAnimationFrame(() => requestAnimationFrame(() => svg.classList.remove('fresh')));
+}
+
+/* ───────── 확대 · 이동 (viewBox 를 바꿔서 판의 일부만 보여 준다) ─────────
+ * 터치: 두 손가락 벌리기/모으기로 확대, 두 손가락(또는 확대 뒤 남은 한 손가락)으로 이동
+ * 마우스: 휠로 확대, 가운데 버튼 드래그로 이동 · 키보드 + / - / 0 */
+const Z = { full: null, view: null, anim: 0 };
+const maxZoom = () => (G.grid ? Math.max(2, G.grid.C / 2.5) : 1);     // 5×5: 2배, 7×7: 2.8배, 10×10: 4배
+const zoomLevel = () => (Z.full && Z.view ? Z.full.w / Z.view.w : 1);
+const clampW = (w) => Math.min(Z.full.w, Math.max(Z.full.w / maxZoom(), w));
+
+function applyView(x, y, w) {        // 판 밖으로 나가지 않게 맞춘 뒤 적용
+  const f = Z.full, h = w * f.h / f.w;
+  x = Math.min(f.x + f.w - w, Math.max(f.x, x));
+  y = Math.min(f.y + f.h - h, Math.max(f.y, y));
+  Z.view = { x, y, w, h };
+  svg.setAttribute('viewBox', `${x} ${y} ${w} ${h}`);
+  const z = zoomLevel(), btn = $('zoom-reset');
+  btn.hidden = z < 1.02;
+  $('zoom-label').textContent = `${z.toFixed(1)}×`;
+}
+/* 화면 좌표 (cx, cy) 아래의 판 위치를 그대로 둔 채 factor 배 확대 */
+function zoomAt(cx, cy, factor) {
+  if (!Z.view) return;
+  cancelAnimationFrame(Z.anim);
+  const r = svg.getBoundingClientRect(), v = Z.view;
+  const fx = (cx - r.left) / r.width, fy = (cy - r.top) / r.height;
+  const w = clampW(v.w / factor), h = w * v.h / v.w;
+  applyView(v.x + fx * v.w - fx * w, v.y + fy * v.h - fy * h, w);
+}
+function zoomCenter(factor) {
+  const r = svg.getBoundingClientRect();
+  zoomAt(r.left + r.width / 2, r.top + r.height / 2, factor);
+}
+function resetZoom() {
+  if (!Z.full || zoomLevel() < 1.001) return;
+  cancelAnimationFrame(Z.anim);
+  const from = { ...Z.view }, to = Z.full, t0 = performance.now(), ms = 240;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { applyView(to.x, to.y, to.w); return; }
+  const step = (t) => {
+    const k = Math.min(1, (t - t0) / ms), e = 1 - (1 - k) ** 3;
+    applyView(from.x + (to.x - from.x) * e, from.y + (to.y - from.y) * e, from.w + (to.w - from.w) * e);
+    if (k < 1) Z.anim = requestAnimationFrame(step);
+  };
+  Z.anim = requestAnimationFrame(step);
+}
+
+/* 손가락(또는 가운데 버튼) 여러 개를 추적해서 확대/이동. 손가락 수가 바뀔 때마다 기준을 다시 잡는다 */
+const ptrs = new Map();     // pointerId → { x, y }
+let pinch = null;           // { px, py, w, d } — 기준 시점의 판 위치 · 폭 · 손가락 간격
+function ptrCenter() {
+  const ps = [...ptrs.values()], n = ps.length;
+  const c = { x: ps.reduce((a, p) => a + p.x, 0) / n, y: ps.reduce((a, p) => a + p.y, 0) / n };
+  c.d = n > 1 ? Math.hypot(ps[0].x - ps[1].x, ps[0].y - ps[1].y) : 0;
+  return c;
+}
+function pinchBase() {
+  cancelAnimationFrame(Z.anim);
+  const c = ptrCenter(), r = svg.getBoundingClientRect(), v = Z.view;
+  pinch = { px: v.x + (c.x - r.left) / r.width * v.w, py: v.y + (c.y - r.top) / r.height * v.h, w: v.w, d: c.d };
+}
+function pinchMove() {
+  const c = ptrCenter(), r = svg.getBoundingClientRect();
+  const w = clampW(pinch.d && c.d ? pinch.w * pinch.d / c.d : pinch.w), h = w * Z.full.h / Z.full.w;
+  applyView(pinch.px - (c.x - r.left) / r.width * w, pinch.py - (c.y - r.top) / r.height * h, w);
 }
 
 function renderBoard() {
@@ -421,6 +487,7 @@ function showSolution() {
   G.hl = null;
   recordResult(Stats.REVEAL, elapsed());
   store.del(K_GAME);
+  resetZoom();
   render();
 }
 
@@ -446,6 +513,7 @@ function checkWin() {
   G.hl = null;
   recordResult(Stats.WIN, t);
   store.del(K_GAME);
+  resetZoom();                     // 완성된 고리 전체가 보이게
 }
 
 /* ───────── 힌트 ─────────
@@ -568,7 +636,28 @@ function commitDrag() {
   drag = null;
 }
 
+/* 두 번째 손가락이 닿으면 그리던 것을 취소하고 확대/이동으로 */
+function cancelStroke() {
+  if (pending) { clearTimeout(pending.timer); pending = null; }
+  if (drag) {
+    for (const [e, [o]] of drag.batch) G.state[e] = o;
+    drag = null;
+    renderBoard();
+  }
+}
+
 svg.addEventListener('pointerdown', (ev) => {
+  if (!G.grid || G.generating) return;
+  const middle = ev.pointerType === 'mouse' && ev.button === 1;
+  if (ev.pointerType === 'touch' || middle) {
+    ptrs.set(ev.pointerId, { x: ev.clientX, y: ev.clientY });
+    if (middle || ptrs.size >= 2 || pinch) {
+      ev.preventDefault();
+      try { svg.setPointerCapture(ev.pointerId); } catch (err) { /* 무시 */ }
+      cancelStroke(); setHover(-1); pinchBase();
+      return;
+    }
+  }
   if (!running()) return;
   const touch = ev.pointerType !== 'mouse';
   if (!touch && ev.button !== 0 && ev.button !== 2) return;
@@ -591,6 +680,10 @@ svg.addEventListener('pointerdown', (ev) => {
   };
 });
 svg.addEventListener('pointermove', (ev) => {
+  if (ptrs.has(ev.pointerId)) {
+    ptrs.set(ev.pointerId, { x: ev.clientX, y: ev.clientY });
+    if (pinch) { pinchMove(); return; }
+  }
   const touch = ev.pointerType !== 'mouse';
   if (pending && ev.pointerId === pending.id) {
     const e = edgeAt(ev, true);
@@ -607,6 +700,11 @@ svg.addEventListener('pointermove', (ev) => {
   if (!touch && running()) setHover(edgeAt(ev, false));
 });
 function finishPointer(ev) {
+  ptrs.delete(ev.pointerId);
+  if (pinch) {                         // 남은 손가락으로는 계속 이동만 (그리지 않음)
+    if (ptrs.size) pinchBase(); else pinch = null;
+    return;
+  }
   if (pending && ev.pointerId === pending.id) {
     clearTimeout(pending.timer);
     const pe = pending.e;
@@ -619,6 +717,15 @@ svg.addEventListener('pointerup', finishPointer);
 svg.addEventListener('pointercancel', finishPointer);
 svg.addEventListener('pointerleave', (ev) => { if (ev.pointerType === 'mouse' && !drag) setHover(-1); });
 svg.addEventListener('contextmenu', (ev) => ev.preventDefault());
+svg.addEventListener('wheel', (ev) => {          // 마우스 휠 / 트랙패드 핀치(ctrl+휠)로 확대
+  if (!G.grid || G.generating) return;
+  ev.preventDefault();
+  const dy = ev.deltaY * (ev.deltaMode === 1 ? 40 : ev.deltaMode === 2 ? 400 : 1);
+  zoomAt(ev.clientX, ev.clientY, Math.exp(-dy * (ev.ctrlKey ? 0.01 : 0.0025)));
+}, { passive: false });
+svg.addEventListener('mousedown', (ev) => { if (ev.button === 1) ev.preventDefault(); });   // 자동 스크롤 막기
+svg.addEventListener('auxclick', (ev) => { if (ev.button === 1) ev.preventDefault(); });
+$('zoom-reset').addEventListener('click', resetZoom);
 
 /* ───────── 공유 ───────── */
 let toastTimer = null;
@@ -1059,6 +1166,9 @@ document.addEventListener('keydown', (ev) => {
   else if (ev.code === 'KeyD') toggleTheme();
   else if (ev.code === 'KeyS') openStats();
   else if (ev.code === 'KeyH') useHint();
+  else if (ev.key === '+' || ev.key === '=') zoomCenter(1.25);
+  else if (ev.key === '-' || ev.key === '_') zoomCenter(1 / 1.25);
+  else if (ev.key === '0') resetZoom();
 });
 
 /* iOS: 빠르게 두 번 탭하면 확대되는 것 / 두 손가락 확대 막기 (버튼 연타는 그대로 동작) */

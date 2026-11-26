@@ -148,7 +148,17 @@ button svg.fill { fill: currentColor; stroke: none; }
   background: var(--card); border-radius: 22px; box-shadow: var(--shadow);
   transition: background-color .25s;
 }
-#board { width: 100%; height: 100%; touch-action: none; opacity: 1; transition: opacity .25s; }
+#board { width: 100%; height: 100%; touch-action: none; opacity: 1; transition: opacity .25s;
+  border-radius: 22px; overflow: hidden; }
+.zoom-reset {
+  position: absolute; top: 8px; right: 8px; z-index: 1; height: 30px; padding: 0 10px 0 8px;
+  border: 1px solid var(--border); border-radius: 999px; display: inline-flex; align-items: center; gap: 4px;
+  background: color-mix(in srgb, var(--card) 88%, transparent); color: var(--sub);
+  font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums;
+  box-shadow: 0 2px 8px rgba(20, 25, 60, .10); animation: fade .15s both;
+}
+.zoom-reset svg { width: 15px; height: 15px; }
+@media (hover: hover) { .zoom-reset:hover { color: var(--text); background: var(--chip); } }
 #board.fresh { opacity: 0; }
 #board .clue { font-size: 44px; font-weight: 600; text-anchor: middle; dominant-baseline: central;
   fill: var(--clue); font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;

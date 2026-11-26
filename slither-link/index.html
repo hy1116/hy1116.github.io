@@ -75,6 +75,9 @@
 
     <main class="board-card" id="board-card">
       <svg id="board" aria-label="퍼즐 판"></svg>
+      <button class="zoom-reset" id="zoom-reset" hidden title="원래 크기로 (0)" aria-label="원래 크기로">
+        <svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5M8 10.5h5"/></svg><span id="zoom-label">1.0×</span>
+      </button>
       <div class="spinner" id="spinner" hidden><div class="ring"></div><span>퍼즐을 만드는 중…</span></div>
       <div class="win" id="win" hidden>
         <div class="win-card">
@@ -146,6 +149,9 @@
         <div><kbd class="touch-only">탭</kbd><kbd class="fine-only">왼쪽 클릭</kbd><span>선 긋기 / 지우기</span></div>
         <div><kbd class="touch-only">길게 누르기</kbd><kbd class="fine-only">오른쪽 클릭</kbd><span>X 표시 (선 없음 메모)</span></div>
         <div><kbd>드래그</kbd><span>여러 변을 한 번에</span></div>
+        <div class="touch-only"><kbd>두 손가락</kbd><span>벌려서 확대 · 움직여서 이동</span></div>
+        <div class="fine-only"><kbd>휠 · + / −</kbd><span>확대 / 축소 (0: 원래대로)</span></div>
+        <div class="fine-only"><kbd>가운데 버튼 드래그</kbd><span>확대한 판 이동</span></div>
         <div class="touch-only"><kbd>선 / X 버튼</kbd><span>탭으로 그릴 것을 전환</span></div>
         <div class="fine-only"><kbd>Ctrl+Z / Ctrl+Y</kbd><span>되돌리기 / 다시</span></div>
         <div class="fine-only"><kbd>N · D · S</kbd><span>새 게임 · 다크 모드 · 통계</span></div>
