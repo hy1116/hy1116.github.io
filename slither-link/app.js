@@ -373,7 +373,7 @@ function render() {
   else if (G.challenge) st.textContent = `⚑ 친구 기록 ${fmt(G.challenge.time)}에 도전 중!`;
   else if (G.daily) st.textContent = `📅 ${dayLabel(G.daily)} 오늘의 퍼즐${G.practice ? ' (연습 · 기록 안 남음)' : ''}`;
   else st.textContent = isTouch() ? '탭: 선   ·   길게 누르기: X 표시'
-    : '왼쪽 클릭·드래그: 선    오른쪽 클릭: X 표시';
+    : '';
 
   $('spinner').hidden = !G.generating;
   const showWin = G.won && !G.overlayHidden;
