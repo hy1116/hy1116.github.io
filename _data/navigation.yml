@@ -8,8 +8,6 @@ main:
   #   url: /year-archive/
   # - title: "Sample Collections"
   #   url: /collection-archive/
-  - title: "React"
-    url: /react-pages/
   - title: "Slither Link"
     url: /slither-link/
   - title: "Categories"

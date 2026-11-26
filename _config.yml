@@ -164,7 +164,6 @@ exclude:
   - /docs # ignore Minimal Mistakes /docs
   - /test # ignore Minimal Mistakes /test
   - node_modules
-  - dev-react-pages
 keep_files:
   - .git
   - .svn
