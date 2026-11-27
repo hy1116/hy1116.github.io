@@ -1,0 +1,16 @@
+{
+  "name": "Tents · 텐트",
+  "short_name": "텐트",
+  "description": "나무 옆에 텐트를 하나씩. 숫자 힌트만 보고 논리로 푸는 퍼즐",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#EEF1F8",
+  "theme_color": "#5B5BF0",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

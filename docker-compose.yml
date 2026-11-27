@@ -1,0 +1,18 @@
+# Local preview: docker compose up  ->  http://localhost:4000
+services:
+  jekyll:
+    image: ruby:3.4
+    working_dir: /src
+    command: >
+      bash -c "git config --global --add safe.directory /src &&
+               bundle install &&
+               bundle exec jekyll serve -H 0.0.0.0 --livereload --force_polling"
+    ports:
+      - "4000:4000"   # site
+      - "35729:35729" # livereload
+    volumes:
+      - .:/src
+      - bundle:/usr/local/bundle # gem cache, so restarts don't reinstall everything
+
+volumes:
+  bundle:

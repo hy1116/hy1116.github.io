@@ -156,6 +156,7 @@ pwa:
     deny_paths:
       - "/minesweeper" # games have their own service workers
       - "/slither-link"
+      - "/tents"
       # - "/example"  # URLs match `<SITE_URL>/example/*` will not be cached by the PWA
 
 paginate: 10
@@ -226,6 +227,7 @@ exclude:
   - purgecss.js
   - "*.config.js"
   - "package*.json"
+  - docker-compose.yml
 
 jekyll-archives:
   enabled: [categories, tags]
