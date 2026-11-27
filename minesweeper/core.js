@@ -165,6 +165,43 @@ function dailyBoard(R, C, M, seed) {
   return { start, ...generateBoard(R, C, M, start, rand) };
 }
 
+/* ───────── 공유 링크용 판 코드 ─────────
+ * 예) "9x9.40.<지뢰 비트>" = 행×열, 시작 칸, 지뢰 위치를 6칸씩 묶어 base64url 한 글자로.
+ * 고급(99개)도 80글자쯤이라 링크가 짧다. 받는 쪽에서 난이도와 맞는지 다시 확인한다. */
+const B64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+
+function encodeBoard(R, C, start, mines) {
+  let s = '';
+  for (let i = 0; i < R * C; i += 6) {
+    let v = 0;
+    for (let k = 0; k < 6; k++) v = (v << 1) | (mines[i + k] ? 1 : 0);
+    s += B64[v];
+  }
+  return `${R}x${C}.${start}.${s}`;
+}
+
+function decodeBoard(code) {
+  const m = /^(\d{1,2})x(\d{1,2})\.(\d{1,4})\.([A-Za-z0-9_-]{1,200})$/.exec(String(code || ''));
+  if (!m) return null;
+  const R = Number(m[1]), C = Number(m[2]), start = Number(m[3]), n = R * C;
+  if (m[4].length !== Math.ceil(n / 6) || start >= n) return null;
+  const mines = new Array(n).fill(0);
+  let M = 0;
+  for (let j = 0; j < m[4].length; j++) {
+    const v = B64.indexOf(m[4][j]);
+    for (let k = 0; k < 6; k++) {
+      const i = j * 6 + k, bit = (v >> (5 - k)) & 1;
+      if (i < n) { mines[i] = bit; M += bit; } else if (bit) return null;
+    }
+  }
+  const level = Object.keys(LEVELS).find((name) => {
+    const L = LEVELS[name];
+    return L.M === M && ((L.R === R && L.C === C) || (L.R === C && L.C === R));
+  });
+  if (!level || mines[start] || countNumbers(R, C, mines)[start] !== 0) return null;   // 시작 칸은 0 이어야 함
+  return { level, R, C, M, start, mines };
+}
+
 if (typeof module !== 'undefined') {
-  module.exports = { LEVELS, neighbors, countNumbers, solvable, generateBoard, seedRandom, dailyBoard };
+  module.exports = { LEVELS, neighbors, countNumbers, solvable, generateBoard, seedRandom, dailyBoard, encodeBoard, decodeBoard };
 }

@@ -12,6 +12,7 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="Minesweeper · 지뢰찾기">
   <meta property="og:description" content="찍을 필요 없는 지뢰찾기. 논리만으로 끝까지 풀려요!">
+  <meta property="og:url" content="https://hy1116.github.io/minesweeper/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%235B5BF0'/%3E%3Ccircle cx='32' cy='34' r='13' fill='%23fff'/%3E%3Cpath d='M32 13v8M32 47v8M11 34h8M45 34h8M17 19l6 6M41 43l6 6M17 49l6-6M41 25l6-6' stroke='%23fff' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="style.css">
   <script>
@@ -29,6 +30,9 @@
         <span class="sub">지뢰찾기</span>
       </div>
       <div class="icons">
+        <button class="icon-btn" id="btn-share" aria-label="이 판 공유" title="이 판 공유">
+          <svg viewBox="0 0 24 24"><path d="M12 3v12M7.5 7.5 12 3l4.5 4.5"/><path d="M5 13v5.5A2.5 2.5 0 0 0 7.5 21h9a2.5 2.5 0 0 0 2.5-2.5V13"/></svg>
+        </button>
         <button class="icon-btn" id="btn-stats" aria-label="통계" title="통계 (S)">
           <svg viewBox="0 0 24 24" class="fill"><rect x="4" y="11" width="4" height="9" rx="2"/><rect x="10" y="4" width="4" height="16" rx="2"/><rect x="16" y="8" width="4" height="12" rx="2"/></svg>
         </button>
@@ -84,7 +88,11 @@
           <h2 id="over-title"></h2>
           <p class="meta" id="over-meta"></p>
           <p class="best" id="over-best"></p>
+          <p class="challenge" id="over-challenge" hidden></p>
           <div class="over-actions">
+            <button class="btn ghost" id="btn-share-win">
+              <svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4.5a2.5 2.5 0 0 0 0 5H7M17 6h2.5a2.5 2.5 0 0 1 0 5H17"/></svg>자랑하기
+            </button>
             <button class="btn ghost" id="btn-rescue">
               <svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>실수 되돌리기
             </button>
@@ -144,6 +152,7 @@
         <div class="fine-only"><kbd>휠 · + / −</kbd><span>확대 / 축소 (0: 원래대로)</span></div>
         <div class="fine-only"><kbd>드래그</kbd><span>확대한 판 이동</span></div>
         <div class="fine-only"><kbd>N · D · S</kbd><span>새 게임 · 다크 모드 · 통계</span></div>
+        <div><kbd>공유 버튼</kbd><span>친구에게 같은 판 보내기</span></div>
         <div><kbd>📅 오늘의 게임</kbd><span>매일 모두에게 같은 판 · 연속 기록</span></div>
       </div>
       <p class="note">지뢰를 밟아도 '실수 되돌리기'로 이어서 풀 수 있어요. (이 판은 최고 기록에서 빠져요)</p>
@@ -164,6 +173,33 @@
       <div class="m-foot">
         <button class="btn ghost sm" id="btn-clear-stats">기록 초기화</button>
         <span class="hint">이 기기의 브라우저에 저장돼요</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 공유 / 자랑하기 -->
+  <div class="modal" id="share" hidden>
+    <div class="modal-card share-card" role="dialog" aria-modal="true" aria-labelledby="share-title">
+      <div class="m-head"><h3 id="share-title">공유하기</h3><button class="icon-btn sm" data-close aria-label="닫기"><svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17"/></svg></button></div>
+      <img class="share-preview" id="share-preview" alt="공유 이미지 미리보기">
+      <p class="share-msg" id="share-msg"></p>
+      <div class="share-opts">
+        <button class="share-opt" id="share-kakao">
+          <span class="so-icon kakao"><svg viewBox="0 0 24 24" class="fill"><path d="M12 3.5C6.75 3.5 2.5 6.86 2.5 11c0 2.66 1.77 5 4.43 6.33l-.9 3.3c-.08.3.26.54.52.37l3.93-2.6c.5.07 1 .1 1.52.1 5.25 0 9.5-3.36 9.5-7.5S17.25 3.5 12 3.5z"/></svg></span>
+          <span>카카오톡</span>
+        </button>
+        <button class="share-opt" id="share-copy">
+          <span class="so-icon"><svg viewBox="0 0 24 24"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></svg></span>
+          <span>링크 복사</span>
+        </button>
+        <button class="share-opt" id="share-more">
+          <span class="so-icon"><svg viewBox="0 0 24 24" class="fill"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></span>
+          <span>다른 앱</span>
+        </button>
+        <button class="share-opt" id="share-save">
+          <span class="so-icon"><svg viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5 12 15l4.5-4.5"/><path d="M5 19h14"/></svg></span>
+          <span>이미지 저장</span>
+        </button>
       </div>
     </div>
   </div>
