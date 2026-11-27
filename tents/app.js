@@ -42,14 +42,14 @@ class Stats {
     const t = new Date(), p = (x) => String(x).padStart(2, '0');
     const g = { date: `${t.getFullYear()}-${p(t.getMonth() + 1)}-${p(t.getDate())} ${p(t.getHours())}:${p(t.getMinutes())}`,
       level, time: Math.floor(secs), result };
-    for (const k in extra) if (extra[k]) g[k] = extra[k];       // daily (있을 때만)
+    for (const k in extra) if (extra[k]) g[k] = extra[k];       // daily · hints (있을 때만)
     this.games.push(g);
     this.save();
   }
   clear() { this.games = []; this.save(); }
   summary(level = null) {
     const gs = this.games.filter((g) => level === null || g.level === level);
-    const won = gs.filter((g) => g.result === WIN), times = won.map((g) => g.time || 0);
+    const won = gs.filter((g) => g.result === WIN), times = won.filter((g) => !g.hints).map((g) => g.time || 0);
     return {
       played: gs.length, won: won.length,
       rate: gs.length ? won.length / gs.length : null,
@@ -77,7 +77,7 @@ class Stats {
 const stats = new Stats();
 function record(result) {
   if (G.practice) return;                   // 이미 완료한 오늘의 퍼즐을 다시 풀 때는 기록 안 남김
-  stats.add(G.level, elapsed(), result, { daily: G.daily });
+  stats.add(G.level, elapsed(), result, { daily: G.daily, hints: G.hints });
 }
 
 const prefs = store.get(K_PREFS, {});
@@ -91,7 +91,7 @@ const G = {
   level: LEVEL_NAMES.includes(prefs.level) ? prefs.level : '쉬움',
   R: 6, C: 6, tree: null, rows: null, cols: null, solution: null,
   st: null,                             // 칸 상태 U / TENT / GRASS (나무 칸은 안 씀)
-  undo: [],
+  undo: [], hints: 0, flash: null,     // flash: 힌트로 잠깐 강조할 { i, line }
   over: false, won: false, newBest: false, prevBest: null, overlayHidden: false,
   acc: 0, since: null, mode: M_TENT, hover: -1,
   acted: false,
@@ -119,7 +119,7 @@ function saveGame() {
   if (!playing()) { store.del(K_GAME); return; }
   store.set(K_GAME, { level: G.level, R: G.R, C: G.C, tree: Array.from(G.tree), rows: G.rows, cols: G.cols,
     solution: G.solution, st: Array.from(G.st), elapsed: elapsed(), acted: G.acted,
-    daily: G.daily, practice: G.practice, challenge: G.challenge });
+    daily: G.daily, practice: G.practice, challenge: G.challenge, hints: G.hints });
 }
 function restoreGame() {
   const s = store.get(K_GAME, null);
@@ -135,6 +135,7 @@ function restoreGame() {
   G.acted = s.acted !== false;
   G.daily = typeof s.daily === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s.daily) ? s.daily : null;
   G.practice = !!s.practice;
+  G.hints = Number.isInteger(s.hints) && s.hints > 0 ? s.hints : 0; G.flash = null;
   G.challenge = s.challenge && Number.isFinite(s.challenge.time) ? { time: s.challenge.time } : null;
   buildBoard();
   resumeClock();
@@ -148,7 +149,7 @@ function newGame(opts = {}) {
   G.R = p.R; G.C = p.C;
   G.tree = Uint8Array.from(p.tree); G.rows = p.rows.slice(); G.cols = p.cols.slice(); G.solution = p.solution;
   G.st = new Uint8Array(n());
-  G.undo = [];
+  G.undo = []; G.hints = 0; G.flash = null;
   G.over = G.won = false; G.newBest = false; G.prevBest = null; G.overlayHidden = false;
   G.acc = 0; G.since = null; G.hover = -1; G.acted = false;
   G.daily = opts.daily || null; G.practice = !!opts.practice;
@@ -211,6 +212,34 @@ function lineCells(isRow, k) {
 function undo() {
   if (G.over || !G.undo.length) return;
   G.st = G.undo.pop();
+  G.flash = null;
+  afterChange();
+}
+/* 처음부터: 놓은 텐트·잔디를 모두 지운다 (시간은 그대로, 되돌리기로 복구 가능) */
+const hasMarks = () => !!G.st && G.st.some((v, i) => v !== U && !G.tree[i]);
+function resetBoard() {
+  if (G.over || !hasMarks()) return;
+  pushUndo();
+  G.st.fill(U);
+  G.flash = null;
+  afterChange();
+  toast('처음 상태로 돌렸어요 · 되돌리기로 되살릴 수 있어요');
+}
+
+/* 힌트: 논리로 확정되는 칸 하나를 채우고 이유를 보여 준다. 틀린 칸이 있으면 그것부터 고친다 */
+let flashTimer = null;
+function giveHint() {
+  if (G.over || !G.st) return;
+  const h = hint(puzzle(), G.st, G.solution);
+  if (!h) return;
+  act();
+  pushUndo();
+  G.st[h.i] = h.v;
+  G.hints++;
+  G.flash = { i: h.i, line: h.line ? { isRow: h.line.isRow, k: h.line.k } : null };
+  clearTimeout(flashTimer);
+  flashTimer = setTimeout(() => { G.flash = null; renderBoard(); }, 2600);
+  toast(h.wrong ? `${h.why} · ${h.v === TENT ? '텐트' : '잔디'}로 고쳤어요` : `💡 ${h.why}`, 3600);
   afterChange();
 }
 function afterChange() { checkWin(); saveGame(); render(); }
@@ -222,7 +251,7 @@ function checkWin() {
   for (let i = 0; i < n(); i++) if (!G.tree[i] && G.st[i] === U) G.st[i] = GRASS;   // 남은 칸은 잔디로
   const t = Math.floor(elapsed());
   G.prevBest = stats.best(G.level);
-  G.newBest = !G.practice && (G.prevBest === null || t < G.prevBest);
+  G.newBest = !G.practice && !G.hints && (G.prevBest === null || t < G.prevBest);
   record(WIN);
   store.del(K_GAME);
   resetZoom();
@@ -298,6 +327,7 @@ function renderBoard() {
     if (G.tree[i]) { cls += ' tree'; if (P.lonely[i] && !G.won) cls += ' lonely'; }
     else if (G.st[i] === TENT) { cls += ' tent'; kind = 'tent'; if (P.badTent[i] && !G.won) cls += ' bad'; }
     else if (G.st[i] === GRASS) { cls += ' grass'; kind = 'grass'; }
+    if (G.flash && G.flash.i === i && !G.won) cls += ' hint';
     if (!G.over && !G.tree[i]) {
       if (i === G.hover) cls += ' hover';
       if (i === pressCell) cls += ' press';
@@ -311,8 +341,9 @@ function renderBoard() {
       el.b.setAttribute('display', kind === 'grass' ? 'inline' : 'none');
     }
   }
-  rowClues.forEach((t, k) => t.setAttribute('class', `clue ${G.won ? 'done' : P.rowState[k]}`));
-  colClues.forEach((t, k) => t.setAttribute('class', `clue ${G.won ? 'done' : P.colState[k]}`));
+  const fl = G.flash && G.flash.line;
+  rowClues.forEach((t, k) => t.setAttribute('class', `clue ${G.won ? 'done' : P.rowState[k]}${fl && fl.isRow && fl.k === k ? ' hint' : ''}`));
+  colClues.forEach((t, k) => t.setAttribute('class', `clue ${G.won ? 'done' : P.colState[k]}${fl && !fl.isRow && fl.k === k ? ' hint' : ''}`));
 }
 
 /* ───────── 화면 갱신 ───────── */
@@ -324,6 +355,9 @@ function render() {
   $('left').parentElement.classList.toggle('done', tc === tr);
   $('timer').textContent = fmt(elapsed());
   $('btn-undo').disabled = G.over || !G.undo.length;
+  $('btn-reset').disabled = G.over || !hasMarks();
+  $('btn-hint').disabled = G.over;
+  $('hint-count').textContent = G.hints ? G.hints : '';
 
   renderDailyButton();
   const st = $('status'), best = stats.best(G.level);
@@ -342,13 +376,14 @@ function render() {
   $('over').hidden = !show;
   if (show) {
     const what = G.daily ? `${dayLabel(G.daily)} 오늘의 퍼즐 · ${G.level}` : `${G.level} · ${G.C}×${G.R} · 나무 ${treeCount()}그루`;
-    $('over-meta').textContent = `${what} · ${fmt(elapsed())}`;
+    $('over-meta').textContent = `${what} · ${fmt(elapsed())}${G.hints ? ` · 힌트 ${G.hints}번` : ''}`;
     const b = $('over-best');
     const dailyWin = G.daily && !G.practice;
     b.classList.toggle('new', G.newBest || dailyWin);
     if (G.practice) b.textContent = '연습이라 기록은 남지 않아요';
     else if (dailyWin) b.textContent = `🔥 오늘의 퍼즐 ${stats.dailyStreaks(kstToday())[0]}일 연속 완료!`;
     else if (G.newBest) b.textContent = '★  최고 기록 달성!';
+    else if (G.hints) b.textContent = '힌트를 쓴 판은 최고 기록에 들어가지 않아요';
     else b.textContent = G.prevBest === null ? '' : `최고 기록 ${fmt(G.prevBest)}`;
     const ch = $('over-challenge');
     ch.hidden = !G.challenge;
@@ -739,7 +774,7 @@ function renderShareImage(brag) {
   // 아래 문구
   if (brag) {
     x.fillStyle = IMG.win; x.font = `800 44px ${IMG_FONT}`;
-    x.fillText(`✓ ${fmt(elapsed())} 만에 성공!`, W / 2, 735);
+    x.fillText(`✓ ${fmt(elapsed())} 만에 성공!${G.hints ? ` (힌트 ${G.hints})` : ''}`, W / 2, 735);
   } else {
     x.fillStyle = IMG.accent; x.font = `800 40px ${IMG_FONT}`;
     x.fillText('이 퍼즐 같이 풀어볼래요?', W / 2, 735);
@@ -937,6 +972,8 @@ $('seg-mode').querySelectorAll('button').forEach((b) =>
 $('btn-new').addEventListener('click', () => requestNewGame());
 $('btn-again').addEventListener('click', () => requestNewGame());
 $('btn-undo').addEventListener('click', undo);
+$('btn-reset').addEventListener('click', resetBoard);
+$('btn-hint').addEventListener('click', giveHint);
 $('btn-help').addEventListener('click', () => openModal('help'));
 $('btn-stats').addEventListener('click', openStats);
 $('btn-daily').addEventListener('click', () => requestDaily());
@@ -978,6 +1015,8 @@ document.addEventListener('keydown', (ev) => {
   else if (ev.code === 'KeyD') toggleTheme();
   else if (ev.code === 'KeyS') openStats();
   else if (ev.code === 'KeyU') undo();
+  else if (ev.code === 'KeyH') giveHint();
+  else if (ev.code === 'KeyR') resetBoard();
   else if (ev.key === '+' || ev.key === '=') zoomCenter(1.25);
   else if (ev.key === '-' || ev.key === '_') zoomCenter(1 / 1.25);
   else if (ev.key === '0') resetZoom();

@@ -251,7 +251,78 @@ function decodePuzzle(code) {
   return { level, R, C, tree: Array.from(tree), rows, cols, solution: Array.from(res.st) };
 }
 
+/* 힌트: 지금 판(st, 나무 칸 값은 무시)에서 논리로 확정되는 칸 하나와 이유.
+ * solution 과 다른 칸이 있으면 그 칸부터 알려 준다. 결과 { i, v, why, wrong?, line? } 또는 null */
+function hint(P, st, solution) {
+  const { R, C, tree, rows, cols } = P, n = R * C, { orth, all } = neighbors(R, C);
+  const s = new Uint8Array(n);
+  for (let i = 0; i < n; i++) s[i] = tree[i] ? GRASS : st[i];
+  const name = (v) => (v === TENT ? '텐트' : '잔디');
+
+  // 0) 틀린 칸
+  for (let i = 0; i < n; i++)
+    if (!tree[i] && s[i] !== U && s[i] !== solution[i])
+      return { i, v: solution[i], wrong: true, why: `이 칸은 ${name(s[i])}가 아니에요` };
+  const empty = (i) => s[i] === U;
+  // 누구나 바로 아는 잔디(나무 없는 칸, 텐트 둘레)는 미리 칠해 둔 판 b 에서 쓸모 있는 힌트부터 찾는다
+  const b = s.slice();
+  for (let i = 0; i < n; i++) {
+    if (b[i] === TENT) for (const j of all[i]) if (b[j] === U) b[j] = GRASS;
+    if (b[i] === U && !orth[i].some((k) => tree[k])) b[i] = GRASS;
+  }
+  const open = (i) => b[i] === U;
+  const lines = [];
+  for (let line = 0; line < R + C; line++) {
+    const isRow = line < R, k = isRow ? line : line - R, need = isRow ? rows[k] : cols[k];
+    const len = isRow ? C : R, cells = [];
+    for (let p = 0; p < len; p++) cells.push(isRow ? k * C + p : p * C + k);
+    const t = cells.filter((x) => b[x] === TENT).length, us = cells.filter(open);
+    lines.push({ isRow, k, need, t, us, where: `${k + 1}번째 ${isRow ? '가로' : '세로'}줄` });
+  }
+
+  // 1) 줄에 텐트 칠 수 있는 칸이 딱 필요한 만큼
+  for (const L of lines)
+    if (L.us.length && L.t + L.us.length === L.need)
+      return { i: L.us[0], v: TENT, line: L, why: `${L.where}은 텐트가 ${L.need}개인데 칠 수 있는 칸이 그만큼뿐이에요` };
+  // 2) 나무 옆 자리가 하나뿐
+  const satisfied = new Uint8Array(n);
+  for (let i = 0; i < n; i++) {
+    if (!tree[i]) continue;
+    const cand = orth[i].filter(open), tents = orth[i].filter((j) => b[j] === TENT);
+    if (tents.some((j) => orth[j].filter((k) => tree[k]).length === 1)) satisfied[i] = 1;
+    if (cand.length === 1 && !tents.length) return { i: cand[0], v: TENT, why: '이 나무 옆에 텐트를 칠 수 있는 곳은 여기뿐이에요' };
+  }
+  // 3) 텐트가 다 찬 줄
+  for (const L of lines)
+    if (L.us.length && L.t === L.need) return { i: L.us[0], v: GRASS, line: L, why: L.need ? `${L.where}은 텐트 ${L.need}개가 이미 다 찼어요` : `${L.where}은 텐트가 0개예요` };
+  // 4) 옆 나무들이 모두 이미 텐트를 가짐
+  for (let i = 0; i < n; i++)
+    if (open(i)) {
+      const ts = orth[i].filter((k) => tree[k]);
+      if (ts.length && ts.every((k) => satisfied[k])) return { i, v: GRASS, why: '옆에 있는 나무는 모두 이미 짝 텐트가 있어요' };
+    }
+  // 5) 나머지 규칙(짝 맞추기 등)을 끝까지 따지면 확정되는 칸
+  const t = b.slice();
+  if (propagate(P, t)) for (let i = 0; i < n; i++)
+    if (open(i) && t[i] !== U) return { i, v: t[i], why: `규칙을 차근차근 따져 보면 여기는 ${name(t[i])}예요` };
+  // 6) '여기에 두면 모순'
+  for (let i = 0; i < n; i++) {
+    if (!open(i)) continue;
+    for (const [guess, other] of [[TENT, GRASS], [GRASS, TENT]]) {
+      const x = b.slice(); x[i] = guess;
+      if (!propagate(P, x)) return { i, v: other, why: `여기에 ${name(guess)}를 두면 앞뒤가 안 맞아요. 그래서 ${name(other)}예요` };
+    }
+  }
+  // 7) 남은 건 누구나 아는 잔디뿐
+  for (let i = 0; i < n; i++)
+    if (empty(i) && b[i] === GRASS)
+      return { i, v: GRASS, why: orth[i].some((k) => tree[k]) ? '텐트 바로 옆(대각선 포함)에는 텐트를 칠 수 없어요' : '상하좌우에 나무가 없는 칸엔 텐트가 올 수 없어요' };
+  // 8) 그래도 없으면 정답
+  for (let i = 0; i < n; i++) if (empty(i)) return { i, v: solution[i], why: `여기는 ${name(solution[i])}예요` };
+  return null;
+}
+
 if (typeof module !== 'undefined') {
   module.exports = { LEVELS, U, TENT, GRASS, neighbors, propagate, solve, isSolved, generatePuzzle,
-    seedRandom, levelPuzzle, encodePuzzle, decodePuzzle };
+    seedRandom, levelPuzzle, encodePuzzle, decodePuzzle, hint };
 }

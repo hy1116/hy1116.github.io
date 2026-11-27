@@ -115,6 +115,12 @@
         <button class="pill-btn" id="btn-undo" aria-label="되돌리기" title="되돌리기 (Ctrl+Z)">
           <svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>
         </button>
+        <button class="pill-btn" id="btn-reset" aria-label="처음부터" title="처음부터 (R)">
+          <svg viewBox="0 0 24 24"><path d="M4 4v6h6"/><path d="M4.6 15a8 8 0 1 0 1.9-8.3L4 10"/></svg>
+        </button>
+        <button class="pill-btn hint-btn" id="btn-hint" aria-label="힌트" title="힌트 (H)">
+          <svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg>힌트<span id="hint-count"></span>
+        </button>
         <div class="zoom-ctl" aria-label="확대">
           <button id="zoom-out" aria-label="축소" title="축소 (-)"><svg viewBox="0 0 24 24"><path d="M6 12h12"/></svg></button>
           <button id="zoom-reset" aria-label="원래 크기로" title="원래 크기로 (0)"><span id="zoom-label">1.0×</span></button>
@@ -155,15 +161,18 @@
         <div><kbd class="touch-only">길게 누르기</kbd><kbd class="fine-only">오른쪽 클릭</kbd><span>잔디 표시 (텐트 없는 칸)</span></div>
         <div><kbd>끌기</kbd><span>지나간 칸에 잔디 한 번에 칠하기</span></div>
         <div><kbd>줄 숫자 탭</kbd><span>텐트를 다 친 줄의 남은 칸을 잔디로</span></div>
+        <div><kbd>💡 힌트</kbd><span>논리로 알 수 있는 칸 하나를 이유와 함께 채워요 (틀린 칸이 있으면 먼저 고쳐요)</span></div>
+        <div><kbd>↺ 처음부터</kbd><span>놓은 텐트·잔디를 모두 지우기 (되돌리기로 복구 가능)</span></div>
         <div class="touch-only"><kbd>텐트 / 잔디 버튼</kbd><span>탭으로 할 동작 바꾸기</span></div>
         <div class="touch-only"><kbd>두 손가락</kbd><span>벌려서 확대 · 끌어서 이동</span></div>
         <div class="fine-only"><kbd>휠 · + / −</kbd><span>확대 / 축소 (0: 원래대로)</span></div>
         <div class="fine-only"><kbd>가운데 버튼 끌기</kbd><span>확대한 판 이동</span></div>
         <div class="fine-only"><kbd>N · D · S · Ctrl+Z</kbd><span>새 퍼즐 · 다크 모드 · 통계 · 되돌리기</span></div>
+        <div class="fine-only"><kbd>H · R</kbd><span>힌트 · 처음부터</span></div>
         <div><kbd>공유 버튼</kbd><span>친구에게 같은 퍼즐 보내기</span></div>
         <div><kbd>📅 오늘의 퍼즐</kbd><span>매일 모두에게 같은 퍼즐 · 연속 기록</span></div>
       </div>
-      <p class="note">규칙에 어긋난 곳(붙은 텐트, 개수를 넘긴 줄)은 빨갛게 표시돼요.</p>
+      <p class="note">규칙에 어긋난 곳(붙은 텐트, 개수를 넘긴 줄)은 빨갛게 표시돼요. 힌트를 쓴 판은 최고 기록에 들어가지 않아요.</p>
     </div>
   </div>
 

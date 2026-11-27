@@ -170,6 +170,9 @@ button svg, .chip svg { width: 18px; height: 18px; fill: none; stroke: currentCo
   font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif; transition: fill .15s; cursor: pointer; }
 #board .clue.done { fill: var(--clue-done); }
 #board .clue.over { fill: var(--over); }
+#board .c.hint .t { stroke: var(--accent); stroke-width: 7; animation: hint-pulse .8s ease-in-out 3; }
+#board .clue.hint { fill: var(--accent); }
+@keyframes hint-pulse { 50% { stroke-width: 14; } }
 #board.fresh .c, #board.fresh .clue { opacity: 0; }
 #board .c, #board .clue { transition: opacity .25s, fill .12s; }
 
@@ -195,7 +198,7 @@ button svg, .chip svg { width: 18px; height: 18px; fill: none; stroke: currentCo
 
 /* ───────── 아래 조작 줄 ───────── */
 .status-row { display: flex; flex-direction: column; align-items: center; gap: 8px; }
-.ctl-row { display: flex; align-items: center; justify-content: center; gap: 8px; }
+.ctl-row { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; }
 .seg.mode { flex: none; width: 170px; }
 .seg.mode button.on[data-mode="0"] { color: var(--tent); }
 .seg.mode button.on[data-mode="1"] { color: var(--tree); }
@@ -203,6 +206,9 @@ button svg, .chip svg { width: 18px; height: 18px; fill: none; stroke: currentCo
   display: grid; place-items: center; transition: background .15s, transform .1s; }
 .pill-btn svg { width: 17px; height: 17px; }
 .pill-btn:disabled { color: var(--muted); }
+.pill-btn.hint-btn { grid-auto-flow: column; gap: 5px; padding: 0 14px 0 12px; font-size: 13.5px; font-weight: 700; }
+#hint-count:not(:empty) { min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; font-size: 11px;
+  display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); }
 .pill-btn:not(:disabled):active { transform: scale(.94); }
 @media (hover: hover) { .pill-btn:not(:disabled):hover { background: var(--chip-hover); } }
 .zoom-ctl { display: flex; align-items: center; background: var(--chip); border-radius: 999px; padding: 3px; gap: 2px; }
