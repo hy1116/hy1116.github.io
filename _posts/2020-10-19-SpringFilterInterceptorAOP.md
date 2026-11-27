@@ -49,7 +49,7 @@ last_modified_at: 2020-10-16T18:00:00
 
 ### 03. Filter, Interceptor, AOP의 흐름
 
-<img src="\assets\images\posts\Filter,Interceptor,AOP_0001.png" class="image-shadow-card" alt="Filter,Interceptor,AOP_0001" style="zoom:80%;" />
+<img src="/assets/images/posts/Filter,Interceptor,AOP_0001.png" class="image-shadow-card" alt="Filter,Interceptor,AOP_0001" style="zoom:80%;" />
 
 - Interceptor와 Filter는 Servlet 단위에서 실행된다. AOP는 메소드 앞에 Proxy패턴의 형태로 실행된다.
 

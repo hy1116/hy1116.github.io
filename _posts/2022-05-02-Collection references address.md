@@ -1,7 +1,7 @@
 ---
 title : "Java - Collection references address"
 category : "Java"
-tags : [boxing]
+tags : [Boxing]
 date : 2022-05-02T12:00:00
 last_modified_at: 2023-01-14T12:00:00
 comment: true

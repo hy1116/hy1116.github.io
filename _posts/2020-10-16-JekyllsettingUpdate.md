@@ -72,7 +72,7 @@ last_modified_at: 2020-10-16T13:59:00
 
 - `_includes` /`sidebar.html`에 if 조건으로 `tag_list.html`와`category_list.html` include.
 
-<img src="\assets\images\posts\image-20201016162539687.png" alt="image-20201016162539687" class="image-shadow-card" style="zoom:80%;" />
+<img src="/assets/images/posts/image-20201016162539687.png" alt="image-20201016162539687" class="image-shadow-card" style="zoom:80%;" />
 
 
 
