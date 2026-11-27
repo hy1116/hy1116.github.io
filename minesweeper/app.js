@@ -781,6 +781,7 @@ function renderShareImage(brag) {
 const KAKAO_KEY = '7d4bc1ef953608ec41d536ba29ff43a4';
 const KAKAO_SDK = 'https://t1.kakaocdn.net/kakao_js_sdk/2.8.2/kakao.min.js';
 const KAKAO_SRI = 'sha384-zt/G7/KfaRQ9dT/QIkS0ujMtzouJqzuSJcXVQu50x0rl/+mD1dc70AeOejVbMD9E';
+const OG_IMAGE = 'https://hy1116.github.io/minesweeper/og-image.png';
 let kakaoLoading = null;
 
 function loadKakao() {
@@ -827,14 +828,13 @@ function openShare(brag) {
   new Promise((res) => cur.canvas.toBlob(res, 'image/png')).then((blob) => {
     cur.blob = blob;
     return loadKakao().then((K) => K.Share.uploadImage({ file: [new File([blob], 'minesweeper.png', { type: 'image/png' })] }));
-  }).then((r) => { cur.kakaoImage = r.infos.original; }).catch(() => { /* 실패하면 글만 보냄 */ });
+  }).then((r) => { cur.kakaoImage = r.infos.original; }).catch(() => { /* 실패하면 기본 이미지 사용 */ });
 }
 
 function kakaoPayload(sh) {
   const link = { mobileWebUrl: sh.url, webUrl: sh.url };
   const button = sh.brag ? '도전하기' : '같이 하기';
-  const img = sh.kakaoImage;
-  if (!img) return { objectType: 'text', text: `${sh.title}\n${sh.brag ? '나보다 빨리 깰 수 있어요?' : '같은 판으로 같이 해요!'}`, link, buttonTitle: button };
+  const img = sh.kakaoImage || { url: OG_IMAGE, width: 1200, height: 630 };
   return {
     objectType: 'feed',
     content: {
@@ -1027,6 +1027,11 @@ document.addEventListener('visibilitychange', () => {
 window.addEventListener('pagehide', saveGame);
 matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', syncThemeColor);
 matchMedia('(pointer: coarse)').addEventListener?.('change', render);
+
+/* 오프라인 지원 · 앱으로 설치 (https 또는 localhost 에서만) */
+if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost')) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
 
 /* 시작 */
 syncThemeColor();

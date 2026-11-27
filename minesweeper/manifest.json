@@ -1,0 +1,16 @@
+{
+  "name": "Minesweeper · 지뢰찾기",
+  "short_name": "지뢰찾기",
+  "description": "찍을 필요 없는 지뢰찾기. 논리만으로 끝까지 풀려요!",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#EEF1F8",
+  "theme_color": "#5B5BF0",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
