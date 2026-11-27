@@ -1,0 +1,45 @@
+---
+---
+
+$font-ko: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo',
+  'Noto Sans KR', 'Malgun Gothic', 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+
+@use 'abstracts/variables' with (
+  $theme: '{{ site.theme_mode }}',
+  $font-family-base: $font-ko,
+  $font-family-heading: $font-ko
+);
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* append your custom style below */
+
+/* Code font */
+:root,
+[data-bs-theme] {
+  --bs-font-monospace: 'JetBrains Mono Variable', 'JetBrains Mono', D2Coding, Consolas, 'SFMono-Regular', Menlo,
+    monospace;
+}
+
+/* Chirpy hard-codes Lato/Oswald in a few places; use the site font there too */
+kbd,
+.pagination,
+#archives li .date.day,
+.tag span {
+  font-family: $font-ko;
+}
+
+/* Korean text reads better with slightly looser line height and word-based wrapping */
+body {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.content {
+  line-height: 1.75;
+}
